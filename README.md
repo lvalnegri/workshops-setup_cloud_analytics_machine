@@ -88,7 +88,7 @@ If you’ve always wanted to have:
 
 the following notes will help you!
 
-This tutorial is quite lengthy, as it is full of details for the novice. If you just want the step-by-step list, a sort of cloud server setup cheat-sheet, it's more convenient for you to follow [this document](https://github.com/datamaps/workshops-setup_cloud_analytics_machine/blob/master/TL%3BDR.md) instead.
+This tutorial is quite lengthy, as it is full of details for the novice. If you just want the step-by-step list, a sort of cloud server setup cheat-sheet, it's more convenient for you to follow [this document](https://github.com/lvalnegri/workshops-setup_cloud_analytics_machine/blob/master/TL%3BDR.md) instead.
 
 <br/>
 
@@ -276,7 +276,7 @@ You would drop the `-r` option if you want to keep the user's *home* dire.
 ### Add *public* group and repository
 One of the main problems beginners encounter when they start using Linux, and the *Shiny* Server in particular,  is related to the much dreaded *file permissions*. Briefly explained, everything in Linux is a file, each file admits three operations: **r**ead, **w**rite, e**x**ecute, that can be carried out by three (groups of) users: the *owner* of the file, any user belonging to a specific *group*, and all the *other* users. When you list the content of a directory, using for example the `ls -l` command, you can see all the permissions in a form of nine binary numbers attached to it, where 0 means *not permitted* and 1 means *permitted*. These numbers must be read in group of three (see also the picture below): the first three (from the left) are the operations allowed to the *owner*, the next three are for the *group*, the last three for *others*. Besides the binary mode, there is also a more common *octal* mode that simply collapse each group of three numbers using their octal value.
 
-![linux file permissions](https://github.com/datamaps/workshops-setup_cloud_analytics_machine/blob/master/permissions.png?raw=true)
+![linux file permissions](https://github.com/lvalnegri/workshops-setup_-cloud_analytics_machine/blob/master/permissions.png?raw=true)
 
 Having said that, why things become problematic? Well, because you usually deploy an application using RStudio in your owh home directory, which you can acces because it's yours. When you're done, you then copy your code to the location where the Shiny Server reads its files. But you quickly discover that... you can't! as that directory is owned by the *shiny* user connected to the *Shiny* Server, and you can't access it. You could think that copying it using `sudo` would do the trick, and it will, but then *shiny* can't access those files because they are owned by root! Moreover, besides the code a data application usually needs data, often lots of different data, and these data need to be stored somewhere where they can be read by *shiny* for the app to actually works. All of the above often ends up with duplications, missed or wrong updating, and so on.
   
@@ -340,12 +340,12 @@ A possible quicker way to build a complete structure at once is to create a loop
     ls $PUB_PATH -l
     ~~~
 
-You can use an online service to speed up a bit, and automate the above process, in case you plan to use multiple VPS. I saved two example files [subdirs.lst](https://github.com/datamaps/workshops/blob/master/setup_cloud_analytics_machine/subdirs.lst) and [subdirs.sh](https://github.com/datamaps/workshops/blob/master/setup_cloud_analytics_machine/subdirs.sh) in the repository, but you should create two of your own, using whichever service you prefer, and change the below command accordingly. The complete process is outlined below:
+You can use an online service to speed up a bit, and automate the above process, in case you plan to use multiple VPS. I saved two example files [subdirs.lst](https://github.com/lvalnegri/workshops/blob/master/setup_cloud_analytics_machine/subdirs.lst) and [subdirs.sh](https://github.com/lvalnegri/workshops/blob/master/setup_cloud_analytics_machine/subdirs.sh) in the repository, but you should create two of your own, using whichever service you prefer, and change the below command accordingly. The complete process is outlined below:
 ~~~
 mkdir -p ~/scripts/subs
 cd ~/scripts/subs
-wget -O subdirs.lst https://raw.githubusercontent.com/datamaps/workshops/master/setup_cloud_analytics_machine/subdirs.lst
-wget -O subdirs.sh https://raw.githubusercontent.com/datamaps/workshops/master/setup_cloud_analytics_machine/subdirs.sh
+wget -O subdirs.lst https://raw.githubusercontent.com/lvalnegri/workshops/master/setup_cloud_analytics_machine/subdirs.lst
+wget -O subdirs.sh https://raw.githubusercontent.com/lvalnegri/workshops/master/setup_cloud_analytics_machine/subdirs.sh
 chmod +x subdirs.sh
 ./subdirs.sh
 ~~~
