@@ -1,12 +1,15 @@
+tdhock/animint
 homerhanumat/bpexploder
 jcheng5/bubbles
 daranzolin/compareBars
 ThomasSiegmund/D3TableFilter
 hadley/emo
+gadenbuie/epoxy
 rstudio/fontawesome
 RinteRface/fullPage
 ropensci/geojsonio
 AckerDWM/gg3D
+guiastrennec/ggplus
 gadenbuie/ggpomological
 ricardo-bion/ggradar
 ricardo-bion/ggtech
@@ -17,6 +20,9 @@ psychemedia/htmlwidget-hexjson
 ropenscilabs/icon
 johannesbjork/LaCroixColoR
 datavisyn/lineup_htmlwidget
+r-lib/lobstr
+hrbrmstr/markdowntemplates
+hannesmuehleisen/MonetDBLite-R
 cmap/morpheus.R
 chengvt/MovingBubbles
 m-clark/NineteenEightyR
@@ -25,6 +31,7 @@ timelyportfolio/parcoords
 thomasp85/patchwork
 EmilHvitfeldt/quickpalette
 vankesteren/rijkspalette
+ropensci/rnoaa
 bwlewis/rthreejs
 hoesler/rwantshue
 redichh/shapleyR
@@ -36,3 +43,5 @@ hrbrmstr/streamgraph
 hrbrmstr/taucharts
 dreamRs/topogram
 m-clark/visibly
+giswqs/whiteboxR
+gadenbuie/xaringanExtra

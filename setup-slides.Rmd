@@ -4,7 +4,7 @@ subtitle: "Setup a Cloud Server for Data Science"
 author: "Luca Valnegri"
 output:
   xaringan::moon_reader:
-    css: ["default", "metropolis", "metropolis-fonts", "https://datamaps.uk/assets/WeR/xari.css"]
+    css: ["default", "metropolis", "metropolis-fonts", "https://datamaps.uk/assets/datamaps/xari.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -12,8 +12,8 @@ output:
       countIncrementalSlides: false
 ---
 layout: true
-<div class="wer-header"> <img class="logo" src="https://datamaps.uk/assets/WeR/logo_white.png"/> </div>
-<div class="wer-footer"> <span> &copy;2019 WeR meetup <br> <a href = "https://github.com/WeR-stats/workshop-setup_cloud_machine_data_science"> GitHub Repository </a> </span> </div>
+<div class="datamaps-header"> <img class="logo" src="https://datamaps.uk/assets/datamaps/logo_white.png"/> </div>
+<div class="datamaps-footer"> <span> &copy;2020 datamaps.uk <br> <a href = "https://github.com/lvalnegri/workshops-setup_-cloud_analytics_machine"> GitHub Repository </a> </span> </div>
 
 ---
 # Motivations

@@ -1,8 +1,12 @@
 csvkit
 pandas
+pandas_datareader
+pandas_sql
+qgrid
 datatable
 scrapy
 beautifulsoup4
+selenium
 pattern3
 numpy
 scipy
@@ -23,6 +27,7 @@ geopandas
 pyshp
 folium
 geoviews
+pysal
 statsmodels
 sklearn
 lightgbm
@@ -43,7 +48,6 @@ nltk
 gensim
 spacy
 cntk
-imageIO
 cython
 dask
 numba
