@@ -1,0 +1,26 @@
+/*
+The styles in this file are global custom styles for presentataions to be used for the WeR meetup.
+To customize the appearance of the presentation with CSS styles requires using HTML codes instead of the simplified markdown syntax.
+To apply a style to specific elements in the presentation just use the 'class' argument in the HTML tag.
+Alternatively, simple styles can also be defined for individual elements using the 'style' argument in the tag.
+*/
+
+.footer {
+    color: black;
+    background: #E8E8E8;
+    position: fixed;
+    top: 90%;
+    text-align:center;
+    width:100%;
+}
+
+
+/* avoid hyphenation in titles */
+.reveal h1, .reveal h2, .reveal h3 {
+  word-wrap: normal;
+  -moz-hyphens: none;
+}
+
+.small-code pre code {
+  font-size: 1em;
+} 

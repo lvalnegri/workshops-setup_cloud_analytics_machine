@@ -1,0 +1,560 @@
+How to Setup a Cloud Server for Data Science
+========================================================
+author: Luca Valnegri 
+date: 12 December 2018
+width: 1280
+height: 720
+transition: fade
+font-import: http://fonts.googleapis.com/css?family=Raleway
+font-family: 'Raleway'
+css: WeR.css
+class: small-code
+
+<div class="footer">
+    All materials used in this workshop can be found on GitHub <br/> 
+    https://github.com/WeR-stats/workshops
+</div>
+
+Contents
+========================================================
+  - Motivations
+  - Choose Provider
+  - Create Account
+  - Linux Basics
+  - Create Machine
+  - Customize the Server
+  - R Stack
+  - Python Stack
+  - Storage Engines
+  - Nginx
+  - Additional Tools
+  - Resources
+
+
+[I] Choose Provider - Virtual Private Server
+========================================================
+  - [**Digital Ocean**](https://m.do.co/c/ef1c7bc80083)
+  - [Vultr](https://www.vultr.com/?ref=7386270)
+  - [Linode](https://www.linode.com/?r=16ace20f02e9b84a22fd6c4974a4aae82499d0b9)
+  - [Scaleway](https://www.scaleway.com/)
+  - [VPSServer](https://www.vpsserver.com/?affcode=68e9bee3a96c)
+  - [Kamatera](https://www.kamatera.com/)
+
+[I] Choose Provider - Cloud Computing
+========================================================
+  - [Amazon Web Services](https://aws.amazon.com/)
+  - [Microsoft Azure](https://azure.microsoft.com/en-gb/)
+  - [Google Cloud Platform](https://cloud.google.com/)
+  - [Alibaba Cloud](https://www.alibabacloud.com/)
+  - [IBM Cloud](https://www.ibm.com/cloud/virtual-servers)
+  - [Oracle Cloud](https://cloud.oracle.com/compute)
+
+[I] Choose Provider - Virtual Machine
+========================================================
+  - [KVM](https://www.linux-kvm.org/) for Linux Systems
+  - [Hyper-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/index) for Windows Systems
+  - [VirtualBox](https://www.virtualbox.org/)
+  - [VMware vSphere](https://www.vmware.com/uk/products/vsphere.html)
+  - [Citrix Hypervisor (XenServer)](https://www.citrix.co.uk/products/citrix-hypervisor/)
+   
+[I] Choose Provider - Physical Server
+========================================================
+  - [HPE ProLiant MicroServer Gen10](https://www.hpe.com/uk/en/product-catalog/servers/proliant-servers/pip.hpe-proliant-microserver-gen10.1009955118.html)
+  - [SuperMicro SuperServer 5028D-TN4T](https://www.supermicro.com/products/system/midtower/5028/sys-5028d-tn4t.cfm)
+  - [Zotac CI527 Nano](https://www.zotac.com/us/product/mini_pcs/ci527-nano)
+  - Any old laptop with min 2GB RAM :-)
+
+
+[II] Create Account - Sign up to Digital Ocean
+========================================================
+  - go to https://m.do.co/c/ef1c7bc80083 ($100 lasting 60 days)
+  - insert your email and a sufficiently strong password 
+  - you'll be asked for a credit card, but no money will be taken from your account.
+  - validate your email
+
+[II] Create Account - Login into Digital Ocean
+========================================================
+  - go to https://cloud.digitalocean.com/login
+  - click "Login" top right
+  - enter username and password
+
+[II] Create Account - Secure Account
+========================================================
+  - go to Account / Security / Secure your account / Enable Two-Factor Authentication
+  - choose which system you prefer and follow instructions. 
+  - in both cases, remember to generate the backup codes, and save them in some secure place.
+
+
+[III] Linux Basics - Files and Folders
+========================================================
+
+  - pwd
+  - ls
+  - cd
+  - mkdir
+  - rmdir
+  - cp /path/to/origin/fname /path/to/destination
+  - mv /path/to/origin/fname /path/to/destination
+  - rm /path/to/origin/fname
+  - cat fname
+  - less fname, more fname
+  - head fname, tail fname
+  - touch fname
+  - nano fname
+
+
+[III] Linux Basics - Root Directory Structure
+========================================================
+
+
+
+[III] Linux Basics - Users, Groups, Permissions
+========================================================
+
+  - whoami
+  - adduser usrname
+  - usermode -aG sudo usrname
+  - passwd usrname
+  - su - usrname
+  - sudo
+  - exit
+  - chmod
+  - chown
+
+[III] Linux Basics - Software Management
+========================================================
+
+
+apt-get
+
+  - update
+  - upgrade
+  - dist-upgrade
+  - autoremove
+  - clean
+  - install
+  
+`/etc/apt/sources.list` Locations to fetch packages from
+
+[III] Linux Basics - Scheduling Tasks
+========================================================
+
+
+
+[III] Linux Basics - Bash Shell
+========================================================
+
+
+
+[IV] Create Machine - Password Login
+========================================================
+
+  - Click the green “Create” button in the top right
+  - Click “Droplet” from the unfolding menu
+    - Distribution: Ubuntu 16.04.4 x64
+    - Size: RAM 4GBPower: 2vCPUs, Storage: 80GB, Bandwith: 4TB.
+    - Region: London / Amsterdam
+    - Choose a memorable name (shiny-server)
+    - Click Create
+    - Wait for the email containing the IP public address of the server, and the password for the root user.
+
+[IV] Create Machine - Upgrade the System
+========================================================
+
+  - enable monitoring from the DO dashboard:
+
+```
+curl -sSL https://agent.digitalocean.com/install.sh | sh
+```
+  - Check desired timezone:
+  
+```
+dpkg --configure -a
+dpkg-reconfigure tzdata
+```
+  - upgrade the system:
+  
+```
+apt-get update
+apt-get upgrade
+apt-get dist-upgrade
+apt-get autoremove
+```
+
+
+[IV] Create Machine - Create Admin User
+========================================================
+
+  - create new user
+  
+```
+adduser usrname
+``` 
+  - add new user as *sudoer* to the *sudo* group
+
+```
+usermod -aG sudo usrname
+``` 
+  - switch control to *usrname*
+
+```
+su - usrname
+``` 
+  - check if *usrname* can actually run admin commands
+
+```
+sudo su
+``` 
+  - always remember to exit from sudo when finished (also `CTRL+D` as shortcut)
+  
+```
+exit
+``` 
+
+[IV] Create Machine - Add *public* group
+========================================================
+
+  - create the group
+  
+```
+sudo groupadd public
+```
+  - add any user
+
+```
+sudo usermod -aG public username
+```
+
+
+[IV] Create Machine - Add *public* repository
+========================================================
+
+  - create the directory
+  
+```
+sudo mkdir -p /usr/local/share/public/
+```
+  - add permission
+  
+```
+sudo chgrp -R public /usr/local/share/public/
+sudo chmod -R 2775 /usr/local/share/public/
+```
+  - restart the system
+  
+```
+sudo reboot
+```
+  - open the configuration file:
+  
+```
+sudo nano /etc/environment
+```
+  - add the following line at the end:
+  
+```
+PUB_PATH="/usr/local/share/public"
+```
+
+
+
+
+
+[IV] Create Machine - Add Security
+========================================================
+ Change SSH listening port
+ 
+ - Open SSH configuration file: 
+    
+```
+sudo nano /etc/ssh/sshd_config
+```
+ - Change Port **22** to **XXX**
+ 
+ - 
+ 
+    ...
+    AllowUsers root username
+    [Ctrl+X]
+    ```
+    sudo service ssh restart
+    ```
+
+ - Enable Firewall (ufw)
+    ```
+    sudo ufw allow xxxx
+    sudo ufw deny 22
+    sudo ufw enable
+    sudo ufw status
+    ```
+
+[IV] Create Machine - Basic Configuration II
+========================================================
+
+
+
+[IV] Create Machine - 
+========================================================
+
+
+[V] R Stack - R Core
+========================================================
+ - First, add the correct repository to the list (the following is for Ubuntu 16.04):
+    
+    ```bash
+    sudo sh -c 'echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" >> /etc/apt/sources.list'
+    ```
+ - Next, add the correct public key to the system, to let `APT` authenticate the downloaded packages:
+    
+    ```bash
+    gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9 
+    gpg -a --export E084DAB9 | sudo apt-key add -
+    ```
+ - Finally, update the list of of available software, and then install the package:
+    
+    ```bash
+    sudo apt-get update
+    sudo apt-get install r-base r-base-dev
+    ```
+
+[V] R Stack - RStudio Server
+========================================================
+ - First, make sure you have *apparmor* and *gdebi* installed in the system:
+    
+    ```bash
+    sudo apt-get install libapparmor1 gdebi-core
+    ```
+ - Next, download the correct package for your architecture:
+    
+    ```bash
+    wget https://download2.rstudio.org/rstudio-server-1.0.143-amd64.deb -O rstudio.deb
+    ```
+    The above is correct for Ubuntu 12.04+ at the time of writing. Visit the [Rstudio Server webpage](https://www.rstudio.com/products/rstudio/download-server/) to check the most up-to-date version.
+ - Finally, install the package:
+    
+    ```bash
+    sudo gdebi rstudio.deb
+    ```
+ - Optional Configuration
+    * open for edit /etc/rstudio/rserver.conf
+    * change or add the listening port: www-port=xxxx
+    * change or add the accepted incoming IPs: www-address=0.0.0.0
+
+[V] R Stack - Shiny Server I. Installation
+========================================================
+ - First, install the R *shiny* package in the system library:
+    
+    ```bash
+    sudo su - -c "R -e \"install.packages('shiny', repos = 'http://cran.rstudio.com/')\"" 
+    ```
+ - Next, visit the [Shiny Server webpage](https://www.rstudio.com/products/shiny/download-server/) and download the correct package for your architecture:
+    
+    ```bash
+    wget https://download3.rstudio.org/ubuntu-12.04/x86_64/shiny-server-1.5.3.838-amd64.deb -O shiny.deb
+    ```
+ - Finally, install the package:
+    
+    ```bash
+    sudo gdebi shiny.deb
+    ```
+
+[V] R Stack - Shiny Server II - Configuration
+========================================================
+ - Change the listening port
+    * open for edit /etc/rstudio/rserver.conf
+    * change or add the listening port: www-port=xxxx
+    
+ - Add group to facilitate copying apps
+ 
+ - Checking error logs
+ 
+ - Debugging
+
+[V] R Stack - Additional Linux libraries
+========================================================
+ - devtools: 
+    
+    ```bash
+    sudo apt-get install curl libssl-dev libcurl4-gnutls-dev
+    ```
+ - RMySQL: 
+    
+    ```bash
+    sudo apt-get install libmysqlclient-dev
+    ```
+ - rgdal/rgeos/spdplyr: 
+    
+    ```bash
+    sudo add-apt-repository ppa:ubuntugis/ppa 
+    sudo apt-get update 
+    sudo apt-get install gdal-bin
+    sudo apt-get install libgdal-dev libgeos-dev libproj-dev
+    ```
+ - sf (must be installed AFTER previous deps): 
+    
+    ```bash
+    sudo apt-get install libudunits2-dev
+    ```
+ - geojsonio/tmap (must be installed AFTER previous deps): 
+    
+    ```bash
+    sudo apt-get install libv8-3.14-dev
+    ```
+ - Cairo/gdtools: 
+    
+    ```bash
+    sudo apt-get install libcairo2-dev libxt-dev
+    ```
+ - RccpGSL: 
+    
+    ```bash
+    sudo apt-get install libgsl0-dev
+    ```
+ - GMP:
+    
+    ```bash
+    sudo apt-get install libgmp3-dev 
+    ```
+ - rgl:
+    
+    ```bash
+    sudo apt-get install r-cran-rgl libcgal-dev libglu1-mesa-dev libglu1-mesa-dev
+    ```
+ - rJava: 
+    
+    ```bash
+    sudo apt-get install openjdk-8-*
+    sudo apt-get install r-cran-rjava
+    sudo R CMD javareconf
+    ```
+ - nloptr (dependency, the MIT website R relies on is often down):
+    
+    ```bash
+    sudo apt-get install libnlopt-dev 
+    ```
+
+To install a package in a way that makes it available to all users by installing it as **root**
+
+[V] R Stack - R Packages
+========================================================
+  - Data Preparation
+  - Data Processing
+  - Data Exploration
+  - Data 
+
+
+[V] R Stack - Testing the R stack
+========================================================
+  - 
+  - Run app
+
+
+[VII] Python Data Stack - Installation
+========================================================
+
+
+
+[VII] Python Data Stack - Libraries
+========================================================
+
+
+
+[VII] Python Data Stack - Jupyter
+========================================================
+
+
+
+
+
+[VI] Data Storage - MySQL Server (Relational Database)
+========================================================
+ - Install
+ - Configuration
+ - Security steps
+ - Create Users (with ... permissions)
+
+
+[VI] Data Storage - DBNinja (MySQL Web Client)
+========================================================
+ - Download file
+ - Install
+ - Security steps
+
+[VI] Data Storage - MongoDB (Document Database)
+========================================================
+
+
+
+[VI] Data Storage - Neo4j (Graph Database)
+========================================================
+
+
+
+[VI] Data Storage - ( database)
+========================================================
+
+
+
+[VI] Data Storage - ( database)
+========================================================
+
+
+
+[VI] Data Storage - ( database)
+========================================================
+
+
+
+[VI] Data Storage - ( database)
+========================================================
+
+
+
+
+[VIII] Docker. Installation
+========================================================
+
+
+
+[IX] Docker. Basic Commands
+========================================================
+
+
+
+[IX] Additional Tools - Spark
+========================================================
+
+
+
+[IX] Additional Tools - KVM
+========================================================
+
+
+
+[IX] Additional Tools - Node.js
+========================================================
+
+
+
+[IX] Additional Tools - NextCloud
+========================================================
+File Hosting service
+
+
+
+Resources
+========================================================
+
+   <br/>
+
+ - [WeR Meetup](https://www.meetup.com/WeR-stats/)
+ 
+ - [WeR GitHub Repository](https://github.com/WeR-stats)
+ 
+ - [WeR Trello Board](https://trello.com/b/OrAZjOfx/01-set-up-cloud-machine-for-data-science)
+ 
+ - [WeR Slack Channel](https://we-r-stats.slack.com/messages/CER9296DP/)  
+ 
+   To join the Slack channel you have to send me a message, with your email and permission to add you as a user.
+
+ 

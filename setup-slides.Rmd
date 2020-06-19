@@ -1,0 +1,75 @@
+---
+title: "💻 <i>R</i> Workshop 💻"
+subtitle: "Setup a Cloud Server for Data Science"
+author: "Luca Valnegri"
+output:
+  xaringan::moon_reader:
+    css: ["default", "metropolis", "metropolis-fonts", "https://datamaps.uk/assets/WeR/xari.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+layout: true
+<div class="wer-header"> <img class="logo" src="https://datamaps.uk/assets/WeR/logo_white.png"/> </div>
+<div class="wer-footer"> <span> &copy;2019 WeR meetup <br> <a href = "https://github.com/WeR-stats/workshop-setup_cloud_machine_data_science"> GitHub Repository </a> </span> </div>
+
+---
+# Motivations
+
+ - 
+
+--
+
+ - 
+
+--
+
+ - 
+
+--
+
+ - 
+
+--
+
+ - 
+
+--
+
+ - 
+
+---
+# Cloud Providers:
+
+
+
+---
+# Resources
+
+--
+
+ - [Cheat Sheet]()
+ 
+--
+
+ - [Reference]()
+ 
+--
+
+ - [RStudio Tutorials]()
+
+--
+
+ - [Datacamp Skill Track]()
+
+
+---
+# Thank You!
+
+ - [`r icon::fa("twitter")` @datamaps](https://twitter.com/datamaps)
+
+ - [`r icon::fa("github")` lvalnegri](https://github.com/lvalnegri)
+ 
+ - [`r icon::fa("linkedin")` Luca Valnegri](https://www.linkedin.com/in/lucavalnegri)
