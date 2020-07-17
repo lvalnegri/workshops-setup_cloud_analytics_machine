@@ -13,9 +13,9 @@ for *standard* users, or
 ```
 root@hostname:current_directory# 
 ```
-for the **root** user or *sudoers*. 
+for the **root** user and *sudoers*. 
 
-To change the appearance of the prompt is sufficient to redefine the environment variable `PS1` as in:
+To change the appearance of the prompt it is sufficient to redefine the *environment* variable `PS1` as in:
 ```
 PS1 'promptstring'
 ```

@@ -38,6 +38,8 @@ broomExtra
 bs4Dash
 bsplus
 BTM
+bubblyr
+butcher 
 c3
 C50
 ca
@@ -72,6 +74,7 @@ colourlovers
 colourpicker
 concaveman
 configr
+corazon
 CORElearn
 corrgram
 corrplot
@@ -88,6 +91,7 @@ D3partitionR
 d3r
 d3Tree
 DALEX
+dashboardthemes
 data.table
 DataExplorer
 datasets
@@ -100,10 +104,12 @@ DescTools
 dggridR
 DHARMa
 DiagrammeR
+dials
 dichromat
 diffobj
 directlabels
 dismo
+doBy
 doFuture
 doMC
 doParallel
@@ -267,6 +273,7 @@ grid
 gridExtra
 gstat
 gsubfn
+gt
 gtable
 gtools
 GWmodel
@@ -336,6 +343,7 @@ leafpop
 leafsync
 leaftime
 leaps
+learnr
 lemon
 lexicon
 lime
@@ -436,11 +444,13 @@ ParallelLogger
 parallelMap
 parcats
 parcoords
+parsnip
 party
 partykit
 pbkrtest
 PerformanceAnalytics
 pheatmap
+pins
 pivottabler
 pixiedust
 pkgdown
@@ -455,8 +465,8 @@ plotROC
 pls
 plumber
 plyr
-png
 pointdensityP
+png
 Polychrome
 pool
 PortfolioAnalytics
@@ -503,6 +513,7 @@ reactR
 readODS
 readr
 readxl
+recipes
 recmap
 Redmonder
 redux
@@ -539,6 +550,7 @@ rpart.plot
 rpivotTable
 RPostgres
 RRF
+rsample
 RSelenium
 RSNNS
 RSQLite
@@ -553,14 +565,17 @@ scales
 scatterD3
 scatterplot3d
 scico
+scrollrevealR
 see
 seg
 semantic.dashboard
 seqtest
 sem
+sever
 sf
 shades
 shiny.info
+shinipsum
 shinyalert
 shinyanimate
 shinyBS
@@ -569,8 +584,8 @@ shinycssloaders
 shinycustomloader
 shinyCyJS
 shinydashboard
-shinydashboardPlus
 shinyDND
+shinydashboardPlus
 shinyEffects
 shinyEventLogger
 shinyFeedback
@@ -587,7 +602,11 @@ shinymanager
 shinymaterial
 shinyMatrix
 shinyMobile
+shinyobjects
 shinypanels
+shinyrecipes
+shinyreforms
+shinySearchbar
 shinytest
 shinythemes
 shinyTree
@@ -641,6 +660,7 @@ sugrrants
 summarytools
 sunburstR
 SuperLearner
+supreme
 survival
 survivalAnalysis
 survminer
@@ -687,6 +707,7 @@ tsutils
 tufte
 tuicalendr
 tuichartr
+tune
 tuneRanger
 tweenr
 twitteR
@@ -714,6 +735,7 @@ widgetframe
 withr
 woeBinning
 wordcloud2
+workflows
 wrapr
 xaringan
 xaringanthemer
@@ -723,6 +745,7 @@ XML
 xml2
 xtable
 xts
+yardstick
 yarrr
 ymlthis
 zoo

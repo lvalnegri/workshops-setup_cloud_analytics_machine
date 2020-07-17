@@ -1,5 +1,5 @@
 
-  - VPS manager: [Digital Ocean](https://cloud.digitalocean.com/)
+  - VPS manager: [Digital Ocean](https://m.do.co/c/ef1c7bc80083)
   - OS: [Ubuntu **18.04**.2 LTS]([http://releases.ubuntu.com/18.04/](http://releases.ubuntu.com/18.04/))
   - Size: 1CPU, 2GB RAM, 50GB SSD, 2TB data (to upsize later when needed)  
   - Datacenter Region: *London*

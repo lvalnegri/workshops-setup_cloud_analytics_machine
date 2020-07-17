@@ -1,7 +1,7 @@
 # How to Setup a Cloud Server for Data Science
 
 **Author**: [Luca Valnegri](https://www.linkedin.com/in/lucavalnegri/)   
-**Last Updated**: 30-Oct-2019
+**Last Updated**: 30-Jun-2020
 
 <a name="index"/>
 
@@ -80,15 +80,15 @@
 
 ## Motivations 
 If you’ve always wanted to have:
-  - an *RStudio Server* of your own so that you can access your *R* projects from anywhere (albeit with an internet connection)
-  - your own *Shiny Server* to host your awesome data visualizations, the results of statistical modeling, monitor your machine learning algorithms, or simply deploy some *RMarkdown* documents
+  - an *RStudio Server* of your own, so that you can access your *R* projects from anywhere (albeit with an internet connection)
+  - your own *Shiny Server* to host your awesome data visualizations or dashboards, the results of statistical modeling, monitor your machine learning algorithms, or simply deploy some *RMarkdown* documents or reports
   - a *JupyterLab* server to share your knowledge with your team colleagues
-  - one or more database server to store any kind of data, small or/and big, relational and/or schema-less
-  - your own cloud storage to acces your file from everyhere without paying another company to do so
+  - one or more *database management systems* to store any kind of data, small or/and big, relational and/or schema-less
+  - your own *cloud storage* to access your file from everyhere without paying another company to do so (on top of the actual storage, obviously!)
 
 the following notes will help you!
 
-This tutorial is quite lengthy, as it is full of details for the novice. If you just want the step-by-step list, a sort of cloud server setup cheat-sheet, it's more convenient for you to follow [this document](https://github.com/lvalnegri/workshops-setup_cloud_analytics_machine/blob/master/TL%3BDR.md) instead.
+This tutorial is quite lengthy, as it's been thought full of details useful for the very novice. If you just want the step-by-step list, a sort of cloud server setup cheat-sheet, it's more convenient for you to follow [this document](https://github.com/lvalnegri/workshops-setup_-cloud_analytics_machine/blob/master/TL%3BDR.md) instead.
 
 <br/>
 
@@ -100,8 +100,8 @@ This tutorial is quite lengthy, as it is full of details for the novice. If you 
   <a name="sign-up-do"/>
 
 ### Sign up to Digital Ocean
-  - go to https://m.do.co/c/ef1c7bc80083 (you'll be credited $50 lasting 30 days, offer valid as of today)
-  - insert your email and a sufficiently strong password (you can generate one suitable [here](https://www.random.org/passwords/?num=1&len=15&format=html&rnd=new)).
+  - go to https://m.do.co/c/ef1c7bc80083 (you'll be credited $100 lasting 60 days, offer valid at the time of writing)
+  - insert your email and a sufficiently strong password (you can generate one suitable [here](https://www.random.org/passwords/?num=1&len=15&format=html&rnd=new)). I advise you to use a password manager to securely collect, store and organize all your credentials. My suggestion is the free open source [KeePass Password Safe](https://keepass.info/).
   - you'll be asked for a credit card, but no money will be taken from your account. Just remember to check in at the end of the grace period!
   - check your email and validate your new account
 
@@ -115,7 +115,7 @@ This tutorial is quite lengthy, as it is full of details for the novice. If you 
   <a name="secure-do"/>
 
 ### Secure Digital Ocean Account
-  - go to `Account` > `Security` > `Secure your account` > `Enable Two-Factor Authentication`
+  - go to `Account` (bottom left) > `Settings` > `Security` (tab) > `Secure your account` > `Enable Two-Factor Authentication`
   - choose which system you prefer, then follow the corresponding instructions
   - in both cases, remember to generate the backup codes, and save them in some secure place
 
@@ -126,14 +126,15 @@ This tutorial is quite lengthy, as it is full of details for the novice. If you 
   - Click *Droplets* from the unfolding menu
   - For the installation step, you should create a VPS which is at least 2GB RAM, because a few packages require more than 1GB RAM to compile. You can always change up or down to some amount either number of CPUs or amount of RAM later.
      For the moment being, choose the following (moving top to bottom):
-    - Image / Distributions: `Ubuntu 18.04.x x64`
+    - Image / Distributions: `Ubuntu 20.04 (LTS) x64`
     - Plan / Starter (Standard): `RAM 2GB`, `Power 1CPU`, `Storage 50GB`, `Transfer 2TB`, `cost $10 monthly`
 	- Datacenter Region: `London`
-	- Authentication: `One-time password` (we'll move to `SSH key` later)
-	- Hostname: choose a memorable name ou can always change it later from inside the machine
-	- Tags: choose the reference project. I guess you only have the default one at the moment though. You can build more structure to your account later if you decide to stick with Digital Ocean.
+	- Authentication: `Password` (we'll move to `SSH key` later)
+	- Create *root* password
+	- Hostname: choose a memorable name for your server. You can always change it later from inside the machine
+	- Tags: choose the reference project. I guess you only have the default one at the moment though. You can build more structure to your account later, if you decide to stick with Digital Ocean and become a devOps guru!
   - Click `Create`
-  - Wait for the email containing the IP public address of the server, and the password for the *root* (admin) user. The IP address could also be found in the *Resources* tab besides the name of the droplet. 
+  - Wait for the droplet to be created. Once it's done, the process should end showing the project page opened on the *Resources* tab. In the *Droplets* list you can easily find the droplet by the name, with the IP address on the right.
 
 Notice that Digital Ocean highly discourage the creation of *swap space*, practice often used to keep down the size, and hence the cost, of the droplet. This is due to the fact that their system is all made up of SSD storage, that is highly degraded by the continous read/write access, typical when swapping. Besides, upgrading the droplet leads to much better results in general.
 
@@ -144,8 +145,6 @@ Notice that Digital Ocean highly discourage the creation of *swap space*, practi
 **SSH** stands for ***S**ecure **SH**ell* which is a [cryptographic](https://en.wikipedia.org/wiki/Cryptography "Cryptography")  [network protocol](https://en.wikipedia.org/wiki/Network_protocol "Network protocol") that allows secure access over an otherwise unsecured network. SSH is encrypted with *Secure Sockets Layer* (SSL), which makes it difficult for these communications to be intercepted and read.
 
 Any VPS could be accessed with a typical user/password exchange, but it's also possible to setup *SSH keys* that identify trusted computers without the need for passwords. For additional security, it's also possible to add a *passphrase* to the key pair, that act as a password to access the key itself.
-
-The first time you connect to a droplet as *root*, the system asks you to change the password. You have first to paste again the password you've just used to login, and then enter (twice) a new (strong) password. I advise you to use a password manager to securely collect, store and organize all your credentials. My suggestion is the free open source [KeePass Password Safe](https://keepass.info/).
 
 
   <a name="without-key-windows"/>
@@ -198,7 +197,6 @@ If the IP address and the user name are correctly recognized, the system then pr
 	apt-get -y full-upgrade
 	apt-get -y autoremove
     ~~~
-    answering `y` everytime you're asked permission.
 	If during the above upgrading session a window pops up and asks for any changes, be sure to accept the choice:
 	`keep the local version currently installed`
   - install some needed *basic* libraries that could be missed from the system (this much depends on how your chosen provider has decided to install the OS):
@@ -210,16 +208,19 @@ If the IP address and the user name are correctly recognized, the system then pr
     shutdown -r now
     ~~~
 
+You should now wait a few seconds, to give the server sufficient time to reboot, then reconnect. If you're using *MobaXTerm* you can simply press the *R* key every now and then until it's asking for the login step. 
+
 If you're on a different service than Digital Ocean, it'd also a good idea to disable the boot menu, or reduce the time it shows up:
   - open the conf file for editing:
     ~~~
     nano /etc/default/grub
     ~~~
-  - add or change the following lines (if `GRUB_TIMEOUT=0` then you don't need any chages):
+  - if you can find the line `GRUB_TIMEOUT=0`, then you don't need any changes and you can exit the editor pressing the combination key `CTRL+x`. Otherwise, add or change the following lines:
     ~~~
     GRUB_TIMEOUT=3
     GRUB_RECORDFAIL_TIMEOUT=3
     ~~~
+  - save the file pressing the *exit* combination key `CTRL+x` then `y` followed by `Enter`
   - update the boot loader:
     ~~~
     update-grub
@@ -228,10 +229,10 @@ If you're on a different service than Digital Ocean, it'd also a good idea to di
   <a name="add-admin-user"/>
 
 ### Add admin user
-The Linux system is well known for its strong management of users, file and directories permissions and ownerships. In particular, it's an absolute no-no to use the default admin user, called *root*, as it could be 
-It's customary instead to use a group called *sudo* that will act as a temporary admin 
+The Linux system is well known for its strong management of users, file and directories permissions and ownerships. In particular, it's an absolute no-no to use the default admin user, called *root*, as it could be a disaster if you get something even slightly wrong in a command (`rm /` will completely wipe your system disk with no possibility of return), or simply for security to avoid giving complete control of the machine to anyone stealing your password.
+It's customary instead to use a group called *sudo* whose components can act as temporary admins. 
 
-  - create new user (change *usrname* with the actual user name):
+  - create a new user (change *usrname* with the actual user name):
     ~~~
     adduser usrname
     ~~~
@@ -240,27 +241,27 @@ It's customary instead to use a group called *sudo* that will act as a temporary
     ~~~
     usermod -aG sudo usrname
     ~~~
-  - switch control to the new user *usrname*:
+  - switch control to the new user *usrname* (you can recognize the change in the prompt):
     ~~~
     su - usrname
     ~~~
-  - check if *usrname* can actually run admin commands:
+  - check if *usrname* can actually run admin commands, trying to switch control to the *root* user (you can run any admin command using the *sudo* preprocessor):
     ~~~
     sudo su 
     ~~~
-  - always remember to exit from sudo when finished (also `CTRL+D` as shortcut):
+  - always remember to exit from *root* when you're done (also `CTRL+D` as shortcut):
     ~~~
     exit
     ~~~
 
-From now on you should forget there exists a user called *root*, and always use instead *usrname* to run admin stuff through the `sudo` commands.
+From now on you should forget there exists a user called *root*, and try not to run the command `sudo su` unless you actually need to. Always use instead *usrname* to run admin stuff through the `sudo` preprocessor.
 
 If you need to change a user's password, run the command:
 ~~~
 sudo passwd usrname
 ~~~
 then enter the new password. Notice that only the *root* user, or a *sudoer*, can change a password of any other user.
-If you want instead to completely delete a user, log in as *root*, or switch to the *root* user:
+If you want instead to completely delete a user, you need to properly log in as *root*, or switch to the *root* user:
 ~~~
 sudo su -
 ~~~
@@ -268,17 +269,17 @@ then run the command:
 ~~~
 userdel -r usrname
 ~~~
-You would drop the `-r` option if you want to keep the user's *home* dire.
+You would drop the `-r` option if you want to keep the user's *home* directory.
 
 
   <a name="add-public"/>
 
 ### Add *public* group and repository
-One of the main problems beginners encounter when they start using Linux, and the *Shiny* Server in particular,  is related to the much dreaded *file permissions*. Briefly explained, everything in Linux is a file, each file admits three operations: **r**ead, **w**rite, e**x**ecute, that can be carried out by three (groups of) users: the *owner* of the file, any user belonging to a specific *group*, and all the *other* users. When you list the content of a directory, using for example the `ls -l` command, you can see all the permissions in a form of nine binary numbers attached to it, where 0 means *not permitted* and 1 means *permitted*. These numbers must be read in group of three (see also the picture below): the first three (from the left) are the operations allowed to the *owner*, the next three are for the *group*, the last three for *others*. Besides the binary mode, there is also a more common *octal* mode that simply collapse each group of three numbers using their octal value.
+One of the main problems beginners encounter when they start using Linux, and the *Shiny* Server in particular, is related to the much dreaded *file permissions*. Briefly explained, everything in Linux is a file, and each file admits three operations: **r**ead, **w**rite, e**x**ecute, that can be carried out by three (groups of) users: the *owner* of the file, any user belonging to one or more specific *groups*, and all the *other* users. When you list the content of a directory, using for example the `ls -l` command, you can see all the permissions in a form of nine binary numbers attached to it, where 0 means *not permitted* and 1 means *permitted*. These numbers must be read in group of three (see also the picture below): the first three (from the left) are the operations allowed to the *owner*, the next three are for the *group*, the last three for *others*. Besides the binary mode, there is also a more common *octal* mode that simply collapse each group of three numbers using their octal value.
 
 ![linux file permissions](https://github.com/lvalnegri/workshops-setup_-cloud_analytics_machine/blob/master/permissions.png?raw=true)
 
-Having said that, why things become problematic? Well, because you usually deploy an application using RStudio in your owh home directory, which you can acces because it's yours. When you're done, you then copy your code to the location where the Shiny Server reads its files. But you quickly discover that... you can't! as that directory is owned by the *shiny* user connected to the *Shiny* Server, and you can't access it. You could think that copying it using `sudo` would do the trick, and it will, but then *shiny* can't access those files because they are owned by root! Moreover, besides the code a data application usually needs data, often lots of different data, and these data need to be stored somewhere where they can be read by *shiny* for the app to actually works. All of the above often ends up with duplications, missed or wrong updating, and so on.
+Having said that, why things become problematic? Well, because you usually deploy an application using RStudio in your own *home* directory, which you can acces because it's yours. When you're done, you then copy your code to the location where the Shiny Server reads its files. But you quickly discover that... you can't! as that directory is owned by the *shiny* user connected to the *Shiny* Server, and you can't access it. You could think that copying it using `sudo` would do the trick, and it will, but then *shiny* can't access those files because they are owned by root! Moreover, besides the code a data application usually needs data, often lots of different data, and these data need to be stored somewhere where they can be read by *shiny* for the app to actually works. All of the above often ends up with duplications, missed or wrong updating, and so on.
   
 There are a few different solutions, each with its own ups and downs. The solution proposed here will become more practical when using docker containers to deploy shiny applications. We simply define a public group, containing the *shiny* user plus each user interested in the development of shiny applications, and a subfolder somewhere in the filesystem to use as a public repository for the group itself. This repository will also contain a subfolder dedicated to to the *R* packages.
 
@@ -306,7 +307,7 @@ then add the following line at the end:
 ~~~
 PUB_PATH="/usr/local/share/public"
 ~~~
-Reboot to make sure the above changes have been applied.
+Save the file, using `CTRL+x` ==> `y` ==> `Enter`, then `sudo reboot` to make sure the above changes have been applied.
 
 Once you've decided the actual location, you have to build some structure in it, and that task mostly depends on your future projects. Any of the subdir can been created with the generic command:
 ~~~
@@ -317,7 +318,7 @@ or, if you've included the public path in the system environment:
 mkdir -p $PUB_PATH/newsubdir
 ~~~
 
-A possible quicker way to build a complete structure at once is to create a loop over a list of subdirs conveniently saved in a text file, as in the following example:
+A possible quicker way to build a complete structure at once is to create a *loop* over a list of subdirs conveniently saved in a text file, as in the following example:
   - first save a plain text file as `subdirs.lst` in some directory in your *home* folder with the list of subdirs to be created, each on its own line
   - save the following commands as a text file named `subdirs.sh` in the same directory as the previous `subdirs.lst`:
     ~~~
@@ -340,16 +341,18 @@ A possible quicker way to build a complete structure at once is to create a loop
     ls $PUB_PATH -l
     ~~~
 
-You can use an online service to speed up a bit, and automate the above process, in case you plan to use multiple VPS. I saved two example files [subdirs.lst](https://github.com/lvalnegri/workshops/blob/master/setup_cloud_analytics_machine/subdirs.lst) and [subdirs.sh](https://github.com/lvalnegri/workshops/blob/master/setup_cloud_analytics_machine/subdirs.sh) in the repository, but you should create two of your own, using whichever service you prefer, and change the below command accordingly. The complete process is outlined below:
+You can use an online service to speed up a bit, and automate the above process, in case you plan to use multiple VPS. I saved two example files [subdirs.lst](https://raw.githubusercontent.com/lvalnegri/workshops-setup_-cloud_analytics_machine/master/subdirs.lst) and [subdirs.sh](https://raw.githubusercontent.com/lvalnegri/workshops-setup_-cloud_analytics_machine/master/subdirs.sh) in the repository, but you should create two of your own, using whichever service you prefer, and change the below command accordingly. The complete process is outlined below:
 ~~~
 mkdir -p ~/scripts/subs
 cd ~/scripts/subs
-wget -O subdirs.lst https://raw.githubusercontent.com/lvalnegri/workshops/master/setup_cloud_analytics_machine/subdirs.lst
-wget -O subdirs.sh https://raw.githubusercontent.com/lvalnegri/workshops/master/setup_cloud_analytics_machine/subdirs.sh
+wget https://raw.githubusercontent.com/lvalnegri/workshops-setup_-cloud_analytics_machine/master/subdirs.lst
+wget https://raw.githubusercontent.com/lvalnegri/workshops-setup_-cloud_analytics_machine/master/subdirs.sh
 chmod +x subdirs.sh
 ./subdirs.sh
 ~~~
-Notice that some service, like [Pastebin]([https://pastebin.com/), returns text files in *DOS format*, that uses  as a line separator a combination of *carriage return* followed by a *linefeed* (usually abbreviated as *CRLF*), typical of Windows machines, instead of a linefeed character (*LF*), like all other modern operating systems. This means that once you've downloaded them, you have to convert every line separator before processing. Following you can see the same example as above, but using the files [subdirs.lst](https://pastebin.com/dshKNkDu) and [subdirs.sh](https://pastebin.com/WRsSWjgS)  hosted on  [Pastebin]([https://pastebin.com/):
+You can now list the content of the *public* folder `ls $PUB_PATH -l` to verify that the operation has been successful.
+
+Notice that some service, like [Pastebin]([https://pastebin.com/), returns text files in *DOS format*, that uses as a line separator a combination of *carriage return* followed by a *linefeed* (usually abbreviated as *CRLF*), typical of Windows machines, instead of a linefeed character (*LF*), like all other modern operating systems. This means that once you've downloaded them, you have to convert every line separator before processing. In the following code, you can verify the same example as above, but using instead two files [subdirs.lst](https://pastebin.com/dshKNkDu) and [subdirs.sh](https://pastebin.com/WRsSWjgS) hosted on [Pastebin]([https://pastebin.com/):
 ~~~
 mkdir -p ~/scripts/subs
 cd ~/scripts/subs
@@ -392,17 +395,17 @@ Login back again as the *new* user, and let's change the standard *ssh* port **2
     ~~~
 	Port 22
     ~~~
-  - change the number `22` into the number `xxxx` you've settled upon, then save the file (CTRL+x ==> Enter). If there's a *hashtag* `#` at the start of the line, meaning that the line is a comment and so not to be processed by the system, delete it.
+  - change the number `22` into the number `xxxx` you've settled upon, then save the file (CTRL+x ==> Enter). If there's a *hashtag* `#` at the start of the line, meaning that the line is a *comment* and so not to be processed by the system, delete it.
   - restart the service 
     ~~~
     sudo systemctl restart ssh
     ~~~
   - **without logging out from the current session**, open another session besides the one already open, and test that the new user is capable to *ssh* into the machine using the new `xxxx` port, but not from the standard `22`. If anything does not sounds right, close this session and fix using the original session.
 
-Lastly, let's add to the system an antivirus and a firewall. Starting with the antivurus, we're going to use the [ClamAV](https://www.clamav.net/) package, being open source and particularly suited for Ubuntu Server installations.
+Lastly, let's add to the system an antivirus and a firewall. Starting with the antivirus, we're going to use the [ClamAV](https://www.clamav.net/) package, being it open source and particularly suited for *Ubuntu Server* installations.
   - install the software:
     ~~~
-    sudo apt-get install clamav clamav-daemon 
+    sudo apt-get -y install clamav clamav-daemon 
     ~~~
   - stop the service, then update the signature database:
     ~~~
@@ -436,7 +439,7 @@ Lastly, let's add to the system an antivirus and a firewall. Starting with the a
       nice -n 15 clamscan && clamscan -ir /
       ~~~
 
-Let's finally proceed with the firewall. We're using the *ufw* package that's included by default in the Ubuntu installation:
+Let's now proceed with the firewall. We're using the *ufw* package that's included by default in the Ubuntu installation:
   - enable the software:
     ~~~
     sudo ufw enable
@@ -494,9 +497,9 @@ A short list of some of the most used commands for the standard firewall `ufw` i
 
 All the above commands must obviously be launched as a *sudoer*.
 
-If anything happens, and you can't login anymore through remote SSH, most VPS and Cloud providers allow users to open a shell from the dashboard account. On Digital Ocean head for the droplet dashboard. At the top right, there is a **Console** button which allows to login directly using password authentication. You often need to actually click into it before it becomes active.
+If anything happens, and you can't login anymore through remote SSH, most VPS and Cloud providers allow users to open a shell from the dashboard account. On Digital Ocean head for the droplet dashboard. At the top right, there is a **Console** button which allows to login directly using password authentication. You often need to actually click into it before it becomes active. Notice that when in this screen keyboard shortcuts usually don't work. To paste the root password from the clipboard you need to use the right menu.
 
-Moreover, if you forget the root password, or you've never set it, head again for the dropletdashboard, and from the left menu click on the **Access** item. There you can find the magic button to reset the root password. Once you log in, if not asked by the system itself, you should reset the password again using the following commands:
+Moreover, if you forget the root password, or you've never set it, head again for the droplet dashboard, and from i ts left menu click on the **Access** item. There you can find the magic button to `Reset Root Password`. Once you log in, if not asked by the system itself, you should reset the password using the following commands:
 ~~~
 sudo -i
 passwd
@@ -505,8 +508,12 @@ passwd
   <a name="install-ebmin"/>
 
 ### Install Webmin
-While powerful and efficient, sometimes it's just nicer to work with a simple and intuitive graphic interface to manage the system. Here comes [*Webmin*](http://www.webmin.com/).
+While powerful and efficient, the command line for some people can get just annoying and troublesome. It's just nicer to work with a simple and intuitive graphic interface to manage the system. Here comes [*Webmin*](http://www.webmin.com/), a web-based interface for remote system administration of Unix systems. In particular, Webmin removes the need to manually edit configuration files. We'll touch here only a couple of settings, but nested inside its cavernous menus there are thousands of possibilities.
 
+Before installing Webmin, I want you to follow me on a very quick introduction about software Linux distributions or *distros*, and software management.
+
+
+Let's move on now with the Webmin installation:
   - add the *Webmin* address to the list of trusted packages repositories:
     ~~~
     echo -e "\n# WEBMIN\ndeb http://download.webmin.com/download/repository sarge contrib\n" | sudo tee -a /etc/apt/sources.list
@@ -531,8 +538,8 @@ While powerful and efficient, sometimes it's just nicer to work with a simple an
     ~~~
     sudo ufw allow 10000
     ~~~
-  - navigate to the *secure* URL [https://server_ip:10000/](https://server_ip:10000/) (notice that the *default* protocol `http` does not work) --, don't worry for now about the warnings, we'll solve it later
-  - enter your *Ubuntu*now usual username and password to log 	in into the *Webmin* console
+  - navigate to the *secure* URL [https://server_ip:10000/](https://server_ip:10000/) (notice that the *default* protocol `http` does not work). Don't worry for now about the warnings about security, we'll solve this problem later
+  - enter your *Ubuntu* username and password to log in into the *Webmin* console
   - redirect standard `http` calls to encrypted `https` protocol:
     ~~~
     Webmin > 
@@ -540,7 +547,7 @@ While powerful and efficient, sometimes it's just nicer to work with a simple an
 	    SSL Encryption >
     ~~~
     Check **Yes** for `Redirect non-SSL requests to SSL mode?`, then `Save`
-  - change default port to some random integer number `xxxx`  of your choice between 1024 and 65535, but obviously different from the one you previously chose for the *SSH* service:
+  - change default port to some random integer number `xxxx` of your choice between 1024 and 65535, but obviously different from the one you previously chose for the *SSH* service:
     ~~~
     Webmin > 
 	  Webmin Configuration >
@@ -552,12 +559,12 @@ While powerful and efficient, sometimes it's just nicer to work with a simple an
     - **NO** for `Accept IPv6 connections? `
     - **Don't listen** for `Listen for broadcasts on UDP port`
     
-    When you're done with the changes click `Save`. T After the last change has been saved, the website will go down, as the port has changed and it can't reconnect to its server anymore
-  - restart *Webmin* to load the new configuration:
+    When you're done with the changes click `Save`. After the last change has been saved, the website will go down and an error message about lost connection will appear. This is normal, as the port has changed and it can't reconnect to its server anymore
+  - go back to the terminal, and restart *Webmin* to load the new configuration:
     ~~~
     sudo service webmin restart
     ~~~
-  - go back to the terminal, and allow access to the new `xxxx` port: 
+  - allow access to the new `xxxx` port: 
     ~~~
     sudo ufw allow xxxx
     ~~~
@@ -565,7 +572,7 @@ While powerful and efficient, sometimes it's just nicer to work with a simple an
     ~~~
     sudo ufw delete allow 10000
     ~~~
-  - check the software is now reachableew port
+  - check the software is now reachable throught the new `xxxx` port
 
 It's a safer choice to add [Two-Factor Authentication](https://en.wikipedia.org/wiki/Multi-factor_authentication) to all web services that offer it. To do it with your new *Webmin* system configuration manager:
   - after opening the *Webmin* page go to:
@@ -586,26 +593,26 @@ It's a safer choice to add [Two-Factor Authentication](https://en.wikipedia.org/
 <a name="domain-name"/>
 
 ### Add Domain Name
-How boring and annoying is to always remember an IP address? Enter [domain names](https://en.wikipedia.org/wiki/Domain_name)! For the current purpose, there's no point though in spending any money to own a fancy domain. Head instead to [Freenom World](http://www.freenom.org) to grab a free one! The catch here is that the choice of [Top-Level Domain](https://en.wikipedia.org/wiki/Top-level_domain) is restricted in the set: *tk*, *ga*, *ml*, *cf* and *gq*. 
+How boring and annoying is to always remember an IP address? Enter [domain names](https://en.wikipedia.org/wiki/Domain_name)! For the current purpose, there's no point though in spending any money to own a fancy domain. Head instead to [Freenom World](http://www.freenom.org) to grab a free one! The catch here is that the choice of [Top-Level Domain](https://en.wikipedia.org/wiki/Top-level_domain) is restricted in the set: *tk*, *ga*, *ml*, *cf* and *gq*. Moreover, the free offer lasts for one year only, but it is renewable. Notice that no credit card is required.
 
 Anyway, once you're on the *Freenom* landing page:
-  - look for a domain name you like, and make sure it is actually free of charge, as some combinations with the five above TLDs are subscription based.
+  - look for a domain name you like, and make sure it is actually free of charge, as some combinations with the five above TLDs are not.
   - click `Get it Now`, and then move to the checkout page.
   - Once there, click first `Use DNS`, then the tab `Use your own DNS`, and in the two textboxes labelled with `Nameserver` insert respectively:
     - `ns1.digitalocean.com`
     - `ns2.digitalocean.com`
+  - if you prefer, use the select box in the upper right to extend your free period up to 12 months
   - Go on and complete the sign up and checkout processes.
 
-Once you own a domain, head to the [Digital Ocean](https://cloud.digitalocean.com/) website, then:. 
+Once you own a domain, head to your account on the [Digital Ocean](https://cloud.digitalocean.com/) website, then: 
   - from the main menu on the left click `Manage` > `Networking`, then enter the tab `Domains`
-  - in the textbox with the placeholder `Enter domain` write the domain name you've just *bought* 
+  - in the textbox with the placeholder `Enter domain` write the domain name you've just *bought*
   - from the listbox on the right choose the project that include the server you want to apply the domain to
-  - finally click `Add Domain`, and the domain should appear in the list below. 
-  - click on that new domain link, then:
+  - finally click `Add Domain`, and you should be moved to the *DNS record* page (if not, and you've instead been routed on the list of domains, click the domain you want to manage): 
     - in the `HOSTNAME` textbox enter `@` 
     - in the `WILL DIRECT TO` textbox choose the server to associate with that 
     - finally click `Create Record`
-  - repeat the last two steps after entering the string `www`  in the `HOSTNAME` textbox 
+  - repeat the last two steps after entering the string `www` in the `HOSTNAME` textbox 
 
 Now you should simply wait from a few seconds to a few hours, depending on how fast the global sytem will update your changes, and if you head to [http://hostname]() you should see the same content as [http://ip_address](). Currently, though, the only content you can check is the *Webmin* service, but we'll soon add lots of bells and whistles!
 
@@ -613,15 +620,17 @@ Now you should simply wait from a few seconds to a few hours, depending on how f
 <a name="first-snapshot"/>
 
 ### Take Your First Snapshot
-At this point in time, it'd be useful to save the current state of the machine, called **snapshot**, so that if something happens in the future it's always possible to revert back to the current situation in a few minutes with a click from the droplet dashboard. Moreover, we could also build other similar droplets but slighlty different, and use this snapshot as a starting point, instead of going back to the entire droplet creation process.
+At this point in time, it'd be useful to save the current state of the machine, called **snapshot**, so that if something happens in the future it's always possible to revert back to the current situation in a few minutes with a click from the droplet dashboard. Moreover, we could also build other similar droplets but slighlty different, and use this snapshot as a starting point, instead of going back to the entire droplet creation process. Notice though that this is not a proper *backup*, as you can't choose any single element of the machine to restore, it's an all or nothing situation. 
 
 To snapshot a droplet:
   - shut down the droplet using the terminal:
     ~~~
     sudo shutdown now
     ~~~
-  - login into your DO account, head for the droplet dashboard, and from the left menu click  `Snapshots`, enter a memorable name in the textbox, then click `Take Snapshot`
+  - login into your DO account, head for the droplet dashboard, and from the left menu click `Snapshots`, enter a memorable name in the textbox, then click `Take Snapshot`
   - once the process has finished, you can start the droplet again using the switch on the upper right
+
+Notice that storing a snapshot is not free, but charged at a rate of $0.05 per GB per month.
 
 To restore a snapshot on the droplet it was created from:
   - head for the snapshots page of the droplet from which the requested snapshot was created. You can also click `Manage` > `Snapshots` from the main menu on the left to see all the snapshots you've created
@@ -633,7 +642,7 @@ In case you want to create an entirely new droplet from a snapshot:
   - open the  [droplet **Create** page](https://cloud.digitalocean.com/droplets/new), 
   - select the  `Snapshots` tab. Notice that you won't find this tab if you've never created any snapshots.
   - choose the snapshot you’d like to create the droplet from
-  - fill out the rest of the choices on the **Create** page as desired, then click  `Create`
+  - fill out the rest of the choices on the **Create** page as desired, then click `Create`
 
 
 <br/>
@@ -647,7 +656,9 @@ In case you want to create an entirely new droplet from a snapshot:
 
 ### Install core *R*
 
-  - add the CRAN address to trusted packages repositories
+As we noticed above, because *R* is a fast-moving project, the latest stable version of the *R* software is not always available from the official Ubuntu repositories. To install the latest version we need to add to the system list of trusted repositories the address of the external repository maintained by [CRAN](https://cran.r-project.org/), together with its public key that allows the package management system to recognize it as a trusted source.
+
+  - add the CRAN repository address to the system list:
     ~~~
     echo -e "\n# CRAN REPOSITORY\ndeb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/\n" | sudo tee -a /etc/apt/sources.list
     ~~~
@@ -655,7 +666,7 @@ In case you want to create an entirely new droplet from a snapshot:
     Notice that the above command:
     - presumes that the installed OS version is **20.04 LST**. For previous versions of the *Ubuntu* distribution, change the word `focal` with the correct adjective using [this list](https://en.wikipedia.org/wiki/Ubuntu_version_history) as a reference. In particular, the previous *18.04* LTS version is named `bionic`.
     - connects to  `cran.rstudio.com`, which is the the generic redirection service provided by [RStudio](https://www.rstudio.com), but it's also possible to switch to a static closer location (according to the chosen VM region, not the user's location!) using [this list](https://cran.r-project.org/mirrors.html).
-  - download and add the *public key* of the CRAN maintainer [Michael Rutter](https://launchpad.net/~marutter/+archive/ubuntu/rrutter) to the apt keyring:
+  - download and add to the system the *public GPG key* of the CRAN maintainer [Michael Rutter](https://launchpad.net/~marutter/+archive/ubuntu/rrutter) to the apt keyring:
     ~~~
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
     ~~~
@@ -713,9 +724,9 @@ In the same way as above, you can add two other important constants to the *R* e
     ~~~
   - download the package:
     ~~~
-    wget -O rstudio https://s3.amazonaws.com/rstudio-ide-build/server/bionic/amd64/rstudio-server-1.3.947-amd64.deb
+    wget -O rstudio https://s3.amazonaws.com/rstudio-ide-build/server/bionic/amd64/rstudio-server-1.3.1038-amd64.deb
     ~~~
-    Please note that the above command presumes your OS version is at least Ubuntu *Xenial* 18.04 LTS, and the *preview* 64bit version at the time of writing. It's worth verifying the newest version visiting [this page](http://www.rstudio.com/products/rstudio/download/preview/), and in case substitute where needed. 
+    Please note that the above command downloads the *preview* 64bit version at the time of writing, and presumes that your OS version is at least Ubuntu *Xenial* 18.04 LTS. It's worth verifying the newest version visiting [this page](http://www.rstudio.com/products/rstudio/download/preview/), and in case substitute where needed.
     Moreover, if you prefer to stay on the safer side and want to install the *stable* release, check instead [this page](https://www.rstudio.com/products/rstudio/download-server/) for the correct link of the newest version. 
   - install Rstudio Server:
     ~~~
@@ -726,7 +737,7 @@ In the same way as above, you can add two other important constants to the *R* e
     sudo ufw allow 8787
     ~~~
   - head for [http://ip_address:8787/](), or [http://hostname:8787/]() if you've added a domanin name, to check the software is up and running 
-  - Change the default port `8787` to some random integer number `xxxx` different from the choicesas above:
+  - If you don't plan to reverse proxy, you should change the default port `8787` to some random integer number `xxxx` (obviously different from the above choices for *SSH* and *Webmin*):
     - open the configuration file for editing:
     ~~~
     sudo nano /etc/rstudio/rserver.conf
@@ -808,7 +819,7 @@ Before installing the *Shiny* Server,  it is usually suggested you first install
     ~~~
   - download the package (check [here](https://www.rstudio.com/products/shiny/download-server/) for latest version):
     ~~~
-    wget -O shiny https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.13.944-amd64.deb
+    wget -O shiny https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.14.948-amd64.deb
     ~~~
   - install *Shiny Server*:
     ~~~
@@ -819,7 +830,7 @@ Before installing the *Shiny* Server,  it is usually suggested you first install
     sudo ufw allow 3838
     ~~~
   - head for [http://ip_address:3838/]() to check the software is up and running.
-  - change the default port `3838` to some random integer number `xxxx`:
+  - If you don't plan to reverse proxy, you should change the default port `3838` to some random integer number `xxxx`:
     - open the *Shiny Server* configuration file for editing:
     `sudo nano /etc/shiny-server/shiny-server.conf`
     - change the port from `3838` to `xxxx`:
