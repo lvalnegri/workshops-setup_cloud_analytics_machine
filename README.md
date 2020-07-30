@@ -1192,7 +1192,7 @@ Note that every certificate has an expiry date:
 
 ### Add Basic Authentication to Shiny Apps
 As we've seen before, from the server's point of view a shiny app is nothing more than a subfolder in the server base folder, which by default is `/srv/shiny-server`. Using *Nginx* capabilities, it's easy to add a *basic* form of authentication to any shiny app.
-  -  first, we need a user/password map file, where users that should be able to log in are listed along with their passwords in encrypted form. To accomplish that, we'll use the Apache's `htpasswd` command from the `utils` library, that we need to install:
+  - first, we need a user/password map file, where users that should be able to log in are listed along with their passwords in encrypted form. To accomplish that, we'll use the Apache's `htpasswd` command from the `utils` library, that we need to install:
     ~~~
     sudo apt-get update && sudo apt-get upgrade
     sudo apt-get install -y apache2-utils
