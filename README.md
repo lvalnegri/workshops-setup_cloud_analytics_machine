@@ -1191,18 +1191,18 @@ Note that every certificate has an expiry date:
   <a name="nginx-auth"/>
 
 ### Add Basic Authentication to Shiny Apps
-As we've seen before, from the server's point of view a shiny app is nothing more than a subfolder in the server base folder, which by default is `/srv/shiny-server`. Using *Nginx* capabilities, it's easy to add a *basic* form of authentication to any shiny app.
-  - first, we need a user/password map file, where users that should be able to log in are listed along with their passwords in encrypted form. To accomplish that, we'll use the Apache's `htpasswd` command from the `utils` library, that we need to install:
+As we've seen before, from the server's point of view a *Shiny* app is nothing more than a subfolder in the *Shiny Server* base folder, which by default is `/srv/shiny-server`. Using *Nginx* capabilities, it's easy to add a *basic* form of authentication to any shiny app, where *basic* means that the system simply asks for a user and password, checking that the user exists and that the password is associated with it (for more capabilities, like grouping users, associate functionalities with users, or tracing behaviour, it is possible to use some convenient *R* packages or you can actually build your self-designed layer on top of the app itself).
+  - first, we need a user/password map file, where users that should be able to log in are listed along with their passwords in encrypted form. To accomplish that, we'll use the *Apache*'s [htpasswd](https://httpd.apache.org/docs/2.4/programs/htpasswd.html) command from the `utils` library, that you possibly need to install:
     ~~~
     sudo apt-get update && sudo apt-get upgrade
     sudo apt-get install -y apache2-utils
     ~~~
-  - we are now in a position to create user and passwords, we are going to save a file for each app in a dedicated subfolder of our public repo `PUB_PATH`:
+  - we are now in a position to create users and passwords, we are going to save a file for each app in a dedicated subfolder of our public repo `PUB_PATH`:
     ~~~
     htpasswd -c $PUB_PATH/shiny_server/pwds/appname.pwds username
     ~~~
-    Once the above command has been issued, you'll be ask to provide the associated password twice.
-    Notice that the above is just a suggestion, and you are free to change any folder and file names.
+    Once the command has been issued, you'll be ask to provide the associated password twice (as always, the above is just a suggestion, and you are free to change any folder and file names). 
+    Notice that the `-c` option . 
   - next, open for editing the Nginx default configuration file:
     ~~~
     sudo nano /etc/nginx/sites-available/default
@@ -1211,10 +1211,10 @@ As we've seen before, from the server's point of view a shiny app is nothing mor
     ~~~
     location /shiny/appname/ {
       auth_basic "Username and Password are required"; 
-      auth_basic_user_file /usr/local/share/public/shiny_server/pwds/appname._pwds;
+      auth_basic_user_file /usr/local/share/public/shiny_server/pwds/appname.pwds;
     }
     ~~~
-    Notice that you should have one and only of the above for each `appname`, although the reference file `appname._pwds` could be the same for more than one app
+    Notice that you should have one and only of the above for each `appname` directive, although the reference file `appname.pwds` could be the same for more than one app
   - check the configuration is correct:
     ~~~
     sudo nginx -t
