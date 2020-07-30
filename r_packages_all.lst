@@ -32,7 +32,6 @@ blastula
 bookdown
 bookdownplus
 boot
-bootstraplib
 breakDown
 broom
 broomExtra
@@ -739,6 +738,7 @@ wordcloud2
 workflows
 wrapr
 xaringan
+xaringanExtra
 xaringanthemer
 xgboost
 xlsx
