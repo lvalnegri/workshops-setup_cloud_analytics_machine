@@ -1930,7 +1930,7 @@ Container vs Virtual Machine
 ### Install Docker
   - install the dependencies:
     ~~~
-    sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+    sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
     ~~~
   - add the docker repository in the *apt* source list:
     ~~~
@@ -1941,13 +1941,13 @@ Container vs Virtual Machine
     ~~~
     sudo apt-get update
     ~~~
-  - let's make sure, you're going to install docker from Docker repo,
+  - let's make sure, you're going to install the software from the actual Docker repo:
     ~~~
     apt-cache policy docker-ce
     ~~~
   - install Docker:
     ~~~
-    sudo apt-get install docker-ce
+    sudo apt-get install -y docker-ce
     ~~~
   - check the status:
     ~~~
@@ -1965,6 +1965,10 @@ Container vs Virtual Machine
     ~~~
     sudo system info
     ~~~
+  - check the *registry* that Docker is currently using when pulling images (by default, it points to the [Docker Hub](https://index.docker.io/v1/)):
+    ~~~
+    sudo docker info
+    ~~~
 
   <a name="docker-commands"/>
 
@@ -1973,7 +1977,7 @@ Container vs Virtual Machine
     ~~~
     sudo docker pull imgname
     ~~~
-  - run a container with the image *imgname*:
+  - run a container with the image *imgname* (if the image is not found on the machine, the system will try to pull it from the registry):
     ~~~
     sudo docker run imgname
     ~~~
@@ -2010,7 +2014,7 @@ Container vs Virtual Machine
   <a name="dockerfile"/>
 
 ### Dockerfile
-A **Dockerfile** is a script that contains a collection of dockerfile instructions and operating system commands (tipycally Linux commands), that will be automatically executed in sequence in the docker environment for building a new docker image.
+A **Dockerfile** is a script that contains a collection of (Dockerfile) instructions and operating system commands (tipycally Linux commands), that will be automatically executed in sequence in the docker environment for building a new docker image.
 
 Below are some of the most used dockerfile instructions:
   - **FROM**  *registry/image:tag* The base image for building a new image. This command must be on top of the dockerfile.
@@ -2024,7 +2028,7 @@ Below are some of the most used dockerfile instructions:
   - **USER** Set the user or UID for the container created with the image.
   - **VOLUME** Enable access/linked directory between the container and the host machine.
 
-The following is an example of Dockerfile that creates an image similar to the server we're currently building: 
+The following is an example of Dockerfile that creates a *minimal* image, capable to run a RStudio/Shiny server connected with the *public* shared repository on the host as described above: 
 ~~~
 # Download base image ubuntu 18.04
 FROM ubuntu:18.04
