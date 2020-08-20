@@ -1,7 +1,7 @@
 # How to Setup a Cloud Server for Data Science
 
 **Author**: [Luca Valnegri](https://www.linkedin.com/in/lucavalnegri/)   
-**Last Updated**: 30-Jun-2020
+**Last Updated**: 20-Aug-2020
 
 <a name="index"/>
 
@@ -2145,15 +2145,16 @@ VOLUME ["/usr/local/share/public"]
 ## Nominatim Geoserver
 When doing geo-analytics, you often need, for example, to *geocode* thousands of addresses, if not hundreds of thousands or even millions, and you want the process obviously to be an automated backend operation. We all know that [Google Maps]() is the gold standard for this job, but it's fairly expensive out of its free quota, and its API conditions are quite strict, as you are supposed only to geocode addresses you will be displaying in conjunction with a Google map. Moreover, it doesn't easily accept bulk geocoding.
 
-Here comes a private geoserver based on open source efforts. The official instructions for installing *Nominatim* are fairly complete, but brief in places and a bit scattered around different pages, and some steps must be changed or reordered in order to get ASAP to the end of the installation, and ready to geocode!
+Here comes [*Nominatim*](https://www.nominatim.org/), a private geoserver based on open source efforts. The official instructions for installing *Nominatim* are fairly complete, but brief in places and a bit scattered around different pages, and some steps must be changed or reordered in order to get ASAP to the end of the installation, and ready to geocode!
 
-The server directory is: `/srv/nominatim`
-The server username is: `nominatim`
-The data will be donwloaded in: `/srv/nominatim/Nominatim-3.5.1/data/` (but check version in folder name!)
-The software will be installed from: `/srv/nominatim/build/`
-The machine specs when populating the database need an uplift to at least 6vCPUs, 16GBRAM.
+In the following:
+ - the server directory is: `/srv/nominatim`
+ - the server username is: `nominatim`
+ - the data will be donwloaded in: `/srv/nominatim/Nominatim-3.5.1/data/` (but check version in folder name!)
+ - the software will be installed from: `/srv/nominatim/build/`
+ - the machine specs when populating the database need an uplift to at least 6vCPUs, 16GBRAM.
 
-Data have been limited to a single country, namely Great Britain, and the process lasted 200 minutes. Notice that after the first step of setting up the db server and loading the data, the process is divided in 30 so called *rank*, where the two ranks numbered as 26 and 30 take most of the time (one third each more or less), with an ETA showing. That's where you should focus to understand if your machine is correctly specced for the job (it should take 7 days for the entire planet, I had ~3K seconds for each of the above two ranks for Italy only). If the machine is very under-specced, you don't even get to calculate the first rank!
+Data have been limited to a single country, namely Great Britain, and the process lasted 200 minutes. Notice that after the first step of setting up the db server and loading the data, the process is divided in 30 so called *rank*, where the two ranks numbered as 26 and 30 take most of the time (one third each more or less), with an ETA showing. That's where you should focus to understand if your machine is correctly specced for the job (it should take 7 days for the entire planet, I had ~3K seconds for each of the above two big ranks for GB only). If the machine is very under-specced, you don't even get to calculate the first rank!
 
 
   <a name="dep-nominatim"/>
