@@ -135,10 +135,13 @@ esquisse
 evir
 ExPosition
 extrafont
+fable
+fabletools
 factoextra
 FactoMineR
 fastcluster
 fasttime
+feasts
 feather
 ff
 FFTrees
@@ -654,6 +657,7 @@ spmoran
 spnet
 sqldf
 stargazer
+stars
 stringi
 stringr
 strucchange
@@ -704,6 +708,7 @@ treemapify
 trelliscopejs
 TSA
 tseries
+tsibble
 tsmp
 tsutils
 tufte
