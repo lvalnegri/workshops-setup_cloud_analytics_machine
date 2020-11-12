@@ -37,6 +37,7 @@ breakDown
 broom
 broomExtra
 bs4Dash
+bslib
 bsplus
 BTM
 bubblyr
@@ -353,6 +354,7 @@ learnr
 lemon
 lexicon
 lime
+lineupjs
 lisa
 listviewer
 lme4
@@ -458,6 +460,7 @@ PerformanceAnalytics
 pheatmap
 pins
 pivottabler
+pivta
 pixiedust
 pkgdown
 pkgmaker
@@ -565,6 +568,7 @@ rvest
 rwavelet
 RWeka
 sandwich
+sass
 sbgcop
 sboost
 scales
@@ -691,6 +695,7 @@ testthat
 texreg
 text2vec
 textmineR
+thematic
 tibble
 tidycensus
 tidygraph
