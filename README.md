@@ -3,9 +3,9 @@
 **Author**: [Luca Valnegri](https://www.linkedin.com/in/lucavalnegri/)   
 **Last Updated**: 20-Nov-2020
 
-==> NEW: Upgrade Ubuntu 18.04.x LTS *Bionic Beaver* to 20.04.1 LTS *Focal Fossa*
+==> NEW: [Upgrade Ubuntu 18.04.x LTS *Bionic Beaver* to 20.04.1 LTS *Focal Fossa*](#upgrade-ubuntu)
 
-==> NEW: Upgrade R 3.x to 4.0.3 *Bunny-Wunnies Freak Out*
+==> NEW: [Upgrade R 3.x to 4.0.3 *Bunny-Wunnies Freak Out*](#upgrade-r)
 
 <a name="index"/>
 
