@@ -3,9 +3,9 @@
 **Author**: [Luca Valnegri](https://www.linkedin.com/in/lucavalnegri/)   
 **Last Updated**: 20-Nov-2020
 
-<span style="color:blue">==> NEW: Update Ubuntu 18.04.x LTS *Bionic Beaver* to 20.04.1 LTS *Focal Fossa*</span>
+==> NEW: Upgrade Ubuntu 18.04.x LTS *Bionic Beaver* to 20.04.1 LTS *Focal Fossa*
 
-==> NEW: Update R 3.x to 4.0.3 *Bunny-Wunnies Freak Out*
+==> NEW: Upgrade R 3.x to 4.0.3 *Bunny-Wunnies Freak Out*
 
 <a name="index"/>
 
@@ -27,6 +27,7 @@
     + [Install *Webmin*](#install-webmin)
     + [Add Domain Name](#domain-name)
     + [Take Your First *Snapshot*](#first-snapshot)
+    + [Upgrade Ubuntu 18.04.x to 20.04.1](#upgrade-ubuntu)
   * [The *R* Stack](#r-stack)
     + [Install core *R*](#install-r)
     + [Install *RStudio Server*](#install-rstudio-server)
@@ -35,6 +36,7 @@
     + [Testing the *R* stack](#testing-the-r-stack)
     + [Install *Ubuntu* Dependencies for *R* packages](#install-linux-dependencies-for-r-packages)
     + [Install *R* packages](#install-r-packages)
+    + [Upgrade R 3.x to 4.0.3](#upgrade-r)
   * [Ngnix](#ngnix)
     + [Install Nginx](#nginx-install)
     + [Install php preprocessor](#nginx-php)
@@ -656,6 +658,13 @@ In case you want to create an entirely new droplet from a snapshot:
   - fill out the rest of the choices on the **Create** page as desired, then click `Create`
 
 
+   <a name="upgrade-ubuntu"/>
+
+### Upgrade Ubuntu 18.04.x to 20.04.1
+
+
+
+
 <br/>
 
 :point_up_2:[Back to Index](#index)
@@ -1039,6 +1048,11 @@ BiocManager::install('graph')
 ~~~
 
 Finally, take also note also that starting with version 3.5 some *R* internals have changed so much that all packages need to be rebuilt to work properly, and some of them have even been removed from *CRAN* because of issues that have to be fixed to pass all due checks. 
+
+
+   <a name="upgrade-r"/>
+
+### Upgrade R 3.x to 4.0.3
 
 
 <br/>
