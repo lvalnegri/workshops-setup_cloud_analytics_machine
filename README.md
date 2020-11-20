@@ -662,7 +662,7 @@ In case you want to create an entirely new droplet from a snapshot:
 
 ### Upgrade Ubuntu 18.04.x to 20.04.1
 
-
+*In development*
 
 
 <br/>
@@ -1053,6 +1053,8 @@ Finally, take also note also that starting with version 3.5 some *R* internals h
    <a name="upgrade-r"/>
 
 ### Upgrade R 3.x to 4.0.3
+
+*In development*
 
 
 <br/>
