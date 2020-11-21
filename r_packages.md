@@ -21,6 +21,8 @@
       - [*ggplot* Extensions](#ggplot-extensions)
       - [*ggplot* Helpers](#ggplot-helpers)
       - [*ggplot* Themes](#ggplot-themes)
+      - [Maps](#maps)
+      - [Hexagonal Maps](#hexmaps)
       - [Palettes, Colours](#palettes)
       - [Icons, Fonts](#icons)
   * [Features Engineering](#features-eng)
@@ -41,7 +43,6 @@
     + [Network Analysis](#network)
     + [Spatial Data](#spatial)
       - [Generics, Tools, Utilities](#spatial-tools)
-      - [Mapping](#mapping)
       - [Analysis, Geocomputation](#geocomputation)
       - [Localization](#localization)
     + [Model Validation, ROC Analysis](#model-validation)
@@ -267,11 +268,9 @@
   - [rthreejs](http://github.com/bwlewis/rthreejs) - R interface to the [threejs](http://threejs.org/) JS library for interactive 3D scatterplots and globes
   - [rglwidget](http://) - Interactive 3D visualizations with R
   - [scatterD3](http://github.com/juba/scatterD3) - Interactive scatter plots visualization
-  - [hexjsonwidget](https://github.com/psychemedia/htmlwidget-hexjson) `install_github('psychemedia/htmlwidget-hexjson')` - Provides functionalities to display [HexJSON](https://odileeds.org/projects/hexmaps/hexjson.html) maps based on the [d3-hexjson](https://github.com/olihawkins/d3-hexjson) library
   - [trelliscopejs](https://github.com/hafen/trelliscopejs) - R interface to the [Trelliscope](https://github.com/hafen/trelliscopejs-lib) JS library
   - [BioCircos](https://github.com/lvulliard/BioCircos.R) - R interface to the [BioCircos](http://bioinfo.ibp.ac.cn/biocircos/index.php) JS library
   - [morpheus](https://github.com/cmap/morpheus.R) - R interface to the [morpheus](https://github.com/cmap/morpheus.js/) JS library for advanced interactive visualization of matrices in a heat map display
-  - [bpexploder](https://github.com/homerhanumat/bpexploder) - Allows to render box-plots that explode upon mouse-click into jittered individual-value plots, with the additional option to configure tool-tips for each individual points
   - [widgetframe](https://github.com/bhaskarvk/widgetframe) - Provides functionalities for easier embedding of *htmlwidgets* inside responsive *iframes*
   - [circlepackeR](https://github.com/jeromefroe/circlepackeR) `install_github("jeromefroe/circlepackeR")` - R clone for the Mike Bostocks’s D3 [circle packing visualization](http://bl.ocks.org/mbostock/7607535)
   - [worldcloud2](https://github.com/Lchiffon/wordcloud2) - R interface to the [wordcloud2.js](https://github.com/timelyportfolio/sunburstR) JS library 
@@ -320,7 +319,6 @@
   - [ggpmisc](https://bitbucket.org/aphalo/ggpmisc) - Miscellaneous Extensions to *ggplot2*
   - [ggpubr](https://github.com/kassambara/ggpubr) - Provides some easy-to-use functions for creating and customizing ‘ggplot2’- based publication ready plots.
   - [ggpval](https://github.com/s6juncheng/ggpval) - allows you to perform statistic tests and add the corresponding p-values to ggplots automatically
-  - [ggradar](https://github.com/ricardo-bion/ggradar) `install_github('ricardo-bion/ggradar')` - Provides a function to build radar charts in moments
   - [ggRandomForests](https://github.com/ehrlinger/ggRandomForests) - Graphical analysis of random forests using the packages *randomForestSRC* and *randomForest*
   - [ggraph](https://github.com/thomasp85/ggraph) - Supports relational data structures such as networks, graphs, and trees.
   - [**ggrepel**](https://github.com/slowkow/ggrepel) - Provides geometries to repel overlapping text labels
@@ -357,22 +355,67 @@
   <a name="ggplot-themes"/>
 
 #### ggplot themes
-  - [ggconf](https://github.com/caprice-j/ggconf) - Concise appearance modification of `ggplot2` themes elements
-  - [ggsci](https://github.com/road2stat/ggsci) - Collection of palettes inspired by scientific journals, data viz libraries, science fiction movies, and TV shows
   - [**ggthemes**](http://github.com/jrnold/ggthemes) - Collection of various themes and scales 
+  - [ggconf](https://github.com/caprice-j/ggconf) - Concise appearance modification of `ggplot2` themes elements
+  - [ggpomological](https://github.com/gadenbuie/ggpomological) - A theme inspired by the [USDA Pomological Watercolors collection](https://usdawatercolors.nal.usda.gov/pom)
+  - [ggsci](https://github.com/road2stat/ggsci) - Collection of palettes inspired by scientific journals, data viz libraries, science fiction movies, and TV shows
   - [ggthemr](https://github.com/cttobin/ggthemr) `install_github('cttobin/ggthemr')` - Another collection of various themes 
   - [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes) - Provides typography-centric themes 
   - [tvthemes](https://github.com/Ryo-N7/tvthemes) - Themes and palettes based on some people's favourite TV shows
-  - [ggtech](https://github.com/ricardo-bion/ggtech) - Themes and palettes associated with some of the most successful tech (ex) start-ups
+ 
+  <a name="maps"/>
+
+#### Mapping
+  - [mapproj](https://cran.r-project.org/package=mapproj/) - Provide simple functions to convert from latitude and logitude into projected coordinates.
+  - [maps](https://cran.r-project.org/package=maps/) - Simple functions to display geographical maps
+  - [mapview](https://github.com/r-spatial/mapview) - Interactive visualization of spatial objects in R
+  - [tmap](https://github.com/mtennekes/tmap) :heart_eyes: - Quick and easy thematic mapping in R, inheriting functionalities from *ggplot2*, like faceting
+  - [leaflet](http://rstudio.github.io/leaflet/) :heart_eyes: - Interactive mapping tools, conceived as a htmlwidgets wrapper for [leaflet](leafletjs.com) JS library
+  - [leaflet.extras](https://github.com/bhaskarvk/leaflet.extras) - Provides extra functionality to the `leaflet` package using various [leaflet plugins](http://leafletjs.com/plugins)
+  - [leaflet.minicharts](https://github.com/rte-antares-rpackage/leaflet.minicharts) - Provides two functions to add and update small charts on an interactive maps created with the package `leaflet`.
+  - [micromap](https://github.com/USEPA/micromap) - Provides functionalities to create linked micromap plots
+  - [mapplots]() - 
+  - [mapmisc](https://cran.r-project.org/package=btb) - Provides a few utilities for making nice maps in short tidy code chunks which are suitable for knitr documents.
+  - [cartography](https://github.com/riatelab/cartography) - Allows to create easily thematic cartography
+  - [cartogram](https://github.com/sjewo/cartogram) :sparkles: - Construct continuous area cartograms by a *rubber sheet distortion* algorithm or *non-contiguous Area Cartograms* (a [*cartogram*](https://en.wikipedia.org/wiki/Cartogram) is a choropleth map where polygons are sized proportionally to some thematic mapping variable – such as population, GNP, travel time, ... – instead of the usual land area or distance)
+  - [topogRam](http://github.com/pvictor/topogRam) :sparkles: - It's an htmlwidget for creating continuous cartograms, based on the [implementation with D3.js](http://prag.ma/code/d3-cartogram/#popest/2010) by Shawn Allen.
+  - [tilegramsR](https://github.com/bhaskarvk/tilegramsR) - R interface to the [tilegrams](https://github.com/PitchInteractiveInc/tilegrams) library, that allows to build `sf` spatial objects representing various tilegrams (a *tilegram* is a cartogram where all polygons are drawn in the same hexagonal shape)
+  - [recmap](https://github.com/cpanse/recmap) - Compute the Rectangular Statistical Cartogram
+  - [GISTools](https://cran.r-project.org/package=GISTools/) - Mapping and spatial data manipulation tools
+  - [greatCircles](https://github.com/homeaway/great-circles) - Provides functionalities to create [great-circle](https://en.wikipedia.org/wiki/Great-circle_distance
+) arcs 
+  - [osmplotr](https://github.com/ropensci/osmplotr) - Allows Data visualisation using [OpenStreetMap](https://www.openstreetmap.org/) objects
+  - [osmdata](https://github.com/ropensci/osmdata) - Allows to download and import *OpenStreetMap* data as `sf` or `sp`` objects
+  - [rosm](https://github.com/paleolimbot/rosm) - Download and plot Open Street Map (and other tiled map sources) using *base* plotting and `sp` spatial objects.
+  - [googleway](https://github.com/SymbolixAU/googleway/) - Provides access to [Google Maps API](https://developers.google.com/maps/), and the ability to plot interactive Google Maps
+  - [RgoogleMaps](http://rgooglemaps.r-forge.r-project.org/) - R interface to the [Google server](maps.google.com) for static maps
+  - [choroplethr](http://) - mapping tool
+  - [datamaps](https://github.com/JohnCoene/datamaps) - R htmlwidget for the [datamaps](http://datamaps.github.io/) JS libary
+  - [RWorldMap]() - lets map easily global data
+  - [rasterVis]() - raster visualization
+  - [stplanr](https://github.com/ropensci/stplanr) - Provides functionalities to convert data on travel behaviour into geographic objects that can be plotted on a map and analysed using typical GIS methodology
+  
+  <a name="hexmaps"/>
+
+#### Hexagonal Maps
+  - [geogrid](https://github.com/jbaileyh/geogrid) - Provides functionalities to turn geospatial polygons into regular or hexagonal grids
+  - [hexamapmaker](https://github.com/mikkelkrogsholm/hexamapmaker) `install_github("mikkelkrogsholm/hexamapmaker")` - 
+  - [hexjsonwidget](https://github.com/psychemedia/htmlwidget-hexjson) `install_github('psychemedia/htmlwidget-hexjson')` - Provides functionalities to display [HexJSON](https://odileeds.org/projects/hexmaps/hexjson.html) maps based on the [d3-hexjson](https://github.com/olihawkins/d3-hexjson) library
+  - [hexmapr](https://github.com/hafen/hexmapr) `install_github("hafen/hexmapr")` - Turn geospatial polygons into regular or hexagonal grids
+  - [sugarbag](https://github.com/srkobakian/sugarbag) - Creates tessellated hexagon maps for visualising geo-spatial data
+  - []() - 
+
 
   <a name="palettes"/>
 
 #### Palettes, Colours
+  - [**paletteer**](https://github.com/EmilHvitfeldt/paletteer) - An attempt to collect most of the color palettes $R$ packages, using a common interface.
   - [**RColorBrewer**](https://cran.r-project.org/package=RColorBrewer/) - Provides an easy way to select adequate color palettes for any visualization, following [ColorBrewer](http://colorbrewer2.org/) advises.
   - [**viridis**](https://github.com/sjmgarnier/viridis) - Implementation of the python [Matplolib](http://matplotlib.org/) *viridis* color map
   - [scico](https://github.com/thomasp85/scico) - Palettes for R based on the [Scientific Colour-Maps](http://www.fabiocrameri.ch/colourmaps.php)
   - [dichromat](https://cran.r-project.org/package=dichromat) - Color-blind friendly palettes. Run `colorschemes` to see a list of all hex RGBs strings.
   - [wesanderson](https://github.com/karthik/wesanderson) - A colour palette inspired by Wes Anderson. 
+  - [LaCroixColoR](https://github.com/johannesbjork/LaCroixColoR) `install_github('johannesbjork/LaCroixColoR')` - A colour palette inspired by *LaCroix* palettes.  
   - [pals](https://github.com/kwstat/pals) - Extensive collection of colormaps and palettes, with multiple tools to evaluate them.
   - [rwantshue](https://github.com/hoesler/rwantshue) `install_github('hoesler/rwantshue')` - Palette inspired by [IWantHue](https://github.com/medialab/iwanthue)
   - [munsell](https://github.com/cwickham/munsell/) - Provides easy access to, and manipulation of, the [Munsell](http://munsell.com/about-munsell-color/how-color-notation-works/) colours
@@ -382,12 +425,12 @@
   - [colorspace](https://cran.r-project.org/package=colorspace/) - Provides color palettes based on HCL colors. Also included an interactive GUI color picker 
   - [qualpalr](https://github.com/jolars/qualpalr) - Another package able to generate *distinct qualitative* color palettes inspired by [IWantHue](http://tools.medialab.sciences-po.fr/iwanthue/)
   - [randomcoloR](https://github.com/ronammar/randomcoloR) - Simple methods to generate *attractive* random colors, as a wrapper of the JS library [randomColor.js](https://github.com/davidmerfield/randomColor), or *optimally distinct* colors based on k-means, inspired by [IWantHue](http://tools.medialab.sciences-po.fr/iwanthue/)
-  - [Cairo](https://cran.r-project.org/package=Cairo/) - R graphics device using the [cairo graphics library](https://www.cairographics.org/) for creating high-quality graphics output
-  - [paletteer](https://github.com/EmilHvitfeldt/paletteer) - An attempt to collect most of the color palettes $R$ packages, using a common interface.
+  - [Cairo](https://cran.r-project.org/package=Cairo/) - *R* graphics device using the [Cairo Graphics Library](https://www.cairographics.org/) for creating high-quality graphics output
 
   <a name="icons"/>
 
 #### Icons, Fonts
+  - [icon](https://github.com/ropenscilabs/icon) `install_github('ropenscilabs/icon')` - Lets insert web icons, including font awesome, academicons and ionicons, into *RMarkdown* documents.
   - [fontawesome](https://github.com/rstudio/fontawesome) `install_github('rstudio/fontawesome')` - Allows to easily insert [font awesome](http://fontawesome.com) icons into *RMarkdown* docs and *Shiny* apps
  [Glyphicons](http://getbootstrap.com/components/#glyphicons)
   - [emojifont](https://github.com/GuangchuangYu/emojifont) - Provides functionalities to use  [emoji]( https://github.com/muan/emojilib/) and [font awesome](http://fontawesome.com) icons in both base and `ggplot2` graphics.
@@ -531,39 +574,6 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [photon](https://github.com/rCarto/photon) `install_github('rCarto/photon')` - R Interface to the OS geocoder [Photon API](https://github.com/komoot/photon), built for [OpenStreetMap](http://www.osm.org/) data, that gives you back the results in a convenient data frame structure.
   - [mapsapi](https://github.com/michaeldorman/mapsapi/issues) - Interface to the *Directions*, *Distance Matrix* and *Geocode* *'Google Maps* APIs
   - [RQGIS](https://github.com/jannes-m/RQGIS) - Establishes an interface between R and QGIS, that allows access to QGIS functionalities from within R.
- 
-  <a name="mapping"/>
-
-#### Mapping
-  - [mapproj](https://cran.r-project.org/package=mapproj/) - Provide simple functions to convert from latitude and logitude into projected coordinates.
-  - [maps](https://cran.r-project.org/package=maps/) - Simple functions to display geographical maps
-  - [mapview](https://github.com/r-spatial/mapview) - Interactive visualization of spatial objects in R
-  - [tmap](https://github.com/mtennekes/tmap) :heart_eyes: - Quick and easy thematic mapping in R, inheriting functionalities from *ggplot2*, like faceting
-  - [leaflet](http://rstudio.github.io/leaflet/) :heart_eyes: - Interactive mapping tools, conceived as a htmlwidgets wrapper for [leaflet](leafletjs.com) JS library
-  - [leaflet.extras](https://github.com/bhaskarvk/leaflet.extras) - Provides extra functionality to the `leaflet` package using various [leaflet plugins](http://leafletjs.com/plugins)
-  - [leaflet.minicharts](https://github.com/rte-antares-rpackage/leaflet.minicharts) - Provides two functions to add and update small charts on an interactive maps created with the package `leaflet`.
-  - [micromap](https://github.com/USEPA/micromap) - Provides functionalities to create linked micromap plots
-  - [mapplots]() - 
-  - [mapmisc](https://cran.r-project.org/package=btb) - Provides a few utilities for making nice maps in short tidy code chunks which are suitable for knitr documents.
-  - [cartography](https://github.com/riatelab/cartography) - Allows to create easily thematic cartography
-  - [geogrid](https://github.com/jbaileyh/geogrid) - Provides functionalities to turn geospatial polygons into regular or hexagonal grids
-  - [cartogram](https://github.com/sjewo/cartogram) :sparkles: - Construct continuous area cartograms by a *rubber sheet distortion* algorithm or *non-contiguous Area Cartograms* (a [*cartogram*](https://en.wikipedia.org/wiki/Cartogram) is a choropleth map where polygons are sized proportionally to some thematic mapping variable – such as population, GNP, travel time, ... – instead of the usual land area or distance)
-  - [topogRam](http://github.com/pvictor/topogRam) :sparkles: - It's an htmlwidget for creating continuous cartograms, based on the [implementation with D3.js](http://prag.ma/code/d3-cartogram/#popest/2010) by Shawn Allen.
-  - [tilegramsR](https://github.com/bhaskarvk/tilegramsR) - R interface to the [tilegrams](https://github.com/PitchInteractiveInc/tilegrams) library, that allows to build `sf` spatial objects representing various tilegrams (a *tilegram* is a cartogram where all polygons are drawn in the same hexagonal shape)
-  - [recmap](https://github.com/cpanse/recmap) - Compute the Rectangular Statistical Cartogram
-  - [GISTools](https://cran.r-project.org/package=GISTools/) - Mapping and spatial data manipulation tools
-  - [greatCircles](https://github.com/homeaway/great-circles) - Provides functionalities to create [great-circle](https://en.wikipedia.org/wiki/Great-circle_distance
-) arcs 
-  - [osmplotr](https://github.com/ropensci/osmplotr) - Allows Data visualisation using [OpenStreetMap](https://www.openstreetmap.org/) objects
-  - [osmdata](https://github.com/ropensci/osmdata) - Allows to download and import *OpenStreetMap* data as `sf` or `sp`` objects
-  - [rosm](https://github.com/paleolimbot/rosm) - Download and plot Open Street Map (and other tiled map sources) using *base* plotting and `sp` spatial objects.
-  - [googleway](https://github.com/SymbolixAU/googleway/) - Provides access to [Google Maps API](https://developers.google.com/maps/), and the ability to plot interactive Google Maps
-  - [RgoogleMaps](http://rgooglemaps.r-forge.r-project.org/) - R interface to the [Google server](maps.google.com) for static maps
-  - [choroplethr](http://) - mapping tool
-  - [datamaps](https://github.com/JohnCoene/datamaps) - R htmlwidget for the [datamaps](http://datamaps.github.io/) JS libary
-  - [RWorldMap]() - lets map easily global data
-  - [rasterVis]() - raster visualization
-  - [stplanr](https://github.com/ropensci/stplanr) - Provides functionalities to convert data on travel behaviour into geographic objects that can be plotted on a map and analysed using typical GIS methodology
 
   <a name="geocomputation"/>
 
