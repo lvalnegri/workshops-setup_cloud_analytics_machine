@@ -93,6 +93,7 @@ d3Tree
 DALEX
 dashboardthemes
 data.table
+DataEditR
 DataExplorer
 datasets
 daterangepicker
@@ -147,6 +148,7 @@ flexclust
 flexdashboard
 flexmix
 flextable
+flipdownr
 fMultivar
 fontcm
 forcats
@@ -298,6 +300,7 @@ httpuv
 httr
 huge
 huxtable
+i2dash
 igraph
 iheatmapr
 imager
@@ -319,6 +322,7 @@ jsonify
 kableExtra
 keras
 kernlab
+keys
 khroma
 kknn
 klaR

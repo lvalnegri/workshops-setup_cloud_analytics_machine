@@ -613,7 +613,10 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [PROC]() - 
   - [TimeROC]() - 
 
-  <a name="presentation"/>
+<br/>
+
+:point_up_2:[Back to Index](#index)
+<a name="presentation"/>
 
 ## Data Presentation
   - [blogdown](https://github.com/rstudio/blogdown) - Provides functionalities to easily generate static websites based on RMarkdown and [Hugo](https://gohugo.io/) 
@@ -626,43 +629,56 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   <a name="shiny-ext"/>
 
 ### Shiny extensions
+  - []() - 
+  - [aniview]() - 
   - [bs4Dash](https://github.com/DivadNojnarg/bs4Dash) - Bootstrap 4 shinydashboard using the [AdminLTE3](https://adminlte.io/) template.
   - [bsplus](https://github.com/ijlyttle/bsplus) - Provide a framework to facilitate the use of [Bootstrap's JavaScript-markup API](http://getbootstrap.com/javascript/) inside *rmarkdown* HTML documents and *Shiny* apps
+  - [bubblyr](https://github.com/feddelegrand7/bubblyr) - 
   - [colourpicker](https://github.com/daattali/colourpicker) :+1: - Provides a colour picker tool for *Shiny* apps
+  - [corazon](https://github.com/feddelegrand7/corazon) - Allows to incorporate [colorffy](https://www.colorffy.com/gradients/catalog) gradient colors within *Shiny* elements, but mainly for the app’s body.
+  - [dashboardthemes](https://github.com/nik01010/dashboardthemes) - Provides functionalities to create new themes and logos for *Shiny* dashboards
   - [dragulaR](https://github.com/zzawadz/dragulaR) - R interface for the [dragula](https://github.com/bevacqua/dragula) JS library, that allows to move around elements in a shiny app.
   - [ECharts2Shiny](http://github.com/XD-DENG/ECharts2Shiny) - R interface to the [ECharts](http://ecomfe.github.io/echarts-doc/public/en/) JS library, now an [an incubator project](http://incubator.apache.org/projects/echarts.html) of the Apache Software Foundation
   - [flexdashboard](http://rmarkdown.rstudio.com/flexdashboard/) - A flexible and easy way to specify row and column-based layouts, to publish a group of related data visualizations as a dashboard.
+  - [fresh]() - 
+  - [gotop]() - 
   - [gradientPickerD3](https://github.com/peikert/gradientPickerD3) - Allows to add gradient choosers to Shiny apps, as implemented in the [Gradient Picker](https://github.com/tantaman/jquery-gradient-picker) jQuery plugin.
   - [jsTree](https://github.com/metrumresearchgroup/jsTree) - Shiny integration with the [jsTree](http://jstree.com/) JS library
+  - [mailtoR](https://github.com/feddelegrand7/mailtoR) - Implements a GUI for emails sending within a *Shiny* app, as a wrapper for the [Mailtoui](https://mailtoui.com/) JS library.
   - [midas](https://github.com/shapenaji/midas) - Convert HTML/XML native code into lists or shiny function(s) that would generate the equivalent shiny object(s) - [shinyBS](http://ebailey78.github.io/shinyBS/) - Add additional functionality and interactivity to Shiny apps, like Alerts, Tooltips and Popovers
   - [miniUI](https://github.com/rstudio/miniUI) - Provides UI widget and layout functions for writing Shiny apps that work well on small screens.
+  - [polished](https://github.com/tychobra/polished) - Provides functionalities for modern authentication and user administration to any *Shiny* app
   - [regexSelect](https://github.com/yonicd/regexSelect) - Enables *regular expression* searches within a *Shiny* selectize object.
   - [rintrojs](https://github.com/carlganz/rintrojs/) - R interface to the [Introjs](http://introjs.com/) JS library that let users easily add instructions to their web applications 
-  - [shiny.admin]() - 
-  - [shiny.user]() - 
-  - [shiny.collection]() - 
-  - [shiny.semantic]() - 
-  - [semantic.dashboard]() - 
+  - [scrollrevealR](https://github.com/feddelegrand7/scrollrevealR) - Allows to animate *Shiny* elements when they scroll into view using the [ScrollReveal](https://scrollrevealjs.org/) JS library. Notice that you need to buy a Commercial License if you want to use either in development or in production for commercial usage.
+  - [semantic.dashboard](https://github.com/Appsilon/semantic.dashboard) - 
+  - [sever](https://github.com/JohnCoene/sever) - Allows to create custom disconnect screens and error messages for any *Shiny* app
+  - [shiny.semantic](https://github.com/Appsilon/shiny.semantic) - 
   - [shinyAce](https://github.com/trestletech/shinyAce) - Enables Shiny developers to use the [Ace text editor](https://ace.c9.io/) in their apps.
   - [shinyalert](https://github.com/daattali/shinyalert) - Create pretty modals popup messages
-  - [shinyhelper](https://github.com/cwthom/shinyhelper) - Allows to add help documentation to shiny inputs and outputs, using RMarkdown files
   - [shinyanimate](https://github.com/Swechhya/shinyanimate) - An extension for the [animate.css](https://github.com/daneden/animate.css) library, that allows to add animations to any UI element in a shiny app.
-  - [shinycssloaders](https://github.com/andrewsali/shinycssloaders) :+1: - Add loader animations (spinners) to Shiny Outputs in an automated fashion.
+  - [shinycssloaders](https://github.com/andrewsali/shinycssloaders) :+1: - Add *spinners* (object loader animations) from [Luke Haas's css-loaders](https://projects.lukehaas.me/css-loaders/) to *Shiny* outputs in an automated fashion.
   - [shinycustomloader](https://github.com/emitanaka/shinycustomloader) - Extension to the previous `shinycssloaders` package that allows for custom css/html or gif/image file to include in the loading screen. There are also twelve additional built in css/html loading screen.
-  - [shinydashboard](http://rstudio.github.io/shinydashboard/) - Makes it easy to use Shiny to create dashboards-like apps.
+  - [shinydashboard](http://rstudio.github.io/shinydashboard) - Makes it easy to use Shiny to create dashboards-like apps.
   - [shinydashboardPlus](https://github.com/DivadNojnarg/shinydashboardPlus) - Enrich a shinydashboard with some additional functionalities.
+  - [shinydisconnect](https://github.com/daattali/shinydisconnect) - Shows a custom message when a *Shiny* app disconnects or any error happens
   - [shinyDND](https://github.com/ayayron/shinydnd) - Provides functionalities to create drag and drop elements in Shiny apps.
   - [shinyFeedback](https://github.com/merlinoa/shinyFeedback) - Displays user feedback next to shiny inputs
   - [shinyFiles](https://github.com/thomasp85/shinyFiles) - Provides a shiny extension for server side file access
-  - [shinyLP](https://github.com/jasdumas/shinyLP) - Provide Bootstrap components to make landing home pages for Shiny apps
+  - [shinyhelper](https://github.com/cwthom/shinyhelper) - Allows to add help documentation to shiny inputs and outputs, using RMarkdown files
+  - [shinyhttr](https://github.com/curso-r/shinyhttr) - Integrates `httr::progress` with `shinyWidgets::progressBar`
   - [shinyjqui](https://github.com/Yang-Tang/shinyjqui) - R wrapper for the [jQuery UI javascript library](http://jqueryui.com/), that allows users to easily add interactions and animation effects to a *Shiny* app.
   - [shinyjs](http://github.com/daattali/shinyjs/) :+1: - It lets you perform common useful JS operations in Shiny apps without having to actually know any JS
+  - [shinyLP](https://github.com/jasdumas/shinyLP) - Provide Bootstrap components to make landing home pages for Shiny apps
   - [shinymaterial](https://github.com/ericrayanderson/shinymaterial) - Implements *Material Design* in Shiny apps
+  - [shinyobjects](https://github.com/rjake/shinyobjects) - 
   - [shinysense](https://github.com/nstrayer/shinysense) `install_github("nstrayer/shinysense")` - Shiny modules to help shiny recall data from more than the keyboard
-  - [shinytest](https://github.com/rstudio/shinytest) - 
+  - [shinytest](https://github.com/rstudio/shinytest) -  Provides tools for creating and running automated tests on *Shiny* apps
   - [shinythemes](http://rstudio.github.io/shinythemes/) - Makes it easy to alter the overall appearance of any Shiny app
-  - [shinyWidgets](https://cran.r-project.org/package=shinyWidgets/) :+1: - Provides custom input widgets for Shiny apps. See the live version of the vignette [here](https://dreamrs-vic.shinyapps.io/shinyWidgets/)
-  - [tippy](https://github.com/JohnCoene/tippy/) - Allows to add Tooltips to *RMarkdown* Documents and *Shiny* apps using *htmlwidgets and the [tippy.js](https://atomiks.github.io/tippyjs/) JS library.
+  - [shinyWidgets](https://cran.r-project.org/package=shinyWidgets/) :+1: - Provides custom input widgets for Shiny apps. See the live version of the vignette [here](https://dreamrs-vic.shinyapps.io/shinyWidgets)
+  - [supreme](https://github.com/strboul/supreme) - A tool to help developers to either visualize the structure of a *Shiny* that's been developed with *modules*, or design a new app from scratch
+  - [tippy](https://github.com/JohnCoene/tippy) - Allows to add Tooltips to *RMarkdown* Documents and *Shiny* apps using *htmlwidgets and the [tippy.js](https://atomiks.github.io/tippyjs/) JS library.
+  - [waiter](https://github.com/JohnCoene/waiter) - 
 
   <a name="shiny-apps"/>
 
@@ -683,6 +699,8 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [prettydoc](https://github.com/yixuan/prettydoc) - 
   - [rmdformats]() - 
   - [xaringan]() - 
+  - [xaringanExtra]() - 
+  - [xaringanthemer]() - 
   - []() - 
   - [rmdshower](https://github.com/mangothecat/rmdshower) - 
 
