@@ -1056,6 +1056,11 @@ Finally, take also note also that starting with version 3.5 some *R* internals h
 
 *In development*
 
+ - *R* packages installed with versions previous to 4.x *must* be all reinstalled to work:
+   ```
+   BiocManager::install(version = "3.12")           # it will ask to update all related packages once updated itself
+   update.packages(ask = FALSE, checkBuilt = TRUE)
+   ```
 
 <br/>
 
