@@ -36,6 +36,7 @@ breakDown
 broom
 broomExtra
 bs4Dash
+bslib
 bsplus
 BTM
 bubblyr
@@ -135,10 +136,13 @@ esquisse
 evir
 ExPosition
 extrafont
+fable
+fabletools
 factoextra
 FactoMineR
 fastcluster
 fasttime
+feasts
 feather
 ff
 FFTrees
@@ -172,6 +176,7 @@ gbm
 gcForest
 gdata
 geodist
+geodrawr
 geofacet
 geogrid
 geojson
@@ -340,6 +345,7 @@ lctools
 leafem
 leaflet
 leaflet.extras
+leaflet.extras2
 leaflet.minicharts
 leaflet.opacity
 leafpm
@@ -351,6 +357,7 @@ learnr
 lemon
 lexicon
 lime
+lineupjs
 lisa
 listviewer
 lme4
@@ -456,6 +463,7 @@ PerformanceAnalytics
 pheatmap
 pins
 pivottabler
+pivta
 pixiedust
 pkgdown
 pkgmaker
@@ -563,6 +571,7 @@ rvest
 rwavelet
 RWeka
 sandwich
+sass
 sbgcop
 sboost
 scales
@@ -606,11 +615,13 @@ shinymanager
 shinymaterial
 shinyMatrix
 shinyMobile
+shinyMonacoEditor
 shinyobjects
 shinypanels
 shinyrecipes
 shinyreforms
 shinySearchbar
+shinyscreenshot
 shinytest
 shinythemes
 shinyTree
@@ -656,6 +667,8 @@ spmoran
 spnet
 sqldf
 stargazer
+stars
+stplanr
 stringi
 stringr
 strucchange
@@ -685,6 +698,7 @@ testthat
 texreg
 text2vec
 textmineR
+thematic
 tibble
 tidycensus
 tidygraph
@@ -706,6 +720,7 @@ treemapify
 trelliscopejs
 TSA
 tseries
+tsibble
 tsmp
 tsutils
 tufte

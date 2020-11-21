@@ -20,10 +20,15 @@ plotly
 hvplot
 plotnine
 chartify
+pygal
+altair
+ggplot
 networkx
 pydot
+pillow
 shapely
 geopandas
+geoplotlib
 pyshp
 folium
 geoviews
@@ -53,4 +58,7 @@ dask
 numba
 pytest
 jupyterlab
+passlib
+bcrypt
+cryptography
 Yahoo-ticker-downloader

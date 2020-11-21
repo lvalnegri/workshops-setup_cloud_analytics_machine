@@ -1,7 +1,11 @@
 # How to Setup a Cloud Server for Data Science
 
 **Author**: [Luca Valnegri](https://www.linkedin.com/in/lucavalnegri/)   
-**Last Updated**: 30-Jun-2020
+**Last Updated**: 20-Nov-2020
+
+==> NEW: [Upgrade Ubuntu 18.04.x LTS *Bionic Beaver* to 20.04.1 LTS *Focal Fossa*](#upgrade-ubuntu)
+
+==> NEW: [Upgrade R 3.x to 4.0.3 *Bunny-Wunnies Freak Out*](#upgrade-r)
 
 <a name="index"/>
 
@@ -23,6 +27,7 @@
     + [Install *Webmin*](#install-webmin)
     + [Add Domain Name](#domain-name)
     + [Take Your First *Snapshot*](#first-snapshot)
+    + [Upgrade Ubuntu 18.04.x to 20.04.1](#upgrade-ubuntu)
   * [The *R* Stack](#r-stack)
     + [Install core *R*](#install-r)
     + [Install *RStudio Server*](#install-rstudio-server)
@@ -31,6 +36,7 @@
     + [Testing the *R* stack](#testing-the-r-stack)
     + [Install *Ubuntu* Dependencies for *R* packages](#install-linux-dependencies-for-r-packages)
     + [Install *R* packages](#install-r-packages)
+    + [Upgrade R 3.x to 4.0.3](#upgrade-r)
   * [Ngnix](#ngnix)
     + [Install Nginx](#nginx-install)
     + [Install php preprocessor](#nginx-php)
@@ -58,6 +64,13 @@
     + [Dockerfile](#dockerfile)
     + [Example: *Selenium* for Web Driving](#docker-selenium)
     + [Resources](#docker-resources)
+  * [Nominatim Geoserver](#nominatim)
+    + [Dependencies](#dep-nominatim)
+    + [Postgres](#psql-nominatim)
+    + [Apache](#apache-nominatim)
+    + [Download Data](#data-nominatim)
+    + [Build Software](#build-nominatim)
+    + [Populate Database](#pop-nominatim)
   * [Additional Tools](#additional-tools)
     + [Fonts](#fonts)
     + [Spark](#spark)
@@ -645,6 +658,13 @@ In case you want to create an entirely new droplet from a snapshot:
   - fill out the rest of the choices on the **Create** page as desired, then click `Create`
 
 
+   <a name="upgrade-ubuntu"/>
+
+### Upgrade Ubuntu 18.04.x to 20.04.1
+
+*In development*
+
+
 <br/>
 
 :point_up_2:[Back to Index](#index)
@@ -664,9 +684,9 @@ As we noticed above, because *R* is a fast-moving project, the latest stable ver
     ~~~
 
     Notice that the above command:
-    - presumes that the installed OS version is **20.04 LST**. For previous versions of the *Ubuntu* distribution, change the word `focal` with the correct adjective using [this list](https://en.wikipedia.org/wiki/Ubuntu_version_history) as a reference. In particular, the previous *18.04* LTS version is named `bionic`.
+    - presumes that the installed OS version is **20.04.1 LTS**. For previous versions of the *Ubuntu* distribution, change the word `focal` with the correct adjective using [this list](https://en.wikipedia.org/wiki/Ubuntu_version_history) as a reference. In particular, the previous *18.04.x* LTS version is named `bionic`.
     - connects to  `cran.rstudio.com`, which is the the generic redirection service provided by [RStudio](https://www.rstudio.com), but it's also possible to switch to a static closer location (according to the chosen VM region, not the user's location!) using [this list](https://cran.r-project.org/mirrors.html).
-  - download and add to the system the *public GPG key* of the CRAN maintainer [Michael Rutter](https://launchpad.net/~marutter/+archive/ubuntu/rrutter) to the apt keyring:
+  - download and add to the system the *public GPG key* of the CRAN maintainer [Michael Rutter](https://launchpad.net/~marutter/+archive/ubuntu/rrutter) to the [apt keyring](http://manpages.ubuntu.com/manpages/focal/man8/apt-key.8.html):
     ~~~
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
     ~~~
@@ -698,6 +718,7 @@ In the same way as above, you can add two other important constants to the *R* e
     ~~~
     R_LIBS_USER = '/usr/local/share/public/R_library'
     ~~~
+    In a more advanced scenario, where you need to store for example more than one version of a package, you can also think about describing multiple directories as *R* libraries, even define a dedicated library for every app or particular use. In that case, though, you're probably better off using a package built for that very purpose: [*packrat*](http://rstudio.github.io/packrat/) 
   - if you try to install lots of packages in the same session, you'll probably get the following message:
     ~~~
     maximal number of DLLs reached...
@@ -712,7 +733,7 @@ In the same way as above, you can add two other important constants to the *R* e
   <a name="install-rstudio-server"/>
 
 ### Install RStudio Server
-  - install first the *deb* installer:
+  - install first the *.deb* files installer:
     ~~~
     sudo apt-get install gdebi-core
     ~~~   
@@ -724,9 +745,9 @@ In the same way as above, you can add two other important constants to the *R* e
     ~~~
   - download the package:
     ~~~
-    wget -O rstudio https://s3.amazonaws.com/rstudio-ide-build/server/bionic/amd64/rstudio-server-1.3.1038-amd64.deb
+    wget -O rstudio https://s3.amazonaws.com/rstudio-ide-build/server/bionic/amd64/rstudio-server-1.4.1013-amd64.deb
     ~~~
-    Please note that the above command downloads the *preview* 64bit version at the time of writing, and presumes that your OS version is at least Ubuntu *Xenial* 18.04 LTS. It's worth verifying the newest version visiting [this page](http://www.rstudio.com/products/rstudio/download/preview/), and in case substitute where needed.
+    Please note that the above command downloads the *preview* 64bit version at the time of writing, and presumes that your OS version is at least Ubuntu *Xenial* 18.04 LTS. It's worth verifying the newest version visiting [this page](http://www.rstudio.com/products/rstudio/download/preview/) (scroll down till the *Server* section, and copy the link for the *Ubuntu 18/Debian 10 (64-bit)* installer), and in case substitute where needed.
     Moreover, if you prefer to stay on the safer side and want to install the *stable* release, check instead [this page](https://www.rstudio.com/products/rstudio/download-server/) for the correct link of the newest version. 
   - install Rstudio Server:
     ~~~
@@ -736,7 +757,7 @@ In the same way as above, you can add two other important constants to the *R* e
     ~~~
     sudo ufw allow 8787
     ~~~
-  - head for [http://ip_address:8787/](), or [http://hostname:8787/]() if you've added a domanin name, to check the software is up and running 
+  - head for [http://ip_address:8787/](), or [http://hostname:8787/]() if you've added a domain name, to check the software is up and running 
   - If you don't plan to reverse proxy, you should change the default port `8787` to some random integer number `xxxx` (obviously different from the above choices for *SSH* and *Webmin*):
     - open the configuration file for editing:
     ~~~
@@ -760,7 +781,7 @@ In the same way as above, you can add two other important constants to the *R* e
     sudo ufw delete allow 8787
     ~~~
 
-You should now give yourself some time to play around the configurations, that you can find under the menu: `Tools > Global Options`. You can find a file `rstudio.conf` in the repository of this workshop that lists most of the changes I usually apply as soon as I install the software. You should also take some time to build your personal snippets library, clicking the button  `Edit snippets...` at the bottom of the `Code > Editing` window. You can read more about it at the dedicated [RStudio documentation]([https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets](https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets)) page.
+You should now give yourself some time to play around the configurations, that you can find under the menu: `Tools > Global Options`. You can find a file `rstudio.conf` in the repository of this workshop that lists most of the changes I usually apply as soon as I install the software. You should also take some time to build your personal snippets library, clicking the button  `Edit snippets...` at the bottom of the `Code > Editing` window. You can read more about it at the dedicated [RStudio documentation](https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets) page.
 In particular, the first four options:
    - `General`: 
    - `Code`: 
@@ -792,13 +813,13 @@ To add an existing repository to *RStudio*:
     - [Bitbucket](https://bitbucket.org/): on the BB website, go to the main source of the repository, click `Clone` on the upper right, then copy the address in the textbox (drop the initial `git clone` text)
   - in *Rstudio Server*, click the Project dropdown list in the upper right (if this is the first time that RSudio runs, it probably reads as `Project: (None)`), then `New Project`, `Version Control`, and finally `Git`  (this is going to work for both GitHub and BitBucket)
   - copy the address in the textbox called  *Repository URL*, and fill as desired the other two text boxes
-  - click `Create Project`. Notice that if the repository is private, you have to insert your username and  password to start cloning the repo. If you're using *GitHub*, it's a smart choice not to use the access password when dealing with RStudio projects, but create instead a [GitHub token](https://github.com/settings/tokens) to replaceuse instead of the password. You should limit the token scope only to *Access public repositories* or *Full control of private repositories*, depending on your needs. You could also generate a specific *RSA key* from the `Git/SVN` section of the `Tools` > `Global Options` menu, and add it to your GitHub account using the `New SSH key` button under the `SSH and GPG keys` section of the `Settings` menu.
+  - click `Create Project`. Notice that if the repository is private, you have to insert your username and  password to start cloning the repo. If you're using *GitHub*, it's a smart choice not to use the access password when dealing with RStudio projects, but create instead a [GitHub token](https://github.com/settings/tokens) to use instead of the password. You should limit the token scope only to *Access public repositories* or *Full control of private repositories*, depending on your needs. You could also generate a specific *RSA key* from the `Git/SVN` section of the `Tools` > `Global Options` menu, and add it to your GitHub account using the `New SSH key` button under the `SSH and GPG keys` section of the `Settings` menu.
 
 
   <a name="install-shiny-server"/>
 
 ### Install Shiny Server
-Before installing the *Shiny* Server,  it is usually suggested you first install the `shiny` and `rmarkdown` packages in the *R* system. This is actually not necessary for the correct functioning of the *Shiny Server*, but it's just to ensure that its landing page loads completely correct, showing the *shiny* app and the *rmarkdown* document on the right of the screen.
+Before installing the *Shiny* Server,  it is usually suggested you first install the `shiny` and `rmarkdown` packages in the *R* system. This is actually not necessary for the correct functioning of the *Shiny Server*, but it's just to ensure that its landing page loads completely correct, showing the *shiny* app and the *rmarkdown* document on the right side of the screen.
   - enter the *R* software from the *Linux* terminal:
     ~~~
     R
@@ -819,7 +840,7 @@ Before installing the *Shiny* Server,  it is usually suggested you first install
     ~~~
   - download the package (check [here](https://www.rstudio.com/products/shiny/download-server/) for latest version):
     ~~~
-    wget -O shiny https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.14.948-amd64.deb
+    wget -O shiny https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.15.953-amd64.deb
     ~~~
   - install *Shiny Server*:
     ~~~
@@ -1028,6 +1049,18 @@ BiocManager::install('graph')
 
 Finally, take also note also that starting with version 3.5 some *R* internals have changed so much that all packages need to be rebuilt to work properly, and some of them have even been removed from *CRAN* because of issues that have to be fixed to pass all due checks. 
 
+
+   <a name="upgrade-r"/>
+
+### Upgrade R 3.x to 4.0.3
+
+*In development*
+
+ - *R* packages installed with versions previous to 4.x *must* be all reinstalled to work:
+   ```
+   BiocManager::install(version = "3.12")           # it will ask to update all related packages once updated itself
+   update.packages(ask = FALSE, checkBuilt = TRUE)
+   ```
 
 <br/>
 
@@ -1930,7 +1963,7 @@ Container vs Virtual Machine
 ### Install Docker
   - install the dependencies:
     ~~~
-    sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+    sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
     ~~~
   - add the docker repository in the *apt* source list:
     ~~~
@@ -1941,13 +1974,13 @@ Container vs Virtual Machine
     ~~~
     sudo apt-get update
     ~~~
-  - let's make sure, you're going to install docker from Docker repo,
+  - let's make sure, you're going to install the software from the actual Docker repo:
     ~~~
     apt-cache policy docker-ce
     ~~~
   - install Docker:
     ~~~
-    sudo apt-get install docker-ce
+    sudo apt-get install -y docker-ce
     ~~~
   - check the status:
     ~~~
@@ -1965,6 +1998,10 @@ Container vs Virtual Machine
     ~~~
     sudo system info
     ~~~
+  - check the *registry* that Docker is currently using when pulling images (by default, it points to the [Docker Hub](https://index.docker.io/v1/)):
+    ~~~
+    sudo docker info
+    ~~~
 
   <a name="docker-commands"/>
 
@@ -1973,7 +2010,7 @@ Container vs Virtual Machine
     ~~~
     sudo docker pull imgname
     ~~~
-  - run a container with the image *imgname*:
+  - run a container with the image *imgname* (if the image is not found on the machine, the system will try to pull it from the registry):
     ~~~
     sudo docker run imgname
     ~~~
@@ -2010,7 +2047,7 @@ Container vs Virtual Machine
   <a name="dockerfile"/>
 
 ### Dockerfile
-A **Dockerfile** is a script that contains a collection of dockerfile instructions and operating system commands (tipycally Linux commands), that will be automatically executed in sequence in the docker environment for building a new docker image.
+A **Dockerfile** is a script that contains a collection of (Dockerfile) instructions and operating system commands (tipycally Linux commands), that will be automatically executed in sequence in the docker environment for building a new docker image.
 
 Below are some of the most used dockerfile instructions:
   - **FROM**  *registry/image:tag* The base image for building a new image. This command must be on top of the dockerfile.
@@ -2024,7 +2061,7 @@ Below are some of the most used dockerfile instructions:
   - **USER** Set the user or UID for the container created with the image.
   - **VOLUME** Enable access/linked directory between the container and the host machine.
 
-The following is an example of Dockerfile that creates an image similar to the server we're currently building: 
+The following is an example of Dockerfile that creates a *minimal* image, capable to run a RStudio/Shiny server connected with the *public* shared repository on the host as described above: 
 ~~~
 # Download base image ubuntu 18.04
 FROM ubuntu:18.04
@@ -2125,6 +2162,62 @@ VOLUME ["/usr/local/share/public"]
   - join the [community](dockercommunity.slack.com)
   - [*official* documentation](https://docs.docker.com)
   - exercise with an [online interactive environment](http://labs.play-with-docker.com/)
+
+
+<br/>
+
+:point_up_2:[Back to Index](#index)
+<a name="nominatim"/>
+## Nominatim Geoserver
+When doing geo-analytics, you often need, for example, to *geocode* thousands of addresses, if not hundreds of thousands or even millions, and you want the process obviously to be an automated backend operation. We all know that [Google Maps]() is the gold standard for this job, but it's fairly expensive out of its free quota, and its API conditions are quite strict, as you are supposed only to geocode addresses you will be displaying in conjunction with a Google map. Moreover, it doesn't easily accept bulk geocoding.
+
+Here comes [*Nominatim*](https://www.nominatim.org/), a private geoserver based on open source efforts. The official instructions for installing *Nominatim* are fairly complete, but brief in places and a bit scattered around different pages, and some steps must be changed or reordered in order to get ASAP to the end of the installation, and ready to geocode!
+
+In the following:
+ - the server directory is: `/srv/nominatim`
+ - the server username is: `nominatim`
+ - the data will be donwloaded in: `/srv/nominatim/Nominatim-3.5.1/data/` (but check version in folder name!)
+ - the software will be installed from: `/srv/nominatim/build/`
+ - the machine specs when populating the database need an uplift to at least 6vCPUs, 16GBRAM.
+
+Data have been limited to a single country, namely Great Britain, and the process lasted 200 minutes. Notice that after the first step of setting up the db server and loading the data, the process is divided in 30 so called *rank*, where the two ranks numbered as 26 and 30 take most of the time (one third each more or less), with an ETA showing. That's where you should focus to understand if your machine is correctly specced for the job (it should take 7 days for the entire planet, I had ~3K seconds for each of the above two big ranks for GB only). If the machine is very under-specced, you don't even get to calculate the first rank!
+
+
+  <a name="dep-nominatim"/>
+
+### Dependencies
+
+
+
+  <a name="psql-nominatim"/>
+
+### Postgres
+
+
+
+  <a name="apache-nominatim"/>
+
+### Apache
+
+
+
+  <a name="data-nominatim"/>
+
+### Download Data
+
+
+
+  <a name="build-nominatim"/>
+
+### Build Software
+
+
+
+  <a name="pop-nominatim"/>
+
+### Populate Database
+
+
 
 <br/>
 
