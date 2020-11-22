@@ -1928,7 +1928,12 @@ We need to install *Redis* as non-root user, and to accomplish that task we must
 
 ### MonetDB Lite
 
-TBD
+Being of the columnar type, MonetDB is somewhat slow in writing data, but it is faster than most other database system in reading data. This is important for data science use, as it is often the case that some data, like Census data, are stored only once in a decade but read thousands times.
+
+While you can install the entire [Client MonetDB] program, and using the other package [MonetDB.R](), we'll focus here on the lighter *R* version that does not require to install a separate software before usage. 
+
+Once started a connection, permanent or temporary, the various commands are the ones already familiar with RMySQL, as both packages rely on the same *DBI* interface. 
+
 
 
 
