@@ -1,7 +1,7 @@
 csvkit
 pandas
 pandas_datareader
-pandas_sql
+pandassql
 qgrid
 datatable
 scrapy
@@ -52,7 +52,6 @@ optimuspyspark
 nltk
 gensim
 spacy
-cntk
 cython
 dask
 numba
