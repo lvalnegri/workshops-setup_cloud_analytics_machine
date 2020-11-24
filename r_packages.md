@@ -651,6 +651,7 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [dragulaR](https://github.com/zzawadz/dragulaR) - R interface for the [dragula](https://github.com/bevacqua/dragula) JS library, that allows to move around elements in a shiny app.
   - [ECharts2Shiny](http://github.com/XD-DENG/ECharts2Shiny) - R interface to the [ECharts](http://ecomfe.github.io/echarts-doc/public/en/) JS library, now an [an incubator project](http://incubator.apache.org/projects/echarts.html) of the Apache Software Foundation
   - [flexdashboard](http://rmarkdown.rstudio.com/flexdashboard/) - A flexible and easy way to specify row and column-based layouts, to publish a group of related data visualizations as a dashboard.
+  - [flipdownr](https://github.com/feddelegrand7/flipdownr) `install_github("feddelegrand7/flipdownr")` - Creates *Countdown* objects within *RMarkdown* documents and *Shiny* apps. While it's on *CRAN*, you can add the *GitHub* version to try additional themes.
   - [fresh]() - 
   - [gotop](https://github.com/lgnbhl/gotop) - Allows to dd a *scroll back to top* with a *font awesome* icon to *RMarkdown* documents and *Shiny* app susing the [GoTop](https://scottdorman.blog/jquery-gotop/) JS library
   - [gradientPickerD3](https://github.com/peikert/gradientPickerD3) - Allows to add gradient choosers to Shiny apps, as implemented in the [Gradient Picker](https://github.com/tantaman/jquery-gradient-picker) jQuery plugin.
