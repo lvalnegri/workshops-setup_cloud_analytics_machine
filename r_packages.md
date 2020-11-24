@@ -644,6 +644,7 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [bs4Dash](https://github.com/DivadNojnarg/bs4Dash) - Bootstrap 4 shinydashboard using the [AdminLTE3](https://adminlte.io/) template.
   - [bsplus](https://github.com/ijlyttle/bsplus) - Provide a framework to facilitate the use of [Bootstrap's JavaScript-markup API](http://getbootstrap.com/javascript/) inside *rmarkdown* HTML documents and *Shiny* apps
   - [bubblyr](https://github.com/feddelegrand7/bubblyr) - 
+  - [capture](https://github.com/dreamRs/capture) `install_github('dreamRs/capture')` - Captures, and saves as PNG or PDF, screenshots in *Shiny* apps or *RMarkdown* documents, either of the entire viewable page, or a specific section of the page, using the [dom-to-image](https://github.com/tsayen/dom-to-image) and [jsPDF](https://github.com/MrRio/jsPDF) JS libraries. See also `shinyscreenshot`, which is on *CRAN*.
   - [colourpicker](https://github.com/daattali/colourpicker) :+1: - Provides a colour picker tool for *Shiny* apps
   - [corazon](https://github.com/feddelegrand7/corazon) - Allows to incorporate [colorffy](https://www.colorffy.com/gradients/catalog) gradient colors within *Shiny* elements, but mainly for the app’s body.
   - [dashboardthemes](https://github.com/nik01010/dashboardthemes) - Provides functionalities to create new themes and logos for *Shiny* dashboards
@@ -651,7 +652,7 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [ECharts2Shiny](http://github.com/XD-DENG/ECharts2Shiny) - R interface to the [ECharts](http://ecomfe.github.io/echarts-doc/public/en/) JS library, now an [an incubator project](http://incubator.apache.org/projects/echarts.html) of the Apache Software Foundation
   - [flexdashboard](http://rmarkdown.rstudio.com/flexdashboard/) - A flexible and easy way to specify row and column-based layouts, to publish a group of related data visualizations as a dashboard.
   - [fresh]() - 
-  - [gotop]() - 
+  - [gotop](https://github.com/lgnbhl/gotop) - Allows to dd a *scroll back to top* with a *font awesome* icon to *RMarkdown* documents and *Shiny* app susing the [GoTop](https://scottdorman.blog/jquery-gotop/) JS library
   - [gradientPickerD3](https://github.com/peikert/gradientPickerD3) - Allows to add gradient choosers to Shiny apps, as implemented in the [Gradient Picker](https://github.com/tantaman/jquery-gradient-picker) jQuery plugin.
   - [jsTree](https://github.com/metrumresearchgroup/jsTree) - Shiny integration with the [jsTree](http://jstree.com/) JS library
   - [mailtoR](https://github.com/feddelegrand7/mailtoR) - Implements a GUI for emails sending within a *Shiny* app, as a wrapper for the [Mailtoui](https://mailtoui.com/) JS library.
@@ -682,10 +683,12 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [shinyLP](https://github.com/jasdumas/shinyLP) - Provide Bootstrap components to make landing home pages for Shiny apps
   - [shinymaterial](https://github.com/ericrayanderson/shinymaterial) - Implements *Material Design* in Shiny apps
   - [shinyobjects](https://github.com/rjake/shinyobjects) - 
+  - [shinyscreenshot](https://github.com/daattali/shinyscreenshot) - Captures, and saves as PNG images, screenshots in *Shiny* apps, either of the entire viewable page, or a specific section of the page, using the [html2canvas](https://html2canvas.hertzen.com/) JS library. See also `capture`and `snapper`, but these are not on *CRAN*.
   - [shinysense](https://github.com/nstrayer/shinysense) `install_github("nstrayer/shinysense")` - Shiny modules to help shiny recall data from more than the keyboard
   - [shinytest](https://github.com/rstudio/shinytest) -  Provides tools for creating and running automated tests on *Shiny* apps
   - [shinythemes](http://rstudio.github.io/shinythemes/) - Makes it easy to alter the overall appearance of any Shiny app
   - [shinyWidgets](https://cran.r-project.org/package=shinyWidgets/) :+1: - Provides custom input widgets for Shiny apps. See the live version of the vignette [here](https://dreamrs-vic.shinyapps.io/shinyWidgets)
+  - [snapper](https://github.com/yonicd/snapper) `install_github('yonicd/snapper')` - Captures, and saves as PNG images, screenshots of html objects in *Shiny* apps using the [html2canvas](https://html2canvas.hertzen.com/) JS library. See also `shinyscreenshot`, which is on *CRAN*.
   - [supreme](https://github.com/strboul/supreme) - A tool to help developers to either visualize the structure of a *Shiny* that's been developed with *modules*, or design a new app from scratch
   - [tippy](https://github.com/JohnCoene/tippy) - Allows to add Tooltips to *RMarkdown* Documents and *Shiny* apps using *htmlwidgets and the [tippy.js](https://atomiks.github.io/tippyjs/) JS library.
   - [waiter](https://github.com/JohnCoene/waiter) - 
