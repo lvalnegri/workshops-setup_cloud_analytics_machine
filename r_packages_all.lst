@@ -47,6 +47,7 @@ ca
 Cairo
 callr
 canvasXpress
+capture
 car
 CARBayes
 CARBayesST
@@ -639,6 +640,7 @@ smbinning
 smooth
 smoothr
 sna
+snapper
 snow
 SOAR
 sortable
