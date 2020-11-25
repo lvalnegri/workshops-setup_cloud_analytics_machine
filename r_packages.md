@@ -656,6 +656,7 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [gotop](https://github.com/lgnbhl/gotop) - Allows to dd a *scroll back to top* with a *font awesome* icon to *RMarkdown* documents and *Shiny* app susing the [GoTop](https://scottdorman.blog/jquery-gotop/) JS library
   - [gradientPickerD3](https://github.com/peikert/gradientPickerD3) - Allows to add gradient choosers to Shiny apps, as implemented in the [Gradient Picker](https://github.com/tantaman/jquery-gradient-picker) jQuery plugin.
   - [jsTree](https://github.com/metrumresearchgroup/jsTree) - Shiny integration with the [jsTree](http://jstree.com/) JS library
+  - [keys](https://github.com/r4fun/keys) - Allows to add *shortcut keys* to *Shiny* apps using the [Mousetrap](https://github.com/ccampbell/mousetrap) JS library
   - [mailtoR](https://github.com/feddelegrand7/mailtoR) - Implements a GUI for emails sending within a *Shiny* app, as a wrapper for the [Mailtoui](https://mailtoui.com/) JS library.
   - [midas](https://github.com/shapenaji/midas) - Convert HTML/XML native code into lists or shiny function(s) that would generate the equivalent shiny object(s) - [shinyBS](http://ebailey78.github.io/shinyBS/) - Add additional functionality and interactivity to Shiny apps, like Alerts, Tooltips and Popovers
   - [miniUI](https://github.com/rstudio/miniUI) - Provides UI widget and layout functions for writing Shiny apps that work well on small screens.
