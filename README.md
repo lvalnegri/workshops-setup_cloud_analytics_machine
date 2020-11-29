@@ -48,6 +48,7 @@
     + [Install *Python*](#python-install)
     + [Install the Data Science Stack](#python-stack)
     + [Install *Jupyterlab*](#jupyterlab)
+  * [Install *code-server* as general IDE](#vscode)
   * [Storage engines](#storage-engines)
     + [MySQL Server](#mysql)
       - [MySQL Web Cient: *DbNinja*](#dbninja)
@@ -1455,6 +1456,19 @@ By default, a notebook server runs locally at `127.0.0.1:8888`, and is accessibl
   - Give a name to the new entry
   - Click the `play` icon
   - Open your browser and connect to [localhost:YYYY](localhost:YYYY)
+
+
+<br/>
+
+:point_up_2:[Back to Index](#index)
+<a name="vscode"/>
+## Install *code-server* as general IDE
+We've already installed *RStudio Server* allowing us to run *R* scripts on any machine anywhere accessing it from the browser. But it's highly possible that *R* won't be the only language you use for coding, and while notebooks &#151; being them about *Python*, *R* or *Javascript* &#151; are absolutely great for both interactive programming and for data analysis and visualization, they lack lots of functionalities of a proper *IDE*. 
+
+[code-server](https://github.com/cdr/code-server) the open source server version of the famous [Microsoft Visual Studio Code](https://github.com/Microsoft/vscode) desktop general IDE. 
+
+
+
 
 
 <br/>
