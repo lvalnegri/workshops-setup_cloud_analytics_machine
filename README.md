@@ -1327,18 +1327,16 @@ It is possible to add as many blocks as desired as follows:
   <a name="python-install"/>
 
 ### Install Python 
-Although Python is often automatically installed on Ubuntu, take a moment to confirm that version **3.4+** is already installed on the system, by issuing the following command: 
-`python3 -V`
+Although Python is often automatically installed on Ubuntu, take a moment to confirm that version **3.8** is already installed on the system, by issuing the following command: 
+`python3 -V`. In a similar way, the `pip` package manager is usually installed on Ubuntu, but take a moment though to confirm if version *20=* is installed, by issuing the command: `pip3 -V`
 
-In a similar way, the `pip` package manager is usually installed on Ubuntu, but it is related to previous version 2.7. Take a moment though to confirm if version 8.1+ is installed, by issuing the command:
-`pip3 -V`
-
-In any case, run the following commands to install both of them:
+In any case, run the following commands to install both last versions:
 ~~~
-sudo add-apt-repository universe
 sudo apt-get update
-sudo apt-get install -y python3 python3-dev python3-pip
-sudo -H pip3 install --upgrade pip
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get install -y python3.8
+sudo apt-get install -y python3-pip
 ~~~
 
   <a name="python-stack"/>
@@ -1374,7 +1372,7 @@ Some of the above packages requires the following libraries to be installed befo
     ~~~
   - pytorch:
     ~~~
-    pip3 install --user https://download.pytorch.org/whl/cpu/torch-1.0.1.post2-cp37-cp37m-linux_x86_64.whl  
+    pip install torch==1.7.0+cpu torchvision==0.8.1+cpu torchaudio==0.7.0 -f https://download.pytorch.org/whl/torch_stable.html  
     ~~~
     If any error shows up, you should first ensure your version of Python is 3.7.x, as indicated in the above filename. If your version of Python is different, try first to adjust the filename according to the version number. 
   - if using *Theano* or *Keras* it's better to also install the *OpenBLAS* libraries to improve performance:
@@ -1390,7 +1388,7 @@ It's possible to install the above packages one by one when needed, but you can 
   - move into the *scripts* folder, and download from the [WeR GitHub repository](https://github.com/WeR-stats/workshops/tree/master/setup_cloud_analytics_machine) the lists of packages:
     ~~~
     cd ~/scripts
-    wget -O python_libraries.lst https://raw.githubusercontent.com/WeR-stats/workshops/master/setup_cloud_analytics_machine/python_libraries.lst
+    wget -O python_libraries.lst https://raw.githubusercontent.com/lvalnegri/workshops-setup_-cloud_analytics_machine/master/python_libraries.lst
     ~~~
   - run the following command:
     ~~~

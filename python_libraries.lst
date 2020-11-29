@@ -1,6 +1,7 @@
 csvkit
 pandas
 pandas_datareader
+pandasql
 qgrid
 datatable
 scrapy
