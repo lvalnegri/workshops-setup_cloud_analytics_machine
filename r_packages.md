@@ -47,8 +47,9 @@
       - [Localization](#localization)
     + [Model Validation, ROC Analysis](#model-validation)
   * [Data Presentation](#presentation)
+    + [*rmarkdown* Extensions](#rmarkdown-ext)
     + [*shiny* Extensions](#shiny-ext)
-      - [Shiny Apps Examples](#shiny-apps)
+    + [Shiny Apps Examples](#shiny-apps)
   * [Applications](#applications)
     + [Matrix Calculus](#matrix)
     + [Probability, Simulation, Computational Statistics](#probability)
@@ -201,7 +202,6 @@
   - [huxtable](https://github.com/hughjonesd/huxtable) - Provides functionalities to create modern LaTeX and HTML tables
   - [flextable](https://github.com/davidgohel/flextable) - Provides a framework to easily create tables for reporting with *RMarkdown*/*Shiny* or *Word*/*Powerpoint* 
   - [kableExtra](https://github.com/haozhu233/kableExtra) - Add functionalities to `kable` package to construct more complex tables. It can also be added to `formattable`.
-  - [simpletable](https://github.com/jalapic/simpletable) - Allows making simple tables in RMarkdown (Not to be mistaken with [SimpleTable](https://cran.rstudio.com/web/packages/SimpleTable/))
   - [pixiedust](https://github.com/nutterb/pixiedust) - Provide functionalities for building customized tables in R output
   - [sparktable](https://github.com/alexkowa/sparkTable) - Allows to include sparklines and graphical tables for TeX and HTML formats
   - [rpivotTable](http://github.com/smartinsightsfromdata/rpivotTable) - 
@@ -276,6 +276,7 @@
   - [worldcloud2](https://github.com/Lchiffon/wordcloud2) - R interface to the [wordcloud2.js](https://github.com/timelyportfolio/sunburstR) JS library 
   - [sunburstR](https://github.com/Lchiffon/wordcloud2) - A treemap with a radial layout, using a design by [John Stasko](http://www.cc.gatech.edu/gvu/ii/sunburst/)
   - [D3partitionR](https://github.com/AntoineGuillot2/D3partitionR) - Allows to build interactive visualisation of nested data.
+  - [streamgraph](https://github.com/hrbrmstr/streamgraph) - Allows to build *streamgraphs* 
   - [taucharts](https://github.com/hrbrmstr/taucharts) - R interface to the [taucharts](https://www.taucharts.com/) JS library 
   - [svgPanZoom](https://github.com/timelyportfolio/svgPanZoom) - Provides pan and zoom interactivity to R graphics wrapping the [svg.panzoom.js](http://svgjs.com/plugins/svg-panzoom-js/) JS library.
 
@@ -378,7 +379,7 @@
   - [mapmisc](https://cran.r-project.org/package=btb) - Provides a few utilities for making nice maps in short tidy code chunks which are suitable for knitr documents.
   - [cartography](https://github.com/riatelab/cartography) - Allows to create easily thematic cartography
   - [cartogram](https://github.com/sjewo/cartogram) :sparkles: - Construct continuous area cartograms by a *rubber sheet distortion* algorithm or *non-contiguous Area Cartograms* (a [*cartogram*](https://en.wikipedia.org/wiki/Cartogram) is a choropleth map where polygons are sized proportionally to some thematic mapping variable – such as population, GNP, travel time, ... – instead of the usual land area or distance)
-  - [topogRam](http://github.com/pvictor/topogRam) :sparkles: - It's an htmlwidget for creating continuous cartograms, based on the [implementation with D3.js](http://prag.ma/code/d3-cartogram/#popest/2010) by Shawn Allen.
+  - [topogRam](http://github.com/pvictor/topogRam) :sparkles: - It's a *htmlwidget* for creating continuous *cartograms*, based on a [JS implementation](https://github.com/vasturiano/cartogram-chart) of the famous [Shawn Allen](https://github.com/shawnbot/topogram) algorithm.
   - [tilegramsR](https://github.com/bhaskarvk/tilegramsR) - R interface to the [tilegrams](https://github.com/PitchInteractiveInc/tilegrams) library, that allows to build `sf` spatial objects representing various tilegrams (a *tilegram* is a cartogram where all polygons are drawn in the same hexagonal shape)
   - [recmap](https://github.com/cpanse/recmap) - Compute the Rectangular Statistical Cartogram
   - [GISTools](https://cran.r-project.org/package=GISTools/) - Mapping and spatial data manipulation tools
@@ -425,6 +426,7 @@
   - [colorspace](https://cran.r-project.org/package=colorspace/) - Provides color palettes based on HCL colors. Also included an interactive GUI color picker 
   - [qualpalr](https://github.com/jolars/qualpalr) - Another package able to generate *distinct qualitative* color palettes inspired by [IWantHue](http://tools.medialab.sciences-po.fr/iwanthue/)
   - [randomcoloR](https://github.com/ronammar/randomcoloR) - Simple methods to generate *attractive* random colors, as a wrapper of the JS library [randomColor.js](https://github.com/davidmerfield/randomColor), or *optimally distinct* colors based on k-means, inspired by [IWantHue](http://tools.medialab.sciences-po.fr/iwanthue/)
+  - [visibly](https://github.com/m-clark/visibly) - Various functionalities to create and manage palettes
   - [Cairo](https://cran.r-project.org/package=Cairo/) - *R* graphics device using the [Cairo Graphics Library](https://www.cairographics.org/) for creating high-quality graphics output
 
   <a name="icons"/>
@@ -433,6 +435,7 @@
   - [icon](https://github.com/ropenscilabs/icon) `install_github('ropenscilabs/icon')` - Lets insert web icons, including font awesome, academicons and ionicons, into *RMarkdown* documents.
   - [fontawesome](https://github.com/rstudio/fontawesome) `install_github('rstudio/fontawesome')` - Allows to easily insert [font awesome](http://fontawesome.com) icons into *RMarkdown* docs and *Shiny* apps
  [Glyphicons](http://getbootstrap.com/components/#glyphicons)
+  - [anicon](https://github.com/emitanaka/anicon) `install_github('emitanaka/anicon')` - Allows for easy insertion of *animated* [font awesome](http://fontawesome.com) and [academicons](https://jpswalsh.github.io/academicons/) icons into *RMarkdown* documents or *Shiny* apps.
   - [emojifont](https://github.com/GuangchuangYu/emojifont) - Provides functionalities to use  [emoji]( https://github.com/muan/emojilib/) and [font awesome](http://fontawesome.com) icons in both base and `ggplot2` graphics.
   - [emo(ji)](https://github.com/hadley/emo) `install_github('hadley/emo')` - Makes it very easy to insert [emoji]( https://github.com/muan/emojilib/) into RMarkdown documents.
   - [extrafont](https://github.com/wch/extrafont) - 
@@ -516,7 +519,7 @@
   - [tm](https://cran.r-project.org/package=tm/) - A framework for text mining applications within R.
   - [ada](https://cran.r-project.org/package=ada/) - Stochastic Boosting
   - [adabag](https://cran.r-project.org/package=adabag) - Classification with Boosting and Bagging [technical article](http://www.jstatsoft.org/index.php/jss/article/view/v054i02/adabag_An_R_Package_for_Classification_with_Boosting_and_Bagging.pdf)
-  - [RoogleVision](http://) - a Package for Image Recognition
+  - [RoogleVision](https://github.com/cloudyr/RoogleVision) - Image Recognition, Object Detection, and OCR using the [Google's Cloud Vision API](https://cloud.google.com/vision)
   - [magick](https://github.com/ropensci/magick) - Advanced High-quality image processing in R
 
   <a name="time-series"/>
@@ -585,6 +588,7 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [geoRglm](https://cran.r-project.org/package=geoRglm) - Functions for inference in generalised linear spatial models
   - [KRIG](https://github.com/pedroguarderas/KRIG) - Spatial Statistic with Kriging
   - [spatialEco](https://github.com/jeffreyevans/spatialEco) - Provides functionalities for spatial analysis and modelling, mostly for ecological systems
+  - [whiteboxR](https://github.com/giswqs/whiteboxR) `install_github('giswqs/whiteboxR')` - Frontend for the stand-alone executable command-line program [WhiteboxTools](https://github.com/jblindsay/whitebox-tools), part of the [Whitebox GAT Project](https://jblindsay.github.io/ghrg/Whitebox/)
   - [georob](https://cran.r-project.org/package=georob) - Robust Geostatistical Analysis of Spatial Data
   - [fields](https://cran.r-project.org/package=fields) - Various tools for the analysis of Spatial data
   - [stars](https://github.com/r-spatial/stars) - (*Proposed package*) Provides functionality for handling dense spatiotemporal data as tidy arrays
@@ -612,7 +616,6 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [tigris](https://github.com/walkerke/tigris) - 
   - [tidycensus](https://github.com/walkerke/tidycensus) - 
 
-
   <a name="model-validation"/>
 
 ## Model Validation, ROC Analysis
@@ -623,25 +626,44 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [PROC]() - 
   - [TimeROC]() - 
 
+
 <br/>
 
 :point_up_2:[Back to Index](#index)
 <a name="presentation"/>
 
 ## Data Presentation
+  - [rmarkdown](http://rmarkdown.rstudio.com/) :heart_eyes: - The perfect workflow for reproducible reporting. Write R code in your markdown reports. When you run render, R Markdown will replace the code with its results and then export your report as an HTML, pdf, or MS Word document, or a HTML or pdf slideshow. The result? Automated reporting. R Markdown is integrated straight into RStudio.
+  - [shiny](http://shiny.rstudio.com/) :heart_eyes: - Easily make interactive, web apps with R. A perfect way to explore data and share findings with non-programmers.
+  - [shinydashboard](http://rstudio.github.io/shinydashboard) - Makes it easy to use Shiny to create dashboards-like Web apps.
+  - [shinydashboardPlus](https://github.com/DivadNojnarg/shinydashboardPlus) - Enrich a *shinydashboard* app with some additional functionalities.
+  - [flexdashboard](http://rmarkdown.rstudio.com/flexdashboard/) - A flexible and easy way to specify row and column-based layouts, to publish a group of related data visualizations as a dashboard.
+  - [argonDash](https://github.com/RinteRface/argonDash) - Bootstrap 4 shiny dashboard using the [Argon Dashboard ](https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html) template.
+  - [bs4Dash](https://github.com/RinteRface/bs4Dash) - Bootstrap 4 shiny dashboard using the [AdminLTE3](https://adminlte.io/) template.
+  - [shinybulma](https://github.com/RinteRface/bs4Dash) - Simple CSS shiny dashboards using the [Bulma](https://bulma.io/) framework.
+  - [shinyMobile](https://github.com/RinteRface/shinyMobile) - Allows to build shiny apps and gadgets using the [Framework7](https://framework7.io/) template.
   - [blogdown](https://github.com/rstudio/blogdown) - Provides functionalities to easily generate static websites based on RMarkdown and [Hugo](https://gohugo.io/) 
   - [bookdown](https://github.com/rstudio/bookdown) - Built on top of RMarkdown, makes it really easy to write books and long-form articles/reports.
   - [knitr](https://github.com/yihui/knitr) - Provides functionalities to bundle together *R* snippets and *markdown* documents, to easily generate automated reports in various formats. 
   - [officer](https://github.com/davidgohel/officer) - Allows to manipulate *Word* (.docx) and *PowerPoint* (.pptx) documents
-  - [rmarkdown](http://rmarkdown.rstudio.com/) :heart_eyes: - The perfect workflow for reproducible reporting. Write R code in your markdown reports. When you run render, R Markdown will replace the code with its results and then export your report as an HTML, pdf, or MS Word document, or a HTML or pdf slideshow. The result? Automated reporting. R Markdown is integrated straight into RStudio.
-  - [shiny](http://shiny.rstudio.com/) :heart_eyes: - Easily make interactive, web apps with R. A perfect way to explore data and share findings with non-programmers.
+
+  <a name="rmarkdown-ext"/>
+
+### RMarkdown Extensions and Themes
+  - []() - 
+  - [prettydoc](https://github.com/yixuan/prettydoc) - 
+  - [rmdformats]() - 
+  - [xaringan](https://github.com/yihui/xaringan) - Allows to build slides presentations using the [remark.js](https://remarkjs.com/) JS library, through *RMarkdown*
+  - [xaringanExtra](https://github.com/gadenbuie/xaringanExtra) `install_github('gadenbuie/xaringanExtra')` - Provides additional functionalities for the *xaringan* theme
+  - [xaringanthemer](https://github.com/gadenbuie/xaringanthemer) - 
+  - [slidex](https://github.com/datalorax/slidex) `install_github('datalorax/slidex')` - Aims to convert *Microsoft PowerPoint* slides to *xaringan* code, trying to maintain tables, figures, links, and bullets lists
+  - [rmdshower](https://github.com/mangothecat/rmdshower) - 
 
   <a name="shiny-ext"/>
 
-### Shiny extensions
+### Shiny Extensions and Themes
   - []() - 
   - [aniview]() - 
-  - [bs4Dash](https://github.com/DivadNojnarg/bs4Dash) - Bootstrap 4 shinydashboard using the [AdminLTE3](https://adminlte.io/) template.
   - [bsplus](https://github.com/ijlyttle/bsplus) - Provide a framework to facilitate the use of [Bootstrap's JavaScript-markup API](http://getbootstrap.com/javascript/) inside *rmarkdown* HTML documents and *Shiny* apps
   - [bubblyr](https://github.com/feddelegrand7/bubblyr) - 
   - [colourpicker](https://github.com/daattali/colourpicker) :+1: - Provides a colour picker tool for *Shiny* apps
@@ -649,7 +671,6 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [dashboardthemes](https://github.com/nik01010/dashboardthemes) - Provides functionalities to create new themes and logos for *Shiny* dashboards
   - [dragulaR](https://github.com/zzawadz/dragulaR) - R interface for the [dragula](https://github.com/bevacqua/dragula) JS library, that allows to move around elements in a shiny app.
   - [ECharts2Shiny](http://github.com/XD-DENG/ECharts2Shiny) - R interface to the [ECharts](http://ecomfe.github.io/echarts-doc/public/en/) JS library, now an [an incubator project](http://incubator.apache.org/projects/echarts.html) of the Apache Software Foundation
-  - [flexdashboard](http://rmarkdown.rstudio.com/flexdashboard/) - A flexible and easy way to specify row and column-based layouts, to publish a group of related data visualizations as a dashboard.
   - [fresh]() - 
   - [gotop]() - 
   - [gradientPickerD3](https://github.com/peikert/gradientPickerD3) - Allows to add gradient choosers to Shiny apps, as implemented in the [Gradient Picker](https://github.com/tantaman/jquery-gradient-picker) jQuery plugin.
@@ -669,8 +690,6 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [shinyanimate](https://github.com/Swechhya/shinyanimate) - An extension for the [animate.css](https://github.com/daneden/animate.css) library, that allows to add animations to any UI element in a shiny app.
   - [shinycssloaders](https://github.com/andrewsali/shinycssloaders) :+1: - Add *spinners* (object loader animations) from [Luke Haas's css-loaders](https://projects.lukehaas.me/css-loaders/) to *Shiny* outputs in an automated fashion.
   - [shinycustomloader](https://github.com/emitanaka/shinycustomloader) - Extension to the previous `shinycssloaders` package that allows for custom css/html or gif/image file to include in the loading screen. There are also twelve additional built in css/html loading screen.
-  - [shinydashboard](http://rstudio.github.io/shinydashboard) - Makes it easy to use Shiny to create dashboards-like apps.
-  - [shinydashboardPlus](https://github.com/DivadNojnarg/shinydashboardPlus) - Enrich a shinydashboard with some additional functionalities.
   - [shinydisconnect](https://github.com/daattali/shinydisconnect) - Shows a custom message when a *Shiny* app disconnects or any error happens
   - [shinyDND](https://github.com/ayayron/shinydnd) - Provides functionalities to create drag and drop elements in Shiny apps.
   - [shinyFeedback](https://github.com/merlinoa/shinyFeedback) - Displays user feedback next to shiny inputs
@@ -702,17 +721,6 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [RtutoR](https://github.com/skranz/RTutor) - 
   - [SpatialEpiApp](https://github.com/Paula-Moraga/SpatialEpiApp) - 
   - [teachingApps](https://github.com/Auburngrads/teachingApps) - Apps for Teaching Statistics, R Programming, and Shiny App Development
-
-  <a name="shiny-apps"/>
-
-### RMarkdown Themes
-  - [prettydoc](https://github.com/yixuan/prettydoc) - 
-  - [rmdformats]() - 
-  - [xaringan]() - 
-  - [xaringanExtra]() - 
-  - [xaringanthemer]() - 
-  - []() - 
-  - [rmdshower](https://github.com/mangothecat/rmdshower) - 
 
 
 

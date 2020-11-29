@@ -1,7 +1,6 @@
 csvkit
 pandas
 pandas_datareader
-pandas_sql
 qgrid
 datatable
 scrapy
@@ -49,10 +48,10 @@ chainer
 tpot
 eli5
 optimuspyspark
+shap
 nltk
 gensim
 spacy
-cntk
 cython
 dask
 numba

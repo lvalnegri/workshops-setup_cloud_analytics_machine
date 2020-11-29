@@ -8,12 +8,13 @@
 # install packages from Bioconductor which are dependencies for subsequent CRAN packages
 if(!require('BiocManager')) {
 	install.packages('BiocManager')
+    BiocManager::install(version = "3.12") 
 	BiocManager::install('graph')
 	BiocManager::install('S4Vectors')
 }
 
 # install CRAN packages not currently installed
-pkgs <- readLines(file('r_packages.lst'))
+pkgs <- readLines(file('r_packages_all.lst'))
 pkgs.not <- pkgs[!sapply(pkgs, require, char = TRUE)]
 if(length(pkgs.not) > 0) install.packages(pkgs.not)
 lapply(pkgs, require, char = TRUE)

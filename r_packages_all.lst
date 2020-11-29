@@ -6,6 +6,7 @@ adespatial
 alluvial
 Amelia
 animation
+animint2
 aniview
 anomalize
 anomaly
@@ -180,6 +181,7 @@ geodrawr
 geofacet
 geogrid
 geojson
+geojsonio
 geojsonR
 geojsonsf
 geomnet
@@ -444,6 +446,7 @@ OpenMx
 openNLP
 openxlsx
 osrm
+packer
 packrat
 pagedown
 pairsD3
@@ -463,7 +466,6 @@ PerformanceAnalytics
 pheatmap
 pins
 pivottabler
-pivta
 pixiedust
 pkgdown
 pkgmaker
@@ -521,6 +523,7 @@ RcppEigen
 Rcrawler
 RCurl
 reactlog
+reactable
 reactR
 readODS
 readr
@@ -757,7 +760,6 @@ wordcloud2
 workflows
 wrapr
 xaringan
-xaringanExtra
 xaringanthemer
 xgboost
 xlsx
