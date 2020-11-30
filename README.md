@@ -1467,6 +1467,24 @@ We've already installed *RStudio Server* allowing us to run *R* scripts on any m
 
 [code-server](https://github.com/cdr/code-server) the open source server version of the famous [Microsoft Visual Studio Code](https://github.com/Microsoft/vscode) desktop general IDE. 
 
+```
+curl -fOL https://github.com/cdr/code-server/releases/download/v3.7.3/code-server_3.7.3_amd64.deb
+```
+
+```
+sudo dpkg -i code-server_3.7.3_amd64.deb
+```
+
+```
+sudo systemctl enable --now code-server@$USER
+```
+
+By default, the server run at port `8080`, and the access is granted to each user with a password stored in the file `~/.config/code-server/config.yaml`. It's better you edit this file  changing the port and the password.
+
+You can now run the server by visiting the address , but a better way is to proceed writing an entry in the nginx server block we've already started for RStudio and Shiny Servers:
+```
+
+```
 
 
 
