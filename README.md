@@ -746,7 +746,7 @@ In the same way as above, you can add two other important constants to the *R* e
     ~~~
   - download the package:
     ~~~
-    wget -O rstudio https://s3.amazonaws.com/rstudio-ide-build/server/bionic/amd64/rstudio-server-1.4.1048-amd64.deb
+    wget -O rstudio https://s3.amazonaws.com/rstudio-ide-build/server/bionic/amd64/rstudio-server-1.4.1094-amd64.deb
     ~~~
     Please note that the above command downloads the *preview* 64bit version at the time of writing, and presumes that your OS version is at least Ubuntu *Xenial* 18.04 LTS. It's worth verifying the newest version visiting [this page](http://www.rstudio.com/products/rstudio/download/preview/) (scroll down till the *Server* section, and copy the link for the *Ubuntu 18/Debian 10 (64-bit)* installer), and in case substitute where needed.
     Moreover, if you prefer to stay on the safer side and want to install the *stable* release, check instead [this page](https://www.rstudio.com/products/rstudio/download-server/) for the correct link of the newest version. 
