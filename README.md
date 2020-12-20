@@ -957,7 +957,7 @@ You can now open a browser and head to [http://ip_address/uk_petitions]() to see
     ~~~
   - **geojsonio** / **tmap**  (must be installed *after* previous dependencies):
     ~~~
-    sudo apt-get install -y libprotobuf-dev protobuf-compiler libv8-dev libjq-dev
+    sudo apt-get install -y libprotobuf-dev protobuf-compiler libnode-dev libjq-dev
     ~~~
   - **gdtools** / **mapview** (must be installed *after* previous dependencies):
     ~~~
