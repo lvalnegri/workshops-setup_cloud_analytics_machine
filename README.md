@@ -1468,7 +1468,7 @@ We've already installed *RStudio Server* allowing us to run *R* scripts on any m
 [code-server](https://github.com/cdr/code-server) the open source server version of the famous [Microsoft Visual Studio Code](https://github.com/Microsoft/vscode) desktop general IDE. 
 
 ```
-curl -fOL https://github.com/cdr/code-server/releases/download/v3.7.3/code-server_3.7.3_amd64.deb
+curl -fOL https://github.com/cdr/code-server/releases/download/v3.8.0/code-server_3.8.0_amd64.deb
 ```
 
 ```
