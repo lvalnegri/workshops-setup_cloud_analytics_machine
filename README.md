@@ -1373,7 +1373,7 @@ Some of the above packages requires the following libraries to be installed befo
     ~~~
   - pytorch:
     ~~~
-    pip install torch==1.7.0+cpu torchvision==0.8.1+cpu torchaudio==0.7.0 -f https://download.pytorch.org/whl/torch_stable.html  
+    pip3 install torch==1.7.1+cpu torchvision==0.8.2+cpu torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
     ~~~
     If any error shows up, you should first ensure your version of Python is 3.7.x, as indicated in the above filename. If your version of Python is different, try first to adjust the filename according to the version number. 
   - if using *Theano* or *Keras* it's better to also install the *OpenBLAS* libraries to improve performance:
@@ -1389,7 +1389,7 @@ It's possible to install the above packages one by one when needed, but you can 
   - move into the *scripts* folder, and download from the [WeR GitHub repository](https://github.com/WeR-stats/workshops/tree/master/setup_cloud_analytics_machine) the lists of packages:
     ~~~
     cd ~/scripts
-    wget -O python_libraries.lst https://raw.githubusercontent.com/lvalnegri/workshops-setup_-cloud_analytics_machine/master/python_libraries.lst
+    wget -O python_libraries.lst https://raw.githubusercontent.com/lvalnegri/workshops-setup_cloud_analytics_machine/master/python_libraries.lst
     ~~~
   - run the following command:
     ~~~
