@@ -21,6 +21,7 @@
       - [Linux and macOS Users](#without-key-linux-macos)
   * [Customize Your New Server](#customize-your-new-server)
     + [Upgrade the System](#upgrade-system)
+    + [Changing localization](#locale)
     + [Add Admin User](#add-admin-user)
     + [Add *public* Group and Repository](#add-public)
     + [Add Security Layers](#add-security)
@@ -239,6 +240,22 @@ If you're on a different service than Digital Ocean, it'd also a good idea to di
     ~~~
     update-grub
     ~~~  
+
+  
+  <a name="locale"/>
+
+### Changing localization
+
+ - `locale` to check for your current locale (the default at OS installation is *en_US.UTF-8*).
+
+ - `locale -a` list all the installed locales
+
+ - `sudo locale-gen <locale>` generate and install a new locale (see [here]() for the available strings)
+
+ - `` to change a locale value on a temporary basis
+
+ - `sudo nano /etc/default/locale` and add or modify the instruction(s) therein to change locale on a permanent basis (needs a fresh login)
+
   
   <a name="add-admin-user"/>
 
