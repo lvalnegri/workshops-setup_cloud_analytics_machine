@@ -21,6 +21,7 @@
       - [Linux and macOS Users](#without-key-linux-macos)
   * [Customize Your New Server](#customize-your-new-server)
     + [Upgrade the System](#upgrade-system)
+    + [Adding swap space](#swap)
     + [Changing localization](#locale)
     + [Add Admin User](#add-admin-user)
     + [Add *public* Group and Repository](#add-public)
@@ -151,7 +152,6 @@ This tutorial is quite lengthy, as it's been thought full of details useful for 
   - Click `Create`
   - Wait for the droplet to be created. Once it's done, the process should end showing the project page opened on the *Resources* tab. In the *Droplets* list you can easily find the droplet by the name, with the IP address on the right.
 
-Notice that Digital Ocean highly discourage the creation of *swap space*, practice often used to keep down the size, and hence the cost, of the droplet. This is due to the fact that their system is all made up of SSD storage, that is highly degraded by the continous read/write access, typical when swapping. Besides, upgrading the droplet leads to much better results in general.
 
   <a name="first-connection"/>
 
@@ -240,6 +240,22 @@ If you're on a different service than Digital Ocean, it'd also a good idea to di
     ~~~
     update-grub
     ~~~  
+
+  
+  <a name="swap"/>
+
+### Adding *swap* space
+You can find yourself sometimes in the situtation you have no sufficient memory to run your scrpts or even to install some packages, and for any reason you can't upzize it. You can then add what is called *swap space*, that essentially mimic some storage to use as memory.
+
+The following are the instructions to add, to the possibly already existent swap memory, another 1GB of disk. Yu can easily change the values to add less or more of that.
+```
+sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
+sudo /sbin/mkswap /var/swap.1
+sudo /sbin/swapon /var/swap.1
+sudo sh -c 'echo "/var/swap.1 swap swap defaults 0 0 " >> /etc/fstab'
+```
+
+Notice that Digital Ocean, like many other VPS providers, highly discourage the creation of *swap* space, practice often used to keep down the size, and hence the cost, of the droplet. This is due to the fact that their system is all made up of SSD storage, that is highly degraded by the continous read/write access, typical when swapping. Besides, upgrading the droplet leads to much better results in general.
 
   
   <a name="locale"/>
