@@ -1237,7 +1237,7 @@ We will use [Let's Encrypt](https://letsencrypt.org/) to obtain a free SSL certi
     ~~~
     sudo add-apt-repository ppa:certbot/certbot
 	sudo apt-get update
-	sudo apt-get install -y python-certbot-nginx
+	sudo apt-get install -y python3-certbot-nginx
     ~~~
   - ask for the certificate:
     ~~~
