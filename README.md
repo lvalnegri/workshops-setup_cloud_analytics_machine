@@ -2128,33 +2128,51 @@ Below are some of the most used dockerfile instructions:
 
 The following is an example of Dockerfile that creates a *minimal* image, capable to run a RStudio/Shiny server connected with the *public* shared repository on the host as described above: 
 ~~~
-# Download base image ubuntu 18.04
-FROM ubuntu:18.04
+# Download base image ubuntu 20.04
+FROM ubuntu:20.04
  
 RUN \
-    # Update software repository
-    apt-get update \
-    # Install missing basic commands
-    && apt-get install -y --no-install-recommends apt-utils  \
-    && apt-get install -y sudo wget gdebi-core libapparmor1  \
-    # Upgrade system
-    && apt-get upgrade -y  \
+    # Update software repository + Upgrade system
+    apt update && apt -y full-upgrade \
+    # Install potentially missing basic commands
+    && apt install -y --no-install-recommends \
+    	apt-utils \
+	apt-transport-https \
+	build-essential \
+	dos2unix \
+	git-core \
+	libgit2-dev \
+	libauthen-oath-perl \
+	libsocket6-perl \
+	man-db \
+	nano \
+	openssh-server \
+	software-properties-common \
+	ufw \
     # Install R packages dependencies
     && apt-get install -y  \
         curl  \
-		libssl-dev  \ 
-        libcurl4-gnutls-dev  \
-		libssl-dev  \
-		libxml2-dev  \
         libcairo2-dev  \
+        libcurl4-gnutls-dev  \
+	libssl-dev  \ 
+	libxml2-dev  \
         libxt-dev  \
-		pandoc  \
+	pandoc  \
         pandoc-citeproc  \
         xtail \
     # cleaning
-    && apt-get clean  \
+    && apt -y autoremove && apt clean  \
     && rm -rf /var/lib/apt/lists/  \
     && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
+    
+RUN \
+    # Create a new "public" group
+    groupadd public &&
+    # Create a new directory to be used by the "public" group and connected with the similar host public dir
+    mkdir -p /usr/local/share/public  \
+    mkdir -p /usr/local/share/public/R_library  \
+    && chgrp -R public /usr/local/share/public/ \
+    && chmod -R 2775 /usr/local/share/public/
     
 RUN \ 
     # add CRAN repository to apt
@@ -2163,46 +2181,51 @@ RUN \
     && gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9  \
     && gpg -a --export E084DAB9 | sudo apt-key add -  \
     # Update software repository
-    && sudo apt-get update  \
-    # install R
-    && sudo apt-get install -y r-base r-base-dev  \
-    # install shiny package
-    && su - -c "R -e \"install.packages('shiny', repos='https://cran.rstudio.com/')\""
+    && apt update  \
+    # Install R
+    && apt install -y r-base r-base-dev  \
+    # Add configurations to .Rprofile
+    echo '
+	#####################################################
+    	### ADDED BY DOCKERFILE
+	PUB_PATH = '/usr/local/share/public'
+	R_LIBS_USER = '/usr/local/share/public/R_library'
+	R_MAX_NUM_DLLS = 1000
+	#####################################################
+    ' >> $(R RHOME)/etc/Renviron
+    # Install devtools, shiny, and rmarkdown packages
+    && su - -c "R -e \"install.packages(c('devtools', 'shiny', 'rmarkdown'), repos='https://cran.rstudio.com/')\""
+
 
 RUN \
     # download and install RStudio Server
-    wget -O rstudio https://s3.amazonaws.com/rstudio-ide-build/server/trusty/amd64/rstudio-server-1.2.830-amd64.deb  \
-    && gdebi rstudio  \
-    && rm rstudio  \
+    wget -O rstudio.deb https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1103-amd64.deb  \
+    && sudo apt -y install ./rstudio.deb  \
+    && rm rstudio.deb  \
     # download and install Shiny Server
-    && wget -O shiny https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.7.907-amd64.deb  \
-    && gdebi shiny  \
-    && rm shiny
+    && wget -O shiny.deb https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.16.958-amd64.deb  \
+    && sudo apt -y install ./shiny.deb  \
+    && rm shiny.deb
+    # add "shiny"" to the "public" group
+    && usermod -aG public shiny 
+    # add the shiny directory to the "public" group
+    && usermod -aG public shiny 
     
-# Copy shiny configuration files into the Docker image (change the port ? the user ? the app directory ?)
-# COPY shiny-server.conf /etc/shiny-server/shiny-server.conf
-
 # install R packages using R script (plus cleaning)
 # RUN Rscript -e "install.packages()" \
 #    && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
 RUN \
-    adduser shiny  \
-    # add a new group "public"
-    && groupadd public  \
-    # add "shiny"" to the "public" group
-    && usermod -aG public shiny  \
-    # Create a new directory as a base for the shared directory with the host and modify permissions to be used by the "public" group
-    && mkdir -p /usr/local/share/public  \
-    && chgrp -R public /usr/local/share/public/  \
-    && chmod -R 2775 /usr/local/share/public/
+    # Create a new user datamaps
+    useradd --create-home --home-dir /home/datamaps --no-log-init --shell /bin/bash --groups public datamaps 
 
 # Volume configuration
 VOLUME ["/usr/local/share/public"]
 
-# Add the "public" path to the R configuration file 
-# RUN 
- 
+# pass control to user "datamaps"
+USER datamaps
+WORKDIR /home/datamaps
+
 ~~~
 
   <a name="docker-selenium"/>
