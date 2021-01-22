@@ -2028,16 +2028,17 @@ Container vs Virtual Machine
 ### Install Docker
   - install the dependencies:
     ~~~
-    sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+    sudo apt install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
     ~~~
   - add the docker repository in the *apt* source list:
     ~~~
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo apt-key fingerprint 0EBFCD88
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
     ~~~
   - update the package management source:
     ~~~
-    sudo apt-get update
+    sudo apt update
     ~~~
   - let's make sure, you're going to install the software from the actual Docker repo:
     ~~~
@@ -2045,7 +2046,7 @@ Container vs Virtual Machine
     ~~~
   - install Docker:
     ~~~
-    sudo apt-get install -y docker-ce
+    sudo apt -y install docker-ce docker-ce-cli containerd.io
     ~~~
   - check the status:
     ~~~
@@ -2115,21 +2116,69 @@ Container vs Virtual Machine
 A **Dockerfile** is a script that contains a collection of (Dockerfile) instructions and operating system commands (tipycally Linux commands), that will be automatically executed in sequence in the docker environment for building a new docker image.
 
 Below are some of the most used dockerfile instructions:
-  - **FROM**  *registry/image:tag* The base image for building a new image. This command must be on top of the dockerfile.
-  - **MAINTAINER** Optional, it contains the name of the maintainer of the image.
-  - **RUN** Used to execute a command during the build process of the docker image.
-  - **COPY** Copy a file from the host machine to the new docker image. There is an option to use an URL for the file, docker will then download that file to the destination directory. Thre is an additional `ADD` command which is not suggested to be used.
-  - **ENV** Define an environment variable.
-  - **CMD** Used for executing commands when we build a new container from the docker image.
-  - **ENTRYPOINT** Define the default command that will be executed when the container is running.
-  - **WORKDIR** This is directive for CMD command to be executed.
-  - **USER** Set the user or UID for the container created with the image.
-  - **VOLUME** Enable access/linked directory between the container and the host machine.
+  - `FROM registry/image:tag` The base image used to start the build processo of a new image. This command must be on top of the dockerfile
+  - `INCLUDE+`
+  - `MAINTAINER` Optional, it defines a full name and email address of the image creator
+  - `RUN` Used to execute a command during the build process of the docker image
+  - `COPY` Copy a file from the host machine to the new docker image
+  - `ADD` Allows to copy a file from the internet using its url, or extract a tar file from the source directly into the Docker image
+  - `ENV` Define an environment variable
+  - `EXPOSE` Associates a specific port to enable networking between the container and the host
+  - `CMD` Used for executing commands when we build a new container from the docker image
+  - `WORKDIR` This is directive to set the path where the command, defined with the above `CMD`, is to be executed
+  - `VOLUME` Enable access/linked directory between the container and the host machine
+  - `ENTRYPOINT` Define the default command that will be executed when a container is created with the image
+  - `USER` sets the UID (or the user name) which is to run the container at the start
+  - `LABEL` Allows to add a label to the Docker image.
+
+While not mandatory, you should always call your Dockerfile as `Dockerfile`. Don't use any extension, just leave it null. In particular, do not change the name of the dockerfile if you want to use the autobuilder at [Docker Hub](hub.docker.com). 
+
+You should never put multiple dockerfiles for different images in the same direcotries. Use instead a single . If need be otherwise, start using [Docker-compose]().
+
+
+Before we create a *Dockerfile* and build an image from it, we need to make a new directory from which to work. After that we can move into it and open a new test file for editing:
+```
+mkdir -p ~/Docker/dockerbuild
+cd ~/Docker/dockerbuild
+nano Dockerfile
+```
+then enter the following:
+```
+FROM ubuntu:latest
+MAINTAINER Luca l.valnegri@datamaps.co.uk
+ 
+RUN apt-get -y update
+RUN apt-get -y upgrade
+RUN apt-get install -y build-essential
+```
+
+When you're confident the Dockerfile is complete, or you simply want to test it, you can now build the image from that file (the dot at the end is not a ):
+```
+docker build -t "imgname:Dockerfile" .
+```
+where `imgname` is the name we want to give to the image.
+
+Let's say we now want to build a new image with *R* and some packages on it (or Python, or whatever else can be based on the previous image). It's not efficient to start again from the ubuntu:latest image, but instead exploit the 
+```
+FROM ubuntu:latest
+MAINTAINER Luca l.valnegri@datamaps.co.uk
+ 
+RUN apt-get -y update
+RUN apt-get -y upgrade
+RUN apt-get install -y build-essential
+```
+
+
+We can now build additional images, based on the previous *R* image, each taking care of different things. For example, we can have different images for: 
+ - *RStudio Server*;
+ - *Shiny Server*, and then build a different image for every Shiny app, each mapping its 3838 standard port to a different port in the host, that in turn using nginx reverse proxy expose a different address to the internet; 
+ - *plumber*, and then build different images for each *plumber API* we build, 
+
 
 The following is an example of Dockerfile that creates a *minimal* image, capable to run a RStudio/Shiny server connected with the *public* shared repository on the host as described above: 
 ~~~
-# Download base image ubuntu 20.04
-FROM ubuntu:20.04
+# Download base image ubuntu 20.04.1 or use "latest" instead. See https://hub.docker.com/_/ubuntu
+FROM ubuntu:20.04.1
  
 RUN \
     # Update software repository + Upgrade system
