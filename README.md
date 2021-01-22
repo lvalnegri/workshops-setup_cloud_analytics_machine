@@ -767,10 +767,6 @@ In the same way as above, you can add two other important constants to the *R* e
   <a name="install-rstudio-server"/>
 
 ### Install RStudio Server
-  - install first the *.deb* files installer:
-    ~~~
-    sudo apt-get install gdebi-core
-    ~~~   
   - create a new folder `software` in your *home* directory and move into it:
     ~~~
     cd
@@ -779,13 +775,13 @@ In the same way as above, you can add two other important constants to the *R* e
     ~~~
   - download the package:
     ~~~
-    wget -O rstudio https://s3.amazonaws.com/rstudio-ide-build/server/bionic/amd64/rstudio-server-1.4.1094-amd64.deb
+    wget -O rstudio.deb https://s3.amazonaws.com/rstudio-ide-build/server/bionic/amd64/rstudio-server-1.4.1103-amd64.deb
     ~~~
     Please note that the above command downloads the *preview* 64bit version at the time of writing, and presumes that your OS version is at least Ubuntu *Xenial* 18.04 LTS. It's worth verifying the newest version visiting [this page](http://www.rstudio.com/products/rstudio/download/preview/) (scroll down till the *Server* section, and copy the link for the *Ubuntu 18/Debian 10 (64-bit)* installer), and in case substitute where needed.
     Moreover, if you prefer to stay on the safer side and want to install the *stable* release, check instead [this page](https://www.rstudio.com/products/rstudio/download-server/) for the correct link of the newest version. 
   - install Rstudio Server:
     ~~~
-    sudo gdebi rstudio
+    sudo apt install -y ./rstudio.deb
     ~~~
   - add a rule to the firewall to allow the default port Rstudio Server is listening to:
     ~~~
@@ -874,11 +870,11 @@ Before installing the *Shiny* Server,  it is usually suggested you first install
     ~~~
   - download the package (check [here](https://www.rstudio.com/products/shiny/download-server/) for latest version):
     ~~~
-    wget -O shiny https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.15.953-amd64.deb
+    wget -O shiny.deb https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.16.958-amd64.deb
     ~~~
   - install *Shiny Server*:
     ~~~
-    sudo gdebi shiny
+    sudo apt install -y ./shiny.deb
     ~~~
   - add a rule to the firewall to allow the default port *Shiny Server* is listening to:
     ~~~
