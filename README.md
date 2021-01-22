@@ -2180,6 +2180,12 @@ The following is an example of Dockerfile that creates a *minimal* image, capabl
 # Download base image ubuntu 20.04.1 or use "latest" instead. See https://hub.docker.com/_/ubuntu
 FROM ubuntu:20.04.1
  
+ARG PUB_GRP=public
+ARG PUB_PATH=/usr/local/share/$PUB_GRP
+ARG USERNAME=datamaps
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID 
+ 
 RUN \
     # Update software repository + Upgrade system
     apt update && apt -y full-upgrade \
@@ -2216,12 +2222,11 @@ RUN \
     
 RUN \
     # Create a new "public" group
-    groupadd public &&
+    groupadd $PUB_GRP &&
     # Create a new directory to be used by the "public" group and connected with the similar host public dir
-    mkdir -p /usr/local/share/public  \
-    mkdir -p /usr/local/share/public/R_library  \
-    && chgrp -R public /usr/local/share/public/ \
-    && chmod -R 2775 /usr/local/share/public/
+    mkdir -p $PUB_PATH/R_library  \
+    && chgrp -R $PUB_GRP $PUB_PATH \
+    && chmod -R 2775 $PUB_PATH
     
 RUN \ 
     # add CRAN repository to apt
@@ -2262,10 +2267,10 @@ RUN \
 
 RUN \
     # Create a new user datamaps
-    useradd --create-home --home-dir /home/datamaps --no-log-init --shell /bin/bash --groups public datamaps  \
-    # add the shiny directory to the "public" group
+    useradd --create-home --home-dir /home/$USERNAME --no-log-init --shell /bin/bash --groups $PUB_GRP $USERNAME  \
+    # add user and "public" group as owners of the shiny directory 
     && cd /srv/shiny-server \
-    && chown -R datamaps:public . \
+    && chown -R $USERNAME:$PUB_GRP . \
     && chmod g+w . \ 
     && chmod g+s .
 
@@ -2273,8 +2278,8 @@ RUN \
 VOLUME ["/usr/local/share/public"]
 
 # pass control to user "datamaps"
-USER datamaps
-WORKDIR /home/datamaps
+USER $USERNAME
+WORKDIR /home/$USERNAME
 
 ~~~
 
