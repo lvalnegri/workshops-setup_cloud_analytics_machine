@@ -2176,11 +2176,10 @@ RUN \
     
 RUN \ 
     # add CRAN repository to apt
-    echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list  \
+    echo -e "\n# CRAN REPOSITORY\ndeb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/\n" | tee -a /etc/apt/sources.list  \
     # add public key of CRAN maintainer
-    && gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9  \
-    && gpg -a --export E084DAB9 | sudo apt-key add -  \
-    # Update software repository
+    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9  \
+    # Update package manager
     && apt update  \
     # Install R
     && apt install -y r-base r-base-dev  \
@@ -2192,10 +2191,9 @@ RUN \
 	R_LIBS_USER = '/usr/local/share/public/R_library'
 	R_MAX_NUM_DLLS = 1000
 	#####################################################
-    ' >> $(R RHOME)/etc/Renviron
+    ' | tee -a $(R RHOME)/etc/Renviron \
     # Install devtools, shiny, and rmarkdown packages
     && su - -c "R -e \"install.packages(c('devtools', 'shiny', 'rmarkdown'), repos='https://cran.rstudio.com/')\""
-
 
 RUN \
     # download and install RStudio Server
@@ -2205,11 +2203,9 @@ RUN \
     # download and install Shiny Server
     && wget -O shiny.deb https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.16.958-amd64.deb  \
     && sudo apt -y install ./shiny.deb  \
-    && rm shiny.deb
+    && rm shiny.deb \
     # add "shiny"" to the "public" group
-    && usermod -aG public shiny 
-    # add the shiny directory to the "public" group
-    && usermod -aG public shiny 
+    && usermod -aG public shiny
     
 # install R packages using R script (plus cleaning)
 # RUN Rscript -e "install.packages()" \
@@ -2217,7 +2213,12 @@ RUN \
 
 RUN \
     # Create a new user datamaps
-    useradd --create-home --home-dir /home/datamaps --no-log-init --shell /bin/bash --groups public datamaps 
+    useradd --create-home --home-dir /home/datamaps --no-log-init --shell /bin/bash --groups public datamaps  \
+    # add the shiny directory to the "public" group
+    && cd /srv/shiny-server \
+    && chown -R datamaps:public . \
+    && chmod g+w . \ 
+    && chmod g+s .
 
 # Volume configuration
 VOLUME ["/usr/local/share/public"]
