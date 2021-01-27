@@ -1,7 +1,7 @@
 # How to install *R*, *RStudio Server* and *Shiny Server* on a *Raspberry Pi 4*
 
   * [Set up OS](#setup)
-  * [R](#motivations)
+  * [R](#rstats)
   * [Shiny Server](#shiny)
   * [RStudio Server](#rstudio)
   * [Nginx](#nginx)
