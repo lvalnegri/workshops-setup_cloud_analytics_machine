@@ -33,7 +33,7 @@ sudo apt -y install net-tools ssh ufw dirmngr gnupg apt-transport-https ca-certi
 # sudo nano /etc/ssh/sshd_config   # ==> if you plan to put your Rpi on the public internet you should change ssh port and set "PermitRootLogin" to no or install ssh key pair
 ```
 
-To use a static IP address, we need to conveniently edit the *netplan* configuration file. We need first to identify the name of the interface to configure. The ethernet is usually called èth0`, while the wifi `wlan0`, but run the `ip link` command to be assured.
+To use a static IP address, we need to conveniently edit the *netplan* configuration file. We need first to identify the name of the interface to configure. The ethernet is usually called `eth0`, while the wifi `wlan0`, but run the `ip link` command to be assured.
 
 Now we need to look into the `/etc/netplan/` directory. If there's a file called `50-cloud-init.yaml` we need first to disable it. To do so, create the following file:
 ```
