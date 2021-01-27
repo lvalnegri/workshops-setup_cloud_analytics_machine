@@ -221,51 +221,53 @@ You should now reboot the system for some of the above changes to take place.
    ```
 
   - create log, config, and application directories:
-   ```
-   mkdir -p /usr/local/share/public/shiny_server/logs 
-   sudo mkdir -p /srv/shiny-server
-   sudo mkdir -p /var/lib/shiny-server
-   sudo mkdir -p /etc/shiny-server
-   ```
+    ```
+    mkdir -p /usr/local/share/public/shiny_server/logs 
+    sudo mkdir -p /srv/shiny-server
+    sudo mkdir -p /var/lib/shiny-server
+    sudo mkdir -p /etc/shiny-server
+    ```
 
   - copy the configuration file from my public github repo (you're not obviously bound to it!):
-   ```
-   wget "https://raw.githubusercontent.com/lvalnegri/workshops-setup_cloud_analytics_machine/master/shiny-server.conf"
-   sudo cp shiny-server.conf /etc/shiny-server/shiny-server.conf
-   ```
+    ```
+    wget "https://raw.githubusercontent.com/lvalnegri/workshops-setup_cloud_analytics_machine/master/shiny-server.conf"
+    sudo cp shiny-server.conf /etc/shiny-server/shiny-server.conf
+    ```
 
   - adding an option for the *R* process run by the *shiny* user to process images:
-   ```
-   echo "options(bitmapType = 'cairo')" | sudo tee -a /home/shiny/.Rprofile && sudo chown shiny:shiny /home/shiny/.Rprofile
-   ```
+    ```
+    echo "options(bitmapType = 'cairo')" | sudo tee -a /home/shiny/.Rprofile && sudo chown shiny:shiny /home/shiny/.Rprofile
+    ```
 
- - setup for start at boot
-   ```
-   cd shiny-server
-   sed -i -e "s:ExecStart=/usr/bin/env bash -c 'exec /opt/shiny-server/bin/shiny-server >> /var/log/shiny-server.log 2>&1':ExecStart=/usr/bin/shiny-server:g"  config/systemd/shiny-server.service
-   sed -i -e 's:/env::'  config/systemd/shiny-server.service
-   sudo cp config/systemd/shiny-server.service /lib/systemd/system/
-   sudo chmod 644 /lib/systemd/system/shiny-server.service
-   ```
+  - setup for start at boot
+    ```
+    cd shiny-server
+    sed -i -e "s:ExecStart=/usr/bin/env bash -c 'exec /opt/shiny-server/bin/shiny-server >> /var/log/shiny-server.log 2>&1':ExecStart=/usr/bin/shiny-server:g"  config/systemd/shiny-server.service
+    sed -i -e 's:/env::'  config/systemd/shiny-server.service
+    sudo cp config/systemd/shiny-server.service /lib/systemd/system/
+    sudo chmod 644 /lib/systemd/system/shiny-server.service
+    ```
 
- - enable and start the *Shiny Server* service: 
-   ```
-   sudo systemctl daemon-reload
-   sudo systemctl enable shiny-server.service
-   sudo systemctl start shiny-server
-   ```
+  - enable and start the *Shiny Server* service: 
+    ```
+    sudo systemctl daemon-reload
+    sudo systemctl enable shiny-server.service
+    sudo systemctl start shiny-server
+    ```
 
- - let apps directory be manageable for the *ubuntu* user:
-   ```
-   cd /srv/shiny-server
-   sudo chown -R ubuntu:public .
-   sudo chmod g+w .
-   sudo chmod g+s .
-   ```
+  - let apps directory be manageable for the *ubuntu* user:
+    ```
+    cd /srv/shiny-server
+    sudo chown -R ubuntu:public .
+    sudo chmod g+w .
+    sudo chmod g+s .
+    ```
 
- - (optional) copy sample apps and index.html to server
-   sudo cp samples/welcome.html /srv/shiny-server/index.html
-   sudo cp -r samples/sample-apps/ /srv/shiny-server/
+  - (optional) copy sample apps and index.html to server
+    ```
+    sudo cp samples/welcome.html /srv/shiny-server/index.html
+    sudo cp -r samples/sample-apps/ /srv/shiny-server/
+    ```
 
 
 ## RStudio Server
