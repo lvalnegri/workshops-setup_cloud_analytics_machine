@@ -27,10 +27,10 @@ sudo apt update
 sudo apt -y full-upgrade
 sudo apt -y install net-tools ssh ufw dirmngr gnupg apt-transport-https ca-certificates software-properties-common \
                     build-essential nano dos2unix man-db git-core libgit2-dev libauthen-oath-perl openssh-server libsocket6-perl
-sudo ufw enable
-sudo ufw allow 22
+# sudo ufw enable                  # ==> if you plan to put your Rpi on the public internet this is the minimum security move
+# sudo ufw allow 22                # ==> when ufw has been enabled, this open the standard ssh port
 # sudo passwd                      # ==> root has no password by default
-# sudo nano /etc/ssh/sshd_config   # ==> PermitRootLogin no
+# sudo nano /etc/ssh/sshd_config   # ==> if you plan to put your Rpi on the public internet you should change ssh port and set "PermitRootLogin" to no or install ssh key pair
 ```
 
 To use a static IP address, we need to conveniently edit the *netplan* configuration file. We need first to identify the name of the interface to configure. The ethernet is usually called èth0`, while the wifi `wlan0`, but run the `ip link` command to be assured.
