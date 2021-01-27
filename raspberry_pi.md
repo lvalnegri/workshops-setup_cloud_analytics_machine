@@ -1,3 +1,15 @@
+# How to install *R*, *RStudio Server* and *Shiny Server* on a *Raspberry Pi 4*
+
+  * [Set up OS](#setup)
+  * [R](#motivations)
+  * [Shiny Server](#shiny)
+  * [RStudio Server](#rstudio)
+  * [Nginx](#nginx)
+  * [Credits](#credits)
+
+
+<a name="setup"/>
+
 ## Set up OS
  - Raspberry Pi 4B 4GB or 8GB [PiHut](https://thepihut.com/products/raspberry-pi-4-model-b?variant=20064052674622&src=raspberrypi) [Pimoroni](https://shop.pimoroni.com/products/raspberry-pi-4?variant=29157087412307) [OKDO](https://www.okdo.com/p/raspberry-pi-4-model-b-2gb-2/) [SB Components](https://shop.sb-components.co.uk/products/raspberry-pi-4-model-b?variant=29217503314003) [CPC](https://cpc.farnell.com/raspberry-pi/rpi4-modbp-2gb/raspberry-pi-4-model-b-2gb/dp/SC15184)
  - Power Supply or Power Bank 5V **with 3A output**. If you go for a portable battery, I'd suggest [this one](https://www.amazon.co.uk/gp/product/B07K1XTXRS/) that let me install R, Shny server and RStudio server on a single full charge.
@@ -6,21 +18,21 @@
  - cable HDMI to [microHDMI](https://www.amazon.co.uk/AmazonBasics-speed-latest-standard-meters/dp/B014I8U33I?th=1). If you already have an HDMI-HDMI cable, you can buy an [adapter](https://www.amazon.co.uk/UGREEN-Adapter-Support-Connectors-Tablets-Black/dp/B00B2HORKE/)
  - an ethernet cable to wire up internet connection during the set up process (unfortunately, the wifi connection with ubuntu 20.04 on a pi4 is still a problematic issue).
  - [balenaEtcher](https://www.balena.io/etcher) or [Raspberry pi imager](https://www.raspberrypi.org/software/) to burn any available Raspberry Pi OS image onto the SD card.
- - Ubuntu 20.04 server 64 bit
+ - [Ubuntu Server 20.04.1 LTS 64 bit](https://ubuntu.com/download/raspberry-pi) for Raspberry Pi 4
 
 Run the imager, choose your image file and sd card, then write the OS.
 
 Eject the card from the machine, and put it into the Rpi, attach ethernet cable, HDMI cable, keyboard cable, and finally power cable, then put the kettle on and wait for the system to do its magic.
 
-Once the system started, you can log in (user: ubuntu, pwd: ubuntu; you'll be asked to change this one soon after the first login), but you should wait for a while before proceeding, as the system is upgrading itself in the background. You could have a hint of when things are done by running `htop`, you should see no `unattended-upgrade` in the list of running processes.
+Once the system started, you can log in (user: ubuntu, pwd: ubuntu; you'll be asked to change this one soon after the first login), but you should wait for a while before proceeding, as the system is upgrading itself in the background. You could have a hint of when things are done by running `htop`, you should be clear to go when you don't see any `unattended-upgrade` in the list of running processes.
 
-Once updates are done, run `ifconfig` to have a look at the dynamic ip address that your Rpi has been assigned. Take a note of it, and if you prefer to work from another device on your local network, instead of the keyboard and wired tv/monitor, fire up an ssh client like putty or MobaXterm. If something does not work, try to run the following:
+Once updates are done, run `ifconfig` to have a look at the dynamic ip address that your Rpi has been assigned. Take a note of it, and if you prefer to work from another device on your local network, instead of the keyboard and wired tv/monitor, fire up the terminal, or if you're on windows an ssh client like [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/) or [MobaXterm](https://mobaxterm.mobatek.net/), and connect using the ip address just found and the standard port 22. If something does not work, try to run the following:
 ```
 sudo systemctl enable --now ssh
 sudo systemctl status ssh
 ```
 
-Run the following:
+Once you're ready, run the following to update the system:
 
 ```
 sudo apt update
@@ -100,6 +112,8 @@ network:
 ```
 
 
+<a name="rstats"/>
+
 ## R
 As of Jan 2021, there are no precompiled binaries of the latest *R* version for hardwares built with ARM chips. So we need to compile from source. Look at the [CRAN](https://cran.r-project.org/) website for the correct link. The complete process should take about an hour.
    - install dependencies:
@@ -162,6 +176,9 @@ We then create a global variable for the "public" path both:
     You can fire up *R* and run `.libPaths()` and `Sys.getenv('PUB_PATH')` to be sure the changes applied correctly. 
 
 You should now reboot the system for some of the above changes to take place.
+
+
+<a name="shiny"/>
 
 ## Shiny Server
 
@@ -269,6 +286,7 @@ You should now reboot the system for some of the above changes to take place.
     sudo cp -r samples/sample-apps/ /srv/shiny-server/
     ```
 
+<a name="rstudio"/>
 
 ## RStudio Server
 
@@ -324,6 +342,9 @@ You should now reboot the system for some of the above changes to take place.
    rm -rf ~/software/RSS
    ```
 
+
+<a name="nginx"/>
+
 ## Web Server
 
  - install the Nginx web server, giving the standard user permission for the web root folder:
@@ -359,6 +380,7 @@ There are two more steps for an optimal configuration.
  - having an intelligible domain name, instead of an ip address. Configure your personal domain name to point to your DDNS service
  - attaching the above domain name to a service that automatically [resolve and a](https://twitter.com/Andresrcs)u[Pi 3](r dynamic public IP address
 
+<a name="credits"/>
 
 ## Credits
  - [RStudio Instructions](https://github.com/rstudio/rstudio/wiki/Building-Installers)
