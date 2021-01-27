@@ -104,7 +104,9 @@ network:
 As of Jan 2021, there are no precompiled binaries of the latest *R* version for hardwares built with ARM chips. So we need to compile from source. Look at the [CRAN](https://cran.r-project.org/) website for the correct link. The complete process should take about an hour.
    - install dependencies:
      ```
-   sudo apt install -y g++ gfortran libbz2-dev libcairo2-dev libcurl4-openssl-dev libjpeg-dev liblzma-dev libpcre2-dev libpng-dev libreadline6-dev libssl-dev libx11-dev libxt-dev libzstd-dev make openjdk-11-jdk pandoc screen texinfo texlive texlive-fonts-extra xvfb zlib1g-dev
+     sudo apt install -y g++ gfortran libbz2-dev libcairo2-dev libcurl4-openssl-dev libjpeg-dev liblzma-dev libpcre2-dev libpng-dev \
+                         libreadline6-dev libssl-dev libx11-dev libxt-dev libzstd-dev make openjdk-11-jdk pandoc screen \
+			 texinfo texlive texlive-fonts-extra xvfb zlib1g-dev
      ```
    - download source code and unzip:
      ```
