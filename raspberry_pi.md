@@ -120,7 +120,7 @@ As of Jan 2021, there are no precompiled binaries of the latest *R* version for 
      ```
      sudo apt install -y g++ gfortran libbz2-dev libcairo2-dev libcurl4-openssl-dev libjpeg-dev liblzma-dev libpcre2-dev libpng-dev \
                          libreadline6-dev libssl-dev libx11-dev libxt-dev libzstd-dev make openjdk-11-jdk pandoc screen \
-			 texinfo texlive texlive-fonts-extra xvfb zlib1g-dev
+                         texinfo texlive texlive-fonts-extra xvfb zlib1g-dev
      ```
    - download source code and unzip:
      ```
@@ -132,7 +132,8 @@ As of Jan 2021, there are no precompiled binaries of the latest *R* version for 
    - compile and install:
      ```
      cd R
-     ./configure --enable-R-shlib --with-x --with-cairo --with-libpng --with-libtiff --with-jpeglib --enable-threads=posix --with-lapack --with-blas
+     ./configure --enable-R-shlib --with-x --with-cairo --with-libpng --with-libtiff --with-jpeglib 
+                 --enable-threads=posix --with-lapack --with-blas
      make
      sudo make install
      ```
@@ -298,7 +299,7 @@ You should now reboot the system for some of the above changes to take place.
    tar zxvf rstudio.tar.gz -C RSS --strip-components 1
    ```
 
- - install *sentry-cli*
+ - install [sentry-cli](https://github.com/getsentry/sentry-cli) (this should take 20 minutes)
    ```
    sudo curl https://sh.rustup.rs -sSf | sh
    source $HOME/.cargo/env
@@ -313,7 +314,7 @@ You should now reboot the system for some of the above changes to take place.
    ```
    sudo apt install -y ant clang debsigs dpkg-sig expect gnupg1 libacl1-dev libcap-dev libclang-6.0-dev libclang-dev \
                        libegl1-mesa libgl1-mesa-dev libgtk-3-0 libpam0g-dev libpango1.0-dev libpq-dev libsqlite3-dev \
-					   libuser1-dev libxslt1-dev ninja-build openjdk-8-jdk rrdtool 
+                       libuser1-dev libxslt1-dev ninja-build openjdk-8-jdk rrdtool 
    cd RSS/dependencies/common/
    ./install-dictionaries       
    ./install-mathjax            
