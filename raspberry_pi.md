@@ -361,5 +361,6 @@ There are two more steps for an optimal configuration.
 
 
 ## Credits
+ - [RStudio Instructions](https://github.com/rstudio/rstudio/wiki/Building-Installers)
  - [Andrés Castro])(https://twitter.com/Andresrcs) [Using Ansible](https://andresrcs.rbind.io/2021/01/13/raspberry_pi_server/) [Manual Installation](https://andresrcs.rbind.io/2018/11/21/shiny_rstudio_server/)
  
