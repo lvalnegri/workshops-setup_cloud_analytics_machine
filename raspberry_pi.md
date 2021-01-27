@@ -25,7 +25,8 @@ Run the following:
 ```
 sudo apt update
 sudo apt -y full-upgrade
-sudo apt -y install net-tools ssh ufw dirmngr gnupg apt-transport-https ca-certificates software-properties-common build-essential nano dos2unix man-db git-core libgit2-dev libauthen-oath-perl openssh-server libsocket6-perl
+sudo apt -y install net-tools ssh ufw dirmngr gnupg apt-transport-https ca-certificates software-properties-common \
+                    build-essential nano dos2unix man-db git-core libgit2-dev libauthen-oath-perl openssh-server libsocket6-perl
 sudo ufw enable
 sudo ufw allow 22
 # sudo passwd                      # ==> root has no password by default
