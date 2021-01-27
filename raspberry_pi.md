@@ -329,7 +329,6 @@ You should now reboot the system for some of the above changes to take place.
    ```
    cd ../../package/linux/
    ./make-package Server DEB
-   sudo make install
    ```
 
  - install the softare:
