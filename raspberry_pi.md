@@ -357,4 +357,9 @@ Moreover, make sure you have `Block WAN traffic` disabled.
 
 There are two more steps for an optimal configuration.
  - having an intelligible domain name, instead of an ip address. Configure your personal domain name to point to your DDNS service
- - attaching the above domain name to a service that automatically resolve and attach to your dynamic public IP address
+ - attaching the above domain name to a service that automatically [resolve and a](https://twitter.com/Andresrcs)u[Pi 3](r dynamic public IP address
+
+
+## Credits
+ - [Andrés Castro])(https://twitter.com/Andresrcs) [Using Ansible](https://andresrcs.rbind.io/2021/01/13/raspberry_pi_server/) [Manual Installation](https://andresrcs.rbind.io/2018/11/21/shiny_rstudio_server/)
+ 
