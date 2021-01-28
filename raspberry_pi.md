@@ -326,6 +326,11 @@ You should now reboot the system for some of the above changes to take place.
    ./install-soci
    ```
 
+ - if you use a 4GB version (the 8GB works just fine) you need to limit the Java heap size:	
+   ```	
+   export JAVA_TOOL_OPTIONS='-Xms1g -Xmx3g'
+   ```	
+
  - compile using RStudio script (this should take five hours):
    ```
    cd ../../package/linux/
