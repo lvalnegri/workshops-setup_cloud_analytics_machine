@@ -336,9 +336,9 @@ You should now reboot the system for some of the above changes to take place.
    ./make-package Server DEB
    ```
 
- - if you use a 4GB version (the 8GB works just fine):
+ - if you use a 4GB version (the 8GB works just fine) you need to limit the Java heap size:
    ```
-   java -Xms256m -Xmx3g
+   java -Xms1g -Xmx3g
    ```
 
  - install the software:
@@ -394,5 +394,5 @@ There are two more steps for an optimal configuration.
 
 ## Credits
  - [RStudio Instructions](https://github.com/rstudio/rstudio/wiki/Building-Installers)
- - [Andrés Castro](https://twitter.com/Andresrcs): [Automagic Using Ansible](https://andresrcs.rbind.io/2021/01/13/raspberry_pi_server/) or [Manual Installation](https://andresrcs.rbind.io/2018/11/21/shiny_rstudio_server/)
+ - [Andrés Castro](https://twitter.com/Andresrcs): [Automagic Using Ansible](https://andresrcs.rbind.io/2021/01/13/raspberry_pi_server/) or [Manual Installation](https://andresrcs.rbind.io/2018/11/21/shiny_rstudio_server/), plus interesting [blog post](https://community.rstudio.com/t/setting-up-your-own-shiny-server-rstudio-server-on-a-raspberry-pi-3b/18982) on the [Rstudio Community](community.rstudio.com)
  
