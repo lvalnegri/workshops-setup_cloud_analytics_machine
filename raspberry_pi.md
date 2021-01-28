@@ -336,11 +336,6 @@ You should now reboot the system for some of the above changes to take place.
    ./make-package Server DEB
    ```
 
- - if you use a 4GB version (the 8GB works just fine) you need to limit the Java heap size:
-   ```
-   java -Xms1g -Xmx3g
-   ```
-
  - install the software:
    ```
    cd build-Server-DEB
