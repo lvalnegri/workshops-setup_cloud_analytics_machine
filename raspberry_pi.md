@@ -312,7 +312,7 @@ You should now reboot the system for some of the above changes to take place.
 
  - install dependencies (this should take about one hour):
    ```
-   sudo apt install -y ant clang debsigs dpkg-sig expect gnupg1 libacl1-dev libcap-dev libclang-6.0-dev libclang-dev \   # this should take 10 minutes
+   sudo apt install -y ant clang debsigs dpkg-sig expect gnupg1 libacl1-dev libcap-dev libclang-6.0-dev libclang-dev \ 
                        libegl1-mesa libgl1-mesa-dev libgtk-3-0 libpam0g-dev libpango1.0-dev libpq-dev libsqlite3-dev \
                        libuser1-dev libxslt1-dev ninja-build openjdk-8-jdk rrdtool 
    cd RSS/dependencies/common/
@@ -329,17 +329,17 @@ You should now reboot the system for some of the above changes to take place.
  - compile using RStudio script (this should take five hours):
    ```
    cd ../../package/linux/
-   ./make-package Server DEB
-   ```
-
- - install the softare:
-   ```
-   cd build-Server-DEB
    RSTUDIO_MAJOR_VERSION=1
    RSTUDIO_MINOR_VERSION=4
    RSTUDIO_PATCH_VERSION=1103
    MAKEFLAGS=-j4
-   sudo apt install ./rstudio-server-99.9.9-arm64-relwithdebinfo.deb
+   ./make-package Server DEB
+   ```
+
+ - install the software:
+   ```
+   cd build-Server-DEB
+   sudo apt install ./rstudio-server-1.4.1103-arm64-relwithdebinfo.deb
    ```
 
  - cleaning:
