@@ -299,7 +299,7 @@ You should now reboot the system for some of the above changes to take place.
    tar zxvf rstudio.tar.gz -C RSS --strip-components 1
    ```
 
- - install [sentry-cli](https://github.com/getsentry/sentry-cli) (this should take 20 minutes)
+ - install [sentry-cli](https://github.com/getsentry/sentry-cli) (this should take about 20 minutes):
    ```
    sudo curl https://sh.rustup.rs -sSf | sh
    source $HOME/.cargo/env
@@ -310,17 +310,18 @@ You should now reboot the system for some of the above changes to take place.
    cd ..
    ```
 
- - install dependencies:
+ - install dependencies (this should take about one hour):
    ```
-   sudo apt install -y ant clang debsigs dpkg-sig expect gnupg1 libacl1-dev libcap-dev libclang-6.0-dev libclang-dev \
+   sudo apt install -y ant clang debsigs dpkg-sig expect gnupg1 libacl1-dev libcap-dev libclang-6.0-dev libclang-dev \   # this should take 10 minutes
                        libegl1-mesa libgl1-mesa-dev libgtk-3-0 libpam0g-dev libpango1.0-dev libpq-dev libsqlite3-dev \
                        libuser1-dev libxslt1-dev ninja-build openjdk-8-jdk rrdtool 
    cd RSS/dependencies/common/
    ./install-dictionaries       
    ./install-mathjax            
-   ./install-boost              # this should take half an hour
+   ./install-boost
    ./install-packages
    ./install-pandoc
+   sudo apt install -y npm
    ./install-npm-dependencies
    ./install-soci
    ```
@@ -334,6 +335,10 @@ You should now reboot the system for some of the above changes to take place.
  - install the softare:
    ```
    cd build-Server-DEB
+   RSTUDIO_MAJOR_VERSION=1
+   RSTUDIO_MINOR_VERSION=4
+   RSTUDIO_PATCH_VERSION=1103
+   MAKEFLAGS=-j4
    sudo apt install ./rstudio-server-99.9.9-arm64-relwithdebinfo.deb
    ```
 
