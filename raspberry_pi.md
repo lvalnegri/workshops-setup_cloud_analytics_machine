@@ -24,7 +24,7 @@ Run the imager, choose your image file and sd card, then write the OS.
 
 Eject the card from the machine, and put it into the Rpi, attach ethernet cable, HDMI cable, keyboard cable, and finally power cable, then put the kettle on and wait for the system to do its magic.
 
-Once the system started, you can log in (user: ubuntu, pwd: ubuntu; you'll be asked to change this one soon after the first login), but you should wait for a while before proceeding, as the system is upgrading itself in the background. You could have a hint of when things are done by running `htop`, you should be clear to go when you don't see any `unattended-upgrade` in the list of running processes.
+Once the system starts, you should wait for a while before proceeding, as the system upgrades itself in the background, and you want to avoid to mess up with it. The first time you log in (user: ubuntu, pwd: ubuntu) you'll be asked to change the password. You could run `htop` to have a hint on the stautus of the upgrades, you should be clear to go when you don't see any `unattended-upgrade` in the list of running processes.
 
 Once updates are done, run `ifconfig` to have a look at the dynamic ip address that your Rpi has been assigned. Take a note of it, and if you prefer to work from another device on your local network, instead of the keyboard and wired tv/monitor, fire up the terminal, or if you're on windows an ssh client like [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/) or [MobaXterm](https://mobaxterm.mobatek.net/), and connect using the ip address just found and the standard port 22. If something does not work, try to run the following:
 ```
@@ -115,7 +115,7 @@ network:
 <a name="rstats"/>
 
 ## R
-As of Jan 2021, there are no precompiled binaries of the latest *R* version for hardwares built with ARM chips. So we need to compile from source. Look at the [CRAN](https://cran.r-project.org/) website for the correct link. The complete process should take about an hour.
+As of Jan 2021, there are no precompiled binaries of the latest *R* version for hardwares built on ARM chips. So we need to compile from source. Look at the [CRAN](https://cran.r-project.org/) website for the correct link. The complete process should take about an hour.
    - install dependencies:
      ```
      sudo apt install -y g++ gfortran libbz2-dev libcairo2-dev libcurl4-openssl-dev libjpeg-dev liblzma-dev libpcre2-dev libpng-dev \
@@ -137,7 +137,7 @@ As of Jan 2021, there are no precompiled binaries of the latest *R* version for 
      make
      sudo make install
      ```
-   - check *R* can run, and that it was compiled with all your desired capabilities:
+   - check *R* can run, and that it was compiled with all the requested capabilities:
      ```
      R
      capabilities()
@@ -149,7 +149,7 @@ As of Jan 2021, there are no precompiled binaries of the latest *R* version for 
      rm -rf R
      ```
 
-We now create a *public* repository with a specific "public" group, adding *ubuntu* to it. We also create a subdirectory `R_library` to use as a shared *R* packagaes library. You are free to change the names for the *public* group and directory and *R* repository.
+We now create a *public* repository with a specific "public" group, adding *ubuntu* to it. We also create a subdirectory `R_library` to use as a shared *R* packages library. You are free to change the names for the *public* group and directory and *R* repository.
 ```
 sudo groupadd public
 sudo usermod -aG public ubuntu
@@ -167,7 +167,7 @@ We then create a global variable for the "public" path both:
     ```
     echo '
 	#####################################################
-    ### ADDED BY ubuntu
+        ### ADDED BY ubuntu
 	PUB_PATH = '/usr/local/share/public'
 	R_LIBS_USER = '/usr/local/share/public/R_library'
 	R_MAX_NUM_DLLS = 1000
@@ -184,11 +184,11 @@ You should now reboot the system for some of the above changes to take place.
 ## Shiny Server
 
  - install the *shiny* package as usual using the *R* console (this process should take about half an hour).:
-    ```
-    R
-    install.packages(c('shiny', 'rmarkdown', 'Cairo'))
-    q()
-    ```
+   ```
+   R
+   install.packages(c('shiny', 'rmarkdown', 'Cairo'))
+   q()
+   ```
 
  - install [cmake]([https://cmake.org/files/) (this process should take about an hour):
    ```
