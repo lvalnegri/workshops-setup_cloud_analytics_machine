@@ -193,7 +193,7 @@ sudo reboot
    q()
    ```
 
- - install [cmake]([https://cmake.org/files/) (this process should take about an hour):
+ - install [cmake](https://cmake.org/files/) (this process should take about an hour):
    ```
    mkdir -p ~/software/cmake
    cd ~/software
@@ -207,7 +207,7 @@ sudo reboot
    rm -rf cmake
    ```
 
- - download and extract source code (have also a look at the [official instructions](https://github.com/rstudio/shiny-server/wiki/Building-Shiny-Server-from-Source)) 
+ - download and extract the source code (have also a look at the [official instructions](https://github.com/rstudio/shiny-server/wiki/Building-Shiny-Server-from-Source)) 
    ```
    cd ~/software
    git clone https://github.com/rstudio/shiny-server.git
@@ -221,12 +221,12 @@ sudo reboot
    sed -i -e "8s/.*/NODE_SHA256=$SHA/" -e "s/linux-x64.tar.xz/linux-arm64.tar.xz/" -e "s/https:\/\/github.com\/jcheng5\/node-centos6\/releases\/download\//https:\/\/nodejs.org\/dist\//" external/node/install-node.sh
    ```
 
- - install Shiny Server using the ready-made RStudio script:
+ - compile Shiny Server using the ready-made RStudio script:
    ```
    packaging/make-package.sh
    ```
 
- - copy shiny-server directory to system location, with a link (pandoc gets removed as we've already installed the correct ARM version system-wide):
+ - copy the final directory to the correct system location, adding a symbolic link for the binary file (*pandoc* gets removed as we've already installed the correct ARM version system-wide):
    ```
    rm -r ext/pandoc
    cd ..
@@ -234,61 +234,71 @@ sudo reboot
    sudo ln -s /usr/local/shiny-server/bin/shiny-server /usr/bin/shiny-server
    ```
 
- - create the *shiny* user, adding it to the "public" share group (refresh group permission to avoid reboot):
+ - create the *shiny* user, adding it to the "public" share group (we also refresh group permission to avoid reboot):
    ```
    sudo useradd -rm shiny
    sudo usermod -aG public shiny
    newgrp public
    ```
 
-  - create log, config, and application directories:
-    ```
-    mkdir -p /usr/local/share/public/shiny_server/logs 
-    sudo mkdir -p /srv/shiny-server
-    sudo mkdir -p /var/lib/shiny-server
-    sudo mkdir -p /etc/shiny-server
-    ```
+ - create log, config, and application directories:
+   ```
+   mkdir -p /usr/local/share/public/shiny_server/logs 
+   sudo mkdir -p /var/lib/shiny-server
+   sudo mkdir -p /etc/shiny-server
+   sudo mkdir -p /srv/shiny-server
+   ```
 
-  - copy the configuration file from my public github repo (you're not obviously bound to it!):
-    ```
-    wget "https://raw.githubusercontent.com/lvalnegri/workshops-setup_cloud_analytics_machine/master/shiny-server.conf"
-    sudo cp shiny-server.conf /etc/shiny-server/shiny-server.conf
-    ```
+ - copy the configuration file from this repo:
+   ```
+   wget "https://raw.githubusercontent.com/lvalnegri/workshops-setup_cloud_analytics_machine/master/shiny-server.conf"
+   sudo cp shiny-server.conf /etc/shiny-server/shiny-server.conf
+   ```
+   You are free to change and/or delete any parts in the above conf file, but if you edit the *log* directory you should create it before starting the server.
 
-  - adding an option for the *R* process run by the *shiny* user to process images:
-    ```
-    echo "options(bitmapType = 'cairo')" | sudo tee -a /home/shiny/.Rprofile && sudo chown shiny:shiny /home/shiny/.Rprofile
-    ```
+ - add a setting to the *R* *shiny* profile on how to process images:
+   ```
+   echo "options(bitmapType = 'cairo')" | sudo tee -a /home/shiny/.Rprofile && sudo chown shiny:shiny /home/shiny/.Rprofile
+   ```
 
-  - setup for start at boot
-    ```
-    cd shiny-server
-    sed -i -e "s:ExecStart=/usr/bin/env bash -c 'exec /opt/shiny-server/bin/shiny-server >> /var/log/shiny-server.log 2>&1':ExecStart=/usr/bin/shiny-server:g"  config/systemd/shiny-server.service
-    sed -i -e 's:/env::'  config/systemd/shiny-server.service
-    sudo cp config/systemd/shiny-server.service /lib/systemd/system/
-    sudo chmod 644 /lib/systemd/system/shiny-server.service
-    ```
+ - setup for start at boot
+   ```
+   cd shiny-server
+   sed -i -e "s:ExecStart=/usr/bin/env bash -c 'exec /opt/shiny-server/bin/shiny-server >> /var/log/shiny-server.log 2>&1':ExecStart=/usr/bin/shiny-server:g"  config/systemd/shiny-server.service
+   sed -i -e 's:/env::'  config/systemd/shiny-server.service
+   sudo cp config/systemd/shiny-server.service /lib/systemd/system/
+   sudo chmod 644 /lib/systemd/system/shiny-server.service
+   ```
 
-  - enable and start the *Shiny Server* service: 
-    ```
-    sudo systemctl daemon-reload
-    sudo systemctl enable shiny-server.service
-    sudo systemctl start shiny-server
-    ```
+ - enable and start the service: 
+   ```
+   sudo systemctl daemon-reload
+   sudo systemctl enable shiny-server.service
+   sudo systemctl start shiny-server
+   ```
+   
+ - let apps directory be manageable also by the standard *ubuntu* user:
+   ```
+   cd /srv/shiny-server
+   sudo chown -R ubuntu:public .
+   sudo chmod g+w .
+   sudo chmod g+s .
+   ```
 
-  - let apps directory be manageable for the *ubuntu* user:
-    ```
-    cd /srv/shiny-server
-    sudo chown -R ubuntu:public .
-    sudo chmod g+w .
-    sudo chmod g+s .
-    ```
+ - copy sample apps and index.html to server
+   ```
+   sudo cp samples/welcome.html /srv/shiny-server/index.html
+   sudo cp -r samples/sample-apps/ /srv/shiny-server/
+   ```
+   
+ - if you enabled the firewall, open up the port:
+   ```
+   sudo ufw allow 3838
+   ``` 
+ 
+ - test the server is correctly running: `http://ip_address:3838`
 
-  - (optional) copy sample apps and index.html to server
-    ```
-    sudo cp samples/welcome.html /srv/shiny-server/index.html
-    sudo cp -r samples/sample-apps/ /srv/shiny-server/
-    ```
+
 
 <a name="rstudio"/>
 
@@ -360,6 +370,13 @@ sudo reboot
     ' | sudo tee -a $(R RHOME)/etc/Renviron
     ```
     
+ - if you enables the firewall, open up the port
+   ```
+   sudo ufw allow 8787
+   ``` 
+ 
+ - test the server is correctly running: `http://ip_address:8787`, using the *ubuntu* user and password.
+
  - cleaning:
    ```
    rm -rf ~/software/RSS
@@ -389,12 +406,14 @@ If you plan to let the Rpi access the public internet, I suggest you first:
  - block the possibility for the root user to login from ssh connections
  - if you chose a weak password for the *ubuntu* user, change it now!
  - add a certificate to allow secure SSL connections
+You can find how to do the above in the `READ.ME` fie of the repo
 
-Having done the above, you can now configure the correct port forwarding in your router/modem related to the local static IP address:
+Having done the above, you can now configure the correct *port forwarding* in your router/modem related to the local static IP address:
  - for SSH, SCP and SFTP open the port TCP/UDP 22 (or hopefully the different one you chose)
  - for HTTP open port TCP 80
  - for HTTPS open port TCP 443
 Moreover, make sure you have `Block WAN traffic` disabled.
+I can't give you any hints about these as they are much dependent on the manufacturers.
 
 There are two more steps for an optimal configuration:
  - link your public ip address to an intelligible domain name. Configure your personal domain name to point to your DDNS service
