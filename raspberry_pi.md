@@ -402,22 +402,24 @@ sudo reboot
    You are free to change and/or delete any parts in the above conf file, using `nano nginx.conf` before the copy.
 
 If you plan to let the Rpi access the public internet, I suggest you first:
- - change the SSH port number to anything else between 1000 and 65535
- - block the possibility for the root user to login from ssh connections
+ - change the *SSH* port number to anything else between 1000 and 65535
+ - block the possibility for the root user to login using *ssh* connections
  - if you chose a weak password for the *ubuntu* user, change it now!
- - add a certificate to allow secure SSL connections
-You can find how to do the above in the `READ.ME` fie of the repo
+ - add a certificate to allow secure *SSL* connections
+You can find how to do the above in the `READ.ME` file of the repo
 
 Having done the above, you can now configure the correct *port forwarding* in your router/modem related to the local static IP address:
- - for SSH, SCP and SFTP open the port TCP/UDP 22 (or hopefully the different one you chose)
- - for HTTP open port TCP 80
- - for HTTPS open port TCP 443
-Moreover, make sure you have `Block WAN traffic` disabled.
-I can't give you any hints about these as they are much dependent on the manufacturers.
+ - for *SSH*, *SCP* and *SFTP* open the port `TCP/UDP 22` (or hopefully the different one you chose)
+ - for *HTTP* open port `TCP 80`
+ - for *HTTPS* open port `TCP 443`
+ - Moreover, make sure you have `Block WAN traffic` disabled.
+ 
+ I can't give you any more hints about these operations, as they are much dependent on the manufacturers of your hardware.
 
 There are two more steps for an optimal configuration:
  - link your public ip address to an intelligible domain name. Configure your personal domain name to point to your DDNS service
  - attach the above domain name to a service that automatically resolves your static hostname and your dynamic public IP address.
+
 
 <a name="credits"/>
 
