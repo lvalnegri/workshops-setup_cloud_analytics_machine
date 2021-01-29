@@ -223,7 +223,7 @@ You should now reboot the system for some of the above changes to take place.
    packaging/make-package.sh
    ```
 
- - copy shiny-server directory to system location, with a link (pandoc gets removed as we've already installed it system-wide):
+ - copy shiny-server directory to system location, with a link (pandoc gets removed as we've already installed the correct ARM version system-wide):
    ```
    rm -r ext/pandoc
    cd ..
@@ -377,28 +377,25 @@ You should now reboot the system for some of the above changes to take place.
  - change ngnix default website configuration to let users access the servers without inserting port numbers:
    ```
    wget "https://raw.githubusercontent.com/lvalnegri/workshops-setup_cloud_analytics_machine/master/nginx.conf"
-   nano nginx.conf
    sudo cp nginx.conf /etc/nginx/sites-available/default
    ```
+   You are free to change and/or delete any parts in the above conf file, using `nano nginx.conf` before the copy.
 
 If you plan to let the Rpi access the public internet, I suggest you first:
- - change the SSH port number to anything else between 1000 and 65535. To do that:
-   - open the 
-   - change the number 22 to the one you prefer
-   - restart the ssh service
+ - change the SSH port number to anything else between 1000 and 65535
  - block the possibility for the root user to login from ssh connections
- - change the *ubuntu* user passwor to something strong
+ - if you chose a weak password for the *ubuntu* user, change it now!
  - add a certificate to allow secure SSL connections
 
-Having done the above, you can now configure the correct port forwarding in your router/modem related to the local static IP address you :
- - for SSH, SCP and SFTP open the port TCP/UDP xxx
+Having done the above, you can now configure the correct port forwarding in your router/modem related to the local static IP address:
+ - for SSH, SCP and SFTP open the port TCP/UDP 22 (or hopefully the different one you chose)
  - for HTTP open port TCP 80
  - for HTTPS open port TCP 443
 Moreover, make sure you have `Block WAN traffic` disabled.
 
-There are two more steps for an optimal configuration.
- - having an intelligible domain name, instead of an ip address. Configure your personal domain name to point to your DDNS service
- - attaching the above domain name to a service that automatically [resolve and a](https://twitter.com/Andresrcs)u[Pi 3](r dynamic public IP address
+There are two more steps for an optimal configuration:
+ - link your public ip address to an intelligible domain name. Configure your personal domain name to point to your DDNS service
+ - attach the above domain name to a service that automatically resolves your static hostname and your dynamic public IP address.
 
 <a name="credits"/>
 
