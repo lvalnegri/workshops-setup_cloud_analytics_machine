@@ -166,12 +166,12 @@ We then create a global variable for the "public" path both:
  -  and in *R*:
     ```
     echo '
-	#####################################################
+        #####################################################
         ### ADDED BY ubuntu
-	PUB_PATH = '/usr/local/share/public'
-	R_LIBS_USER = '/usr/local/share/public/R_library'
-	R_MAX_NUM_DLLS = 1000
-	#####################################################
+        PUB_PATH = '/usr/local/share/public'
+        R_LIBS_USER = '/usr/local/share/public/R_library'
+        R_MAX_NUM_DLLS = 1000
+        #####################################################
     ' | sudo tee -a $(R RHOME)/etc/Renviron
     ```
     You can fire up *R* and run `.libPaths()` and `Sys.getenv('PUB_PATH')` to be sure the changes applied correctly. 
@@ -350,10 +350,10 @@ You should now reboot the system for some of the above changes to take place.
  - if you intend to use *RMarkdown*, add ARM *pandoc* path to *R* config file:
     ```
     echo '
-	#####################################################
+        #####################################################
         ### ADDED BY ubuntu
-	RSTUDIO_PANDOC = '/usr/bin/'
-	#####################################################
+        RSTUDIO_PANDOC = '/usr/bin/'
+        #####################################################
     ' | sudo tee -a $(R RHOME)/etc/Renviron
     ```
     
