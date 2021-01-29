@@ -328,7 +328,7 @@ You should now reboot the system for some of the above changes to take place.
 
  - if you use a 4GB version (the 8GB works just fine) you need to limit the Java heap size:	
    ```	
-   export JAVA_TOOL_OPTIONS='-Xms1g -Xmx3g'
+   export JAVA_TOOL_OPTIONS='-Xms256m -Xmx1g'
    ```	
 
  - compile using RStudio script (this should take five hours):
@@ -337,7 +337,7 @@ You should now reboot the system for some of the above changes to take place.
    RSTUDIO_MAJOR_VERSION=1
    RSTUDIO_MINOR_VERSION=4
    RSTUDIO_PATCH_VERSION=1103
-   MAKEFLAGS=-j4
+   # MAKEFLAGS=-j4 
    ./make-package Server DEB
    ```
 
@@ -347,6 +347,16 @@ You should now reboot the system for some of the above changes to take place.
    sudo apt install ./rstudio-server-1.4.1103-arm64-relwithdebinfo.deb
    ```
 
+ - if you intend to use *RMarkdown*, add ARM *pandoc* path to *R* config file:
+    ```
+    echo '
+	#####################################################
+        ### ADDED BY ubuntu
+	RSTUDIO_PANDOC = '/usr/bin/'
+	#####################################################
+    ' | sudo tee -a $(R RHOME)/etc/Renviron
+    ```
+    
  - cleaning:
    ```
    rm -rf ~/software/RSS
