@@ -334,10 +334,10 @@ You should now reboot the system for some of the above changes to take place.
  - compile using RStudio script (this should take five hours):
    ```
    cd ../../package/linux/
-   RSTUDIO_MAJOR_VERSION=1
-   RSTUDIO_MINOR_VERSION=4
-   RSTUDIO_PATCH_VERSION=1103
-   # MAKEFLAGS=-j4 
+   export RSTUDIO_MAJOR_VERSION=1
+   export RSTUDIO_MINOR_VERSION=4
+   export RSTUDIO_PATCH_VERSION=1103
+   # export MAKEFLAGS=-j4 
    ./make-package Server DEB
    ```
 
