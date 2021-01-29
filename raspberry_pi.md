@@ -176,7 +176,10 @@ We then create a global variable for the "public" path both:
     ```
     You can fire up *R* and run `.libPaths()` and `Sys.getenv('PUB_PATH')` to be sure the changes applied correctly. 
 
-You should now reboot the system for some of the above changes to take place.
+You should now reboot the system for some of the above changes to take place:
+```
+sudo reboot
+```
 
 
 <a name="shiny"/>
