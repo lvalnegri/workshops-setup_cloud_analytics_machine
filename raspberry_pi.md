@@ -339,18 +339,22 @@ sudo reboot
    ./install-soci
    ```
 
- - if you use a 4GB version (the 8GB works just fine) you need to limit the Java heap size:	
+ - if you use a **4GB** version you need to limit the Java heap size:	
    ```	
-   export JAVA_TOOL_OPTIONS='-Xms256m -Xmx1g'
+   export JAVA_TOOL_OPTIONS='-Xms256m -Xmx3g'
    ```	
 
+ - if you use a 8GB version you can speed up the compilation:	
+   ```	
+   export MAKEFLAGS=-j4 
+   ```	
+   
  - compile using RStudio script (this should take five hours):
    ```
    cd ../../package/linux/
    export RSTUDIO_MAJOR_VERSION=1
    export RSTUDIO_MINOR_VERSION=4
    export RSTUDIO_PATCH_VERSION=1103
-   # export MAKEFLAGS=-j4 
    ./make-package Server DEB
    ```
 
@@ -360,7 +364,7 @@ sudo reboot
    sudo apt install ./rstudio-server-1.4.1103-arm64-relwithdebinfo.deb
    ```
 
- - if you intend to use *RMarkdown*, add ARM *pandoc* path to *R* config file:
+ - if you intend to use *RMarkdown* (why won't you, though?), you need to add the ARM system-wide *pandoc* path to the *R* config file:
     ```
     echo '
         #####################################################
@@ -370,18 +374,18 @@ sudo reboot
     ' | sudo tee -a $(R RHOME)/etc/Renviron
     ```
     
- - if you enables the firewall, open up the port
+ - if you enabled the firewall, you need to open up the port:
    ```
    sudo ufw allow 8787
    ``` 
  
- - test the server is correctly running: `http://ip_address:8787`, using the *ubuntu* user and password.
+ - you can now test that the server is correctly running: `http://ip_address:8787`, using the *ubuntu* user and password to log in.
 
  - cleaning:
    ```
    cd ~/software
-   cp RSS/
-   sudo rm -rf RSS
+   sudo rm -rf sentry-cli
+   rm -rf RSS
    ```
 
 
@@ -402,6 +406,14 @@ sudo reboot
    sudo cp nginx.conf /etc/nginx/sites-available/default
    ```
    You are free to change and/or delete any parts in the above conf file, using `nano nginx.conf` before the copy.
+
+ - you should now be able to open Shiny and RStudio using respectively `http://ip_address/shiny` and `http://ip_address/shiny/rstudio`
+ 
+ - if you opened the ports 3838 and 8787 to test either Shiny or/and RStudio servers, you should closed them:
+   ```
+   sudo ufw delete allow 3838
+   sudo ufw delete allow 8787
+   ```
 
 If you plan to let the Rpi access the public internet, I suggest you first:
  - change the *SSH* port number to anything else between 1000 and 65535
