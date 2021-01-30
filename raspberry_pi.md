@@ -309,7 +309,7 @@ sudo reboot
    cd ~/software
    wget -O rstudio.tar.gz https://github.com/rstudio/rstudio/archive/v1.4.1103.tar.gz
    mkdir RSS
-   tar zxvf rstudio.tar.gz -C RSS --strip-components 1
+   tar zxvf rstudio.tar.gz -C RSS --strip-components=1
    ```
 
  - install [sentry-cli](https://github.com/getsentry/sentry-cli) (this should take about 20 minutes):
@@ -379,7 +379,9 @@ sudo reboot
 
  - cleaning:
    ```
-   rm -rf ~/software/RSS
+   cd ~/software
+   cp RSS/
+   sudo rm -rf RSS
    ```
 
 
