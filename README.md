@@ -256,12 +256,37 @@ If you don't get back any output, this means that your system doesn't have any s
 Before starting the operation, you should run the `df` command to be sure you have the necessary storage space for the planned swap file. Although there are many opinions about the appropriate size of a swap space, it really depends on your personal preferences and your application requirements. Generally, an amount equal to or double the amount of RAM on your system is a good starting point. 
 
 The following are the instructions to add, to the possibly already existent swap memory, another 1GB of disk. You can easily change the values to add less or more of that.
-```
-sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
-sudo /sbin/mkswap /var/swap.1
-sudo /sbin/swapon /var/swap.1
-sudo sh -c 'echo "/var/swap.1 swap swap defaults 0 0 " >> /etc/fstab'
-```
+ - allocate a file called `swapfile` of the desired size (`G` stands for gigabyte, `M` woold stand for megabyte), then check it's been correctly done: 
+   ```
+   sudo fallocate -l 1G /swapfile
+   ls -lh /swapfile
+   ```
+ - make the file accessible only by `root`:
+   ```
+   sudo chmod 600 /swapfile
+   ```
+ - mark the file as actual swap space:
+   ```
+   sudo mkswap /swapfile
+   ```
+ - enable the swap operation, allowing our system to start using the file for that purpose:
+   ```
+   sudo swapon /swapfile
+   ```
+ - to make the swap operation permanent after reboot, add the swap file information to the end of the `/etc/fstab` file:
+   ```
+   echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+   ```
+ - add some configuration information to the services control, to better adapt the swap operation to a server:
+   ```
+   echo '
+   ###########################
+   # added by user
+   vm.swappiness=10
+   vm.vfs_cache_pressure=40
+   ###########################
+   ' | sudo tee -a /etc/sysctl.conf
+   ```
 
 Notice that Digital Ocean, like many other VPS providers, highly discourage the creation of *swap* space, practice often used to keep down the size, and hence the cost, of the droplet. This is due to the fact that their system is all made up of SSD storage, that is highly degraded by the continous read/write access, typical when swapping. Besides, upgrading the droplet leads to much better results in general.
 
