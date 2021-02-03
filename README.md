@@ -216,7 +216,7 @@ If the IP address and the user name are correctly recognized, the system then pr
 	`keep the local version currently installed`
   - install some needed *basic* libraries that could be missed from the system (this much depends on how your chosen provider has decided to install the OS):
     ~~~
-    apt-get -y install apt-transport-https software-properties-common nano dos2unix man-db ufw git-core libgit2-dev libauthen-oath-perl openssh-server build-essential libsocket6-perl
+    apt-get -y install apt-transport-https software-properties-common htop nano dos2unix man-db ufw git-core libgit2-dev libauthen-oath-perl openssh-server build-essential libsocket6-perl
     ~~~
   - restart the system: 
     ~~~
@@ -245,9 +245,17 @@ If you're on a different service than Digital Ocean, it'd also a good idea to di
   <a name="swap"/>
 
 ### Adding *swap* space
-You can find yourself sometimes in the situtation you have no sufficient memory to run your scrpts or even to install some packages, and for any reason you can't upzize it. You can then add what is called *swap space*, that essentially mimic some storage to use as memory.
+You can find yourself sometimes in a situation where you have no sufficient memory to run your scripts, or even to install some packages, and for any reason you can't upzize the RAM to your machine. You can add what is called *swap space*, that essentially mimic some storage to use as memory.
 
-The following are the instructions to add, to the possibly already existent swap memory, another 1GB of disk. Yu can easily change the values to add less or more of that.
+You can see if the system has any configured swap by typing:
+```
+sudo swapon --show
+```
+If you don't get back any output, this means that your system doesn't have any swap space availability. You can instead verify the memory activity using either the `free -h` command or the more complete `top` or `htop` utilities.
+
+Before starting the operation, you should run the `df` command to be sure you have the necessary storage space for the planned swap file. Although there are many opinions about the appropriate size of a swap space, it really depends on your personal preferences and your application requirements. Generally, an amount equal to or double the amount of RAM on your system is a good starting point. 
+
+The following are the instructions to add, to the possibly already existent swap memory, another 1GB of disk. You can easily change the values to add less or more of that.
 ```
 sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
 sudo /sbin/mkswap /var/swap.1
