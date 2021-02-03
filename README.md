@@ -253,13 +253,11 @@ swapon --show
 ```
 If you don't get back any output, this means that your system doesn't have any swap space availability. You can instead verify the memory activity using either the `free -h` command or the more complete `top` or `htop` utilities.
 
-Before starting the operation, you should run the `df` command to be sure you have the necessary storage space for the planned swap file. Although there are many opinions about the appropriate size of a swap space, it really depends on your personal preferences and your application requirements. Generally, an amount equal to or double the amount of RAM on your system is a good starting point. 
+Before starting the operation, you should run the `df` command to be sure you have the necessary storage space for the planned swap file. Although there are many opinions about the appropriate size of a swap space, it really depends on application requirements. Generally, an amount equal to or double the amount of RAM on the system is a good starting point. The following are the instructions to add 1GB of swap space, you can easily change the value to add less or more of that (`G` stands for gigabyte, `M` would stand for megabyte).
 
-The following are the instructions to add, to the possibly already existent swap memory, another 1GB of disk. You can easily change the values to add less or more of that.
- - allocate a file called `swapfile` of the desired size (`G` stands for gigabyte, `M` woold stand for megabyte), then check it's been correctly done: 
+ - allocate a file called `swapfile` of the desired size: 
    ```
    fallocate -l 1G /swapfile
-   ls -lh /swapfile
    ```
  - make the file accessible only by `root`:
    ```
@@ -269,7 +267,7 @@ The following are the instructions to add, to the possibly already existent swap
    ```
    mkswap /swapfile
    ```
- - enable the swap operation, allowing our system to start using the file for that purpose:
+ - enable the swap operation, allowing the system to start using the file for that purpose:
    ```
    swapon /swapfile
    ```
