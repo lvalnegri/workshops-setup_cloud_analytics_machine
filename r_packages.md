@@ -352,6 +352,7 @@
   - [ggplotAssist](https://github.com/cardiomoon/ggplotAssist) - 
   - [ggplotgui](https://github.com/gertstulp/ggplotgui/) - allows users to visualize their data using an online graphical user interface that makes use of ggplot
   - [ggThemeAssist](https://github.com/calligross/ggthemeassist) - *RStudio* add-in that provides a GUI for editing *ggplot2* themes.
+  - [simplevis](https://github.com/) - 
 
   <a name="ggplot-themes"/>
 
@@ -371,9 +372,17 @@
   - [maps](https://cran.r-project.org/package=maps/) - Simple functions to display geographical maps
   - [mapview](https://github.com/r-spatial/mapview) - Interactive visualization of spatial objects in R
   - [tmap](https://github.com/mtennekes/tmap) :heart_eyes: - Quick and easy thematic mapping in R, inheriting functionalities from *ggplot2*, like faceting
+  - [leafem](https://github.com/) - 
+  - [leaflegend](https://github.com/) - 
   - [leaflet](http://rstudio.github.io/leaflet/) :heart_eyes: - Interactive mapping tools, conceived as a htmlwidgets wrapper for [leaflet](leafletjs.com) JS library
   - [leaflet.extras](https://github.com/bhaskarvk/leaflet.extras) - Provides extra functionality to the `leaflet` package using various [leaflet plugins](http://leafletjs.com/plugins)
+  - [leaflet.extras2](https://github.com/) - 
   - [leaflet.minicharts](https://github.com/rte-antares-rpackage/leaflet.minicharts) - Provides two functions to add and update small charts on an interactive maps created with the package `leaflet`.
+  - [leaflet.opacity](https://github.com/) - 
+  - [leafpm](https://github.com/) - 
+  - [leafpop](https://github.com/) - 
+  - [leafsync](https://github.com/) - 
+  - [leaftime](https://github.com/) - 
   - [micromap](https://github.com/USEPA/micromap) - Provides functionalities to create linked micromap plots
   - [mapplots]() - 
   - [mapmisc](https://cran.r-project.org/package=btb) - Provides a few utilities for making nice maps in short tidy code chunks which are suitable for knitr documents.
@@ -434,14 +443,15 @@
 #### Icons, Fonts
   - [icon](https://github.com/ropenscilabs/icon) `install_github('ropenscilabs/icon')` - Lets insert web icons, including font awesome, academicons and ionicons, into *RMarkdown* documents.
   - [fontawesome](https://github.com/rstudio/fontawesome) `install_github('rstudio/fontawesome')` - Allows to easily insert [font awesome](http://fontawesome.com) icons into *RMarkdown* docs and *Shiny* apps
- [Glyphicons](http://getbootstrap.com/components/#glyphicons)
   - [anicon](https://github.com/emitanaka/anicon) `install_github('emitanaka/anicon')` - Allows for easy insertion of *animated* [font awesome](http://fontawesome.com) and [academicons](https://jpswalsh.github.io/academicons/) icons into *RMarkdown* documents or *Shiny* apps.
   - [emojifont](https://github.com/GuangchuangYu/emojifont) - Provides functionalities to use  [emoji]( https://github.com/muan/emojilib/) and [font awesome](http://fontawesome.com) icons in both base and `ggplot2` graphics.
   - [emo(ji)](https://github.com/hadley/emo) `install_github('hadley/emo')` - Makes it very easy to insert [emoji]( https://github.com/muan/emojilib/) into RMarkdown documents.
   - [extrafont](https://github.com/wch/extrafont) - 
   - [fontcm](https://github.com/wch/fontcm) - 
-  - [showtext](https://github.com/yixuan/showtext) - 
+  - [gfonts](https://github.com/dreamRs/gfonts) - 
   - [giphyr](https://github.com/haozhu233/giphyr) - Makes it easy to insert GIFs into rmarkdown presentation, only if using RStudio.  
+  - [multicolor](https://github.com/aedobbyn/multicolor/) - 
+  - [showtext](https://github.com/yixuan/showtext) - 
  
 
   <a name="features-eng"/>
@@ -644,34 +654,43 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [shinyMobile](https://github.com/RinteRface/shinyMobile) - Allows to build shiny apps and gadgets using the [Framework7](https://framework7.io/) template.
   - [blogdown](https://github.com/rstudio/blogdown) - Provides functionalities to easily generate static websites based on RMarkdown and [Hugo](https://gohugo.io/) 
   - [bookdown](https://github.com/rstudio/bookdown) - Built on top of RMarkdown, makes it really easy to write books and long-form articles/reports.
+  - [pagedown](https://github.com/rstudio/pagedown) - 
   - [knitr](https://github.com/yihui/knitr) - Provides functionalities to bundle together *R* snippets and *markdown* documents, to easily generate automated reports in various formats. 
   - [officer](https://github.com/davidgohel/officer) - Allows to manipulate *Word* (.docx) and *PowerPoint* (.pptx) documents
 
   <a name="rmarkdown-ext"/>
 
 ### RMarkdown Extensions and Themes
-  - []() - 
+  - [downloadthis](https://github.com/) -  
+  - [checkdown](https://github.com/) - 
+  - [distill](https://github.com/) - 
   - [prettydoc](https://github.com/yixuan/prettydoc) - 
-  - [rmdformats]() - 
+  - [rmdformats](https://github.com/juba/rmdformats) - 
+  - [tufte](https://github.com/rstudio/tufte) - 
   - [xaringan](https://github.com/yihui/xaringan) - Allows to build slides presentations using the [remark.js](https://remarkjs.com/) JS library, through *RMarkdown*
   - [xaringanExtra](https://github.com/gadenbuie/xaringanExtra) `install_github('gadenbuie/xaringanExtra')` - Provides additional functionalities for the *xaringan* theme
   - [xaringanthemer](https://github.com/gadenbuie/xaringanthemer) - 
   - [slidex](https://github.com/datalorax/slidex) `install_github('datalorax/slidex')` - Aims to convert *Microsoft PowerPoint* slides to *xaringan* code, trying to maintain tables, figures, links, and bullets lists
   - [rmdshower](https://github.com/mangothecat/rmdshower) - 
+  - [ymlthis](https://github.com/r-lib/ymlthis) - 
+
 
   <a name="shiny-ext"/>
 
 ### Shiny Extensions and Themes
-  - []() - 
-  - [aniview]() - 
+  - [](https://github.com/) - 
+  - [aniview](https://github.com/lgnbhl/aniview) - Allows to animate *Shiny* and *RMarkdown* content as it comes into view using the [animate-css](https://animate.style/) and [AniView](https://jjcosgrove.github.io/jquery-aniview/) libraries.
   - [bsplus](https://github.com/ijlyttle/bsplus) - Provide a framework to facilitate the use of [Bootstrap's JavaScript-markup API](http://getbootstrap.com/javascript/) inside *rmarkdown* HTML documents and *Shiny* apps
   - [bubblyr](https://github.com/feddelegrand7/bubblyr) - 
   - [capture](https://github.com/dreamRs/capture) `install_github('dreamRs/capture')` - Captures, and saves as PNG or PDF, screenshots in *Shiny* apps or *RMarkdown* documents, either of the entire viewable page, or a specific section of the page, using the [dom-to-image](https://github.com/tsayen/dom-to-image) and [jsPDF](https://github.com/MrRio/jsPDF) JS libraries. See also `shinyscreenshot`, which is on *CRAN*.
+  - [cicerone](https://github.com/) - 
   - [colourpicker](https://github.com/daattali/colourpicker) :+1: - Provides a colour picker tool for *Shiny* apps
   - [corazon](https://github.com/feddelegrand7/corazon) - Allows to incorporate [colorffy](https://www.colorffy.com/gradients/catalog) gradient colors within *Shiny* elements, but mainly for the app’s body.
+  - [cronologia](https://github.com/feddelegrand7/cronologia) - 
   - [dashboardthemes](https://github.com/nik01010/dashboardthemes) - Provides functionalities to create new themes and logos for *Shiny* dashboards
   - [dragulaR](https://github.com/zzawadz/dragulaR) - R interface for the [dragula](https://github.com/bevacqua/dragula) JS library, that allows to move around elements in a shiny app.
   - [ECharts2Shiny](http://github.com/XD-DENG/ECharts2Shiny) - R interface to the [ECharts](http://ecomfe.github.io/echarts-doc/public/en/) JS library, now an [an incubator project](http://incubator.apache.org/projects/echarts.html) of the Apache Software Foundation
+  - [fabricerin](https://github.com/) - 
   - [flipdownr](https://github.com/feddelegrand7/flipdownr) `install_github("feddelegrand7/flipdownr")` - Creates *Countdown* objects within *RMarkdown* documents and *Shiny* apps. While it's on *CRAN*, you can add the *GitHub* version to try additional themes.
   - [fresh]() - 
   - [gotop](https://github.com/lgnbhl/gotop) - Allows to dd a *scroll back to top* with a *font awesome* icon to *RMarkdown* documents and *Shiny* app susing the [GoTop](https://scottdorman.blog/jquery-gotop/) JS library
@@ -682,12 +701,19 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [midas](https://github.com/shapenaji/midas) - Convert HTML/XML native code into lists or shiny function(s) that would generate the equivalent shiny object(s) - [shinyBS](http://ebailey78.github.io/shinyBS/) - Add additional functionality and interactivity to Shiny apps, like Alerts, Tooltips and Popovers
   - [miniUI](https://github.com/rstudio/miniUI) - Provides UI widget and layout functions for writing Shiny apps that work well on small screens.
   - [polished](https://github.com/tychobra/polished) - Provides functionalities for modern authentication and user administration to any *Shiny* app
-  - [regexSelect](https://github.com/yonicd/regexSelect) - Enables *regular expression* searches within a *Shiny* selectize object.
+  - [prompter](https://github.com/etiennebacher/prompter) - 
+  - [](https://github.com/) - 
+  - [r2symbols](https://github.com/) -   
+  - [rclipboard](https://github.com/sbihorel/rclipboard) - 
+  - [regexSelect](https://  - [](https://github.com/) - 
+github.com/yonicd/regexSelect) - Enables *regular expression* searches within a *Shiny* selectize object.
   - [rintrojs](https://github.com/carlganz/rintrojs/) - R interface to the [Introjs](http://introjs.com/) JS library that let users easily add instructions to their web applications 
   - [scrollrevealR](https://github.com/feddelegrand7/scrollrevealR) - Allows to animate *Shiny* elements when they scroll into view using the [ScrollReveal](https://scrollrevealjs.org/) JS library. Notice that you need to buy a Commercial License if you want to use either in development or in production for commercial usage.
   - [semantic.dashboard](https://github.com/Appsilon/semantic.dashboard) - 
   - [sever](https://github.com/JohnCoene/sever) - Allows to create custom disconnect screens and error messages for any *Shiny* app
+  - [shiny.info](https://github.com/Appsilon/shiny.info) - 
   - [shiny.semantic](https://github.com/Appsilon/shiny.semantic) - 
+  - [shiny.worker](https://github.com/Appsilon/shiny.worker) - 
   - [shinyAce](https://github.com/trestletech/shinyAce) - Enables Shiny developers to use the [Ace text editor](https://ace.c9.io/) in their apps.
   - [shinyalert](https://github.com/daattali/shinyalert) - Create pretty modals popup messages
   - [shinyanimate](https://github.com/Swechhya/shinyanimate) - An extension for the [animate.css](https://github.com/daneden/animate.css) library, that allows to add animations to any UI element in a shiny app.
@@ -697,6 +723,7 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [shinyDND](https://github.com/ayayron/shinydnd) - Provides functionalities to create drag and drop elements in Shiny apps.
   - [shinyFeedback](https://github.com/merlinoa/shinyFeedback) - Displays user feedback next to shiny inputs
   - [shinyFiles](https://github.com/thomasp85/shinyFiles) - Provides a shiny extension for server side file access
+  - [shinyfullscreen](https://github.com/etiennebacher/shinyfullscreen) - 
   - [shinyhelper](https://github.com/cwthom/shinyhelper) - Allows to add help documentation to shiny inputs and outputs, using RMarkdown files
   - [shinyhttr](https://github.com/curso-r/shinyhttr) - Integrates `httr::progress` with `shinyWidgets::progressBar`
   - [shinyjqui](https://github.com/Yang-Tang/shinyjqui) - R wrapper for the [jQuery UI javascript library](http://jqueryui.com/), that allows users to easily add interactions and animation effects to a *Shiny* app.
