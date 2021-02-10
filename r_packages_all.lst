@@ -85,6 +85,7 @@ coveffectsplot
 cowplot
 cptcity
 cranly
+cronologia
 crosstalk
 countrycode
 customLayout
@@ -140,8 +141,10 @@ ExPosition
 extrafont
 fable
 fabletools
+fabricerin
 factoextra
 FactoMineR
+farver
 fastcluster
 fasttime
 feasts
@@ -193,6 +196,7 @@ geoR
 georob
 geosphere
 geostatsp
+gfonts
 ggalluvial
 GGally
 ggallin
@@ -346,6 +350,7 @@ latticeExtra
 lawn
 lctools
 leafem
+leaflegend
 leaflet
 leaflet.extras
 leaflet.extras2
@@ -490,6 +495,7 @@ prettydoc
 pROC
 profvis
 promises
+prompter
 prophet
 psych
 purrr
@@ -511,12 +517,14 @@ randomForestSRC
 ranger
 RANN
 r2d3
+r2symbols
 R3port
 raster
 rbin
 rbokeh
 rcane
 rcartocolor
+rclipboard
 RColorBrewer
 Rcpp
 RcppArmadillo
@@ -593,6 +601,8 @@ sf
 sfnetwork
 shades
 shiny.info
+shiny.semantic
+shiny.worker
 shinipsum
 shinyalert
 shinyanimate
@@ -635,6 +645,7 @@ shinyWidgets
 showtext
 sigmajs
 sigmaNet
+simplevis
 sjmisc
 sjPlot
 sjstats
@@ -717,6 +728,7 @@ tiler
 timetk
 timevis
 tinter
+tippy
 tm
 tmap
 tmaptools
