@@ -352,7 +352,7 @@
   - [ggplotAssist](https://github.com/cardiomoon/ggplotAssist) - 
   - [ggplotgui](https://github.com/gertstulp/ggplotgui/) - allows users to visualize their data using an online graphical user interface that makes use of ggplot
   - [ggThemeAssist](https://github.com/calligross/ggthemeassist) - *RStudio* add-in that provides a GUI for editing *ggplot2* themes.
-  - [simplevis](https://github.com/) - 
+  - [simplevis](https://github.com/StatisticsNZ/simplevis) - 
 
   <a name="ggplot-themes"/>
 
@@ -372,17 +372,17 @@
   - [maps](https://cran.r-project.org/package=maps/) - Simple functions to display geographical maps
   - [mapview](https://github.com/r-spatial/mapview) - Interactive visualization of spatial objects in R
   - [tmap](https://github.com/mtennekes/tmap) :heart_eyes: - Quick and easy thematic mapping in R, inheriting functionalities from *ggplot2*, like faceting
-  - [leafem](https://github.com/) - 
-  - [leaflegend](https://github.com/) - 
+  - [leafem](https://github.com/r-spatial/leafem) - Aims to enhance *leaflet* functionalities to provide a more GIS-like feeling when plotting spatial data interactively.
+  - [leaflegend](https://github.com/tomroh/leaflegend) - Allows to customize *leaflet* legends without adding an outside css file, while keeping syntax and style consistent with the *leaflet* package.
   - [leaflet](http://rstudio.github.io/leaflet/) :heart_eyes: - Interactive mapping tools, conceived as a htmlwidgets wrapper for [leaflet](leafletjs.com) JS library
   - [leaflet.extras](https://github.com/bhaskarvk/leaflet.extras) - Provides extra functionality to the `leaflet` package using various [leaflet plugins](http://leafletjs.com/plugins)
-  - [leaflet.extras2](https://github.com/) - 
+  - [leaflet.extras2](https://github.com/trafficonese/leaflet.extras2) - Provides extra functionality to the `leaflet` package using [leaflet plugins](http://leafletjs.com/plugins) not included in *leaflet.extras*
   - [leaflet.minicharts](https://github.com/rte-antares-rpackage/leaflet.minicharts) - Provides two functions to add and update small charts on an interactive maps created with the package `leaflet`.
-  - [leaflet.opacity](https://github.com/) - 
-  - [leafpm](https://github.com/) - 
-  - [leafpop](https://github.com/) - 
-  - [leafsync](https://github.com/) - 
-  - [leaftime](https://github.com/) - 
+  - [leaflet.opacity](https://github.com/be-marc/leaflet.opacity) - Extends the *R* *leaflet* package integrating the [Leaflet.OpacityControls](https://github.com/lizardtechblog/Leaflet.OpacityControls) JS plugin, that offers control buttons and a slider for adjusting the opacity of a layer.
+  - [leafpm](https://github.com/r-spatial/leafpm) - Provides map editing and drawing in *leaflet* maps, from the [leaflet-geoman](https://github.com/geoman-io/leaflet-geoman) JS plugin, supplementing the *leaflet.extras* `addDrawToolbar()` function with better support for snapping and holes.
+  - [leafpop](https://github.com/r-spatial/leafpop) - Provides functionalities to embed tables, images or graphs in popups of interactive maps created with *leaflet* or *mapview*
+  - [leafsync](https://github.com/r-spatial/leafsync) - Allows to build synchronised *small multiples* of *leaflet* maps using the [Leaflet.Sync](https://github.com/jieter/Leaflet.Sync) JS plugin.
+  - [leaftime](https://github.com/timelyportfolio/leaftime) - Integrates the [leaflet-timeline](https://github.com/skeate/Leaflet.timeline) JS plugin into the *R* *leaflet* ecosystem
   - [micromap](https://github.com/USEPA/micromap) - Provides functionalities to create linked micromap plots
   - [mapplots]() - 
   - [mapmisc](https://cran.r-project.org/package=btb) - Provides a few utilities for making nice maps in short tidy code chunks which are suitable for knitr documents.
@@ -661,7 +661,7 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   <a name="rmarkdown-ext"/>
 
 ### RMarkdown Extensions and Themes
-  - [downloadthis](https://github.com/) -  
+  - [downloadthis](https://github.com/fmmattioni/downloadthis) -  
   - [checkdown](https://github.com/) - 
   - [distill](https://github.com/) - 
   - [prettydoc](https://github.com/yixuan/prettydoc) - 
@@ -690,7 +690,7 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [dashboardthemes](https://github.com/nik01010/dashboardthemes) - Provides functionalities to create new themes and logos for *Shiny* dashboards
   - [dragulaR](https://github.com/zzawadz/dragulaR) - R interface for the [dragula](https://github.com/bevacqua/dragula) JS library, that allows to move around elements in a shiny app.
   - [ECharts2Shiny](http://github.com/XD-DENG/ECharts2Shiny) - R interface to the [ECharts](http://ecomfe.github.io/echarts-doc/public/en/) JS library, now an [an incubator project](http://incubator.apache.org/projects/echarts.html) of the Apache Software Foundation
-  - [fabricerin](https://github.com/) - 
+  - [fabricerin](https://github.com/feddelegrand7/fabricerin) - 
   - [flipdownr](https://github.com/feddelegrand7/flipdownr) `install_github("feddelegrand7/flipdownr")` - Creates *Countdown* objects within *RMarkdown* documents and *Shiny* apps. While it's on *CRAN*, you can add the *GitHub* version to try additional themes.
   - [fresh]() - 
   - [gotop](https://github.com/lgnbhl/gotop) - Allows to dd a *scroll back to top* with a *font awesome* icon to *RMarkdown* documents and *Shiny* app susing the [GoTop](https://scottdorman.blog/jquery-gotop/) JS library
@@ -702,8 +702,7 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [miniUI](https://github.com/rstudio/miniUI) - Provides UI widget and layout functions for writing Shiny apps that work well on small screens.
   - [polished](https://github.com/tychobra/polished) - Provides functionalities for modern authentication and user administration to any *Shiny* app
   - [prompter](https://github.com/etiennebacher/prompter) - 
-  - [](https://github.com/) - 
-  - [r2symbols](https://github.com/) -   
+  - [r2symbols](https://github.com/oobianom/r2symbols) -   
   - [rclipboard](https://github.com/sbihorel/rclipboard) - 
   - [regexSelect](https://  - [](https://github.com/) - 
 github.com/yonicd/regexSelect) - Enables *regular expression* searches within a *Shiny* selectize object.
