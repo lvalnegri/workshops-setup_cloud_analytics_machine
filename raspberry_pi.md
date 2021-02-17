@@ -1,6 +1,9 @@
-# How to install *R*, *RStudio Server* and *Shiny Server* on a *Raspberry Pi 4*
+# How to install *R*, *RStudio Server* and *Shiny Server* on a *Raspberry Pi 4* or the *Jetson Nano*
 
-  * [Set up OS](#setup)
+  * [Set up Hardware and OS](#setup)
+  * [OS Configuration](#config)
+    - [Raspberry Pi](#config-rpi)
+    - [Jetson Nano](#config-jn)
   * [R](#rstats)
   * [Shiny Server](#shiny)
   * [RStudio Server](#rstudio)
@@ -10,20 +13,30 @@
 
 <a name="setup"/>
 
-## Set up OS
- - Raspberry Pi 4B 4GB or 8GB [PiHut](https://thepihut.com/products/raspberry-pi-4-model-b?variant=20064052674622&src=raspberrypi) [Pimoroni](https://shop.pimoroni.com/products/raspberry-pi-4?variant=29157087412307) [OKDO](https://www.okdo.com/p/raspberry-pi-4-model-b-2gb-2/) [SB Components](https://shop.sb-components.co.uk/products/raspberry-pi-4-model-b?variant=29217503314003) [CPC](https://cpc.farnell.com/raspberry-pi/rpi4-modbp-2gb/raspberry-pi-4-model-b-2gb/dp/SC15184)
- - Power Supply or Power Bank 5V **with 3A output**. If you go for a portable battery, I'd suggest [this one](https://www.amazon.co.uk/gp/product/B07K1XTXRS/) that let me complete the entire process on a single full charge.
- - wired keyboard
+## Set up Hardware and Operating System (OS)
+ - [*Raspberry Pi*](http://raspberrypi.org) 4B 4GB or 8GB [PiHut](https://thepihut.com/products/raspberry-pi-4-model-b?variant=20064052674622&src=raspberrypi) [Pimoroni](https://shop.pimoroni.com/products/raspberry-pi-4?variant=29157087412307) [OKDO](https://www.okdo.com/p/raspberry-pi-4-model-b-2gb-2/) [SB Components](https://shop.sb-components.co.uk/products/raspberry-pi-4-model-b?variant=29217503314003) [CPC](https://cpc.farnell.com/raspberry-pi/rpi4-modbp-2gb/raspberry-pi-4-model-b-2gb/dp/SC15184) or a [*Jetson Nano*](https://developer.nvidia.com/embedded-computing) [RS Components](https://uk.rs-online.com/web/p/processor-development-tools/1999831/) [Pimoroni](https://shop.pimoroni.com/products/nvidia-jetson-nano-developer-kit-b01) [CPC Farnell](https://cpc.farnell.com/seeed-studio/102110268/nvidia-jetson-nano-developer-kit/dp/SC15287)
+ - An optional case for the [Raspberry pi](https://www.amazon.co.uk/gp/product/B07V4RQBX3/) or the the [Jetson Nano](https://www.amazon.co.uk/gp/product/B08MTLQCLJ/)
+ - Power Supply or Power Bank 5V with at least **3A output** for the Raspberry pi or **2.1A** for the Jetson Nano. If you go for a portable battery, I'd suggest [this one](https://www.amazon.co.uk/gp/product/B07K1XTXRS/) that let me complete the entire process on a single full charge.
+ - wired keyboard. For the Jetson Nano it could also be a wireless model.
+ - an optional wired or wireless mouse for the Jetson Nano only.
  - [micro SD card](https://www.amazon.co.uk/SanDisk-Extreme-microSDXC-Adapter-Performance/dp/B06XWMQ81P/): 32+ Gb, fast, possibly new (do not use an old spare one found somewhere in the back of a drawer)
- - cable HDMI to [microHDMI](https://www.amazon.co.uk/AmazonBasics-speed-latest-standard-meters/dp/B014I8U33I?th=1). If you already have an HDMI-HDMI cable, you can buy an [adapter](https://www.amazon.co.uk/UGREEN-Adapter-Support-Connectors-Tablets-Black/dp/B00B2HORKE/)
+ - cable HDMI to [microHDMI](https://www.amazon.co.uk/AmazonBasics-speed-latest-standard-meters/dp/B014I8U33I). If you already have an HDMI-HDMI cable, you can buy an [adapter](https://www.amazon.co.uk/UGREEN-Adapter-Support-Connectors-Tablets-Black/dp/B00B2HORKE/)
+ - a convenient display, that could be either a standard monitor or a television with digital input. If 
  - an ethernet cable to wire up internet connection during the set up process (unfortunately, the wifi connection with ubuntu 20.04 on a pi4 is still a problematic issue).
- - [balenaEtcher](https://www.balena.io/etcher) or [Raspberry pi imager](https://www.raspberrypi.org/software/) to burn any available Raspberry Pi OS image onto the SD card.
- - [Ubuntu Server 20.04.1 LTS 64 bit](https://ubuntu.com/download/raspberry-pi) for Raspberry Pi 4
+ - [balenaEtcher](https://www.balena.io/etcher) to burn the OS image onto the SD card.
+ - [Ubuntu Server 20.04.1 LTS 64 bit](https://ubuntu.com/download/raspberry-pi) for Raspberry Pi 4 or [Ubuntu Desktop 18.04.5 LTS 64 bit](https://developer.nvidia.com/jetson-nano-sd-card-image) for the Jetson Nano.
 
-Run the imager, choose your image file and sd card, then write the OS.
+Run the imager, choose the image file you've previously downloaded and the sd card, then write the OS.
 
-Eject the card from the machine, and put it into the Rpi, attach ethernet cable, HDMI cable, keyboard cable, and finally power cable, then put the kettle on and wait for the system to do its magic.
+Eject the card from the machine, and put it into the hardware, attach ethernet cable, HDMI cable, keyboard cable, and finally power cable, then put the kettle on and wait for the system to do its magic.
 
+<a name="config"/>
+
+## OS Configuration
+
+<a name="config-rpi"/>
+
+### Raspberry Pi
 Once the system starts, you should wait for a while before proceeding, as the system upgrades itself in the background, and you want to avoid to mess up with it. The first time you log in (user: ubuntu, pwd: ubuntu) you'll be asked to change the password. You could run `htop` to have a hint on the stautus of the upgrades, you should be clear to go when you don't see any `unattended-upgrade` in the list of running processes.
 
 Once updates are done, run `ifconfig` to have a look at the dynamic ip address that your Rpi has been assigned. Take a note of it, and if you prefer to work from another device on your local network, instead of the keyboard and wired tv/monitor, fire up the terminal, or if you're on windows an ssh client like [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/) or [MobaXterm](https://mobaxterm.mobatek.net/), and connect using the ip address just found and the standard port 22. If something does not work, try to run the following:
@@ -111,6 +124,26 @@ network:
   version: 2
 ```
 
+<a name="config-jn"/>
+
+### Jetson Nano
+
+Once the system starts, it's going to ask some preliminary information before getting fully operational. 
+
+Once you're ready, run the following to update the system:
+
+```
+sudo apt update
+sudo apt -y full-upgrade
+sudo apt -y install net-tools ssh ufw dirmngr gnupg apt-transport-https ca-certificates software-properties-common \
+                    build-essential nano dos2unix man-db git-core libgit2-dev libauthen-oath-perl openssh-server libsocket6-perl
+# sudo ufw enable                  # ==> if you plan to put your Rpi on the public internet this is the minimum security move
+# sudo ufw allow 22                # ==> when ufw has been enabled, this open the standard ssh port
+# sudo passwd                      # ==> root has no password by default
+# sudo nano /etc/ssh/sshd_config   # ==> if you plan to put your Rpi on the public internet you should change ssh port and set "PermitRootLogin" to no or install ssh key pair
+```
+
+
 
 <a name="rstats"/>
 
@@ -126,7 +159,7 @@ As of Jan 2021, there are no precompiled binaries of the latest *R* version for 
      ```
      mkdir -p ~/software/R
      cd ~/software
-     wget -O R4.tar.gz https://cran.rstudio.com/src/base/R-4/R-4.0.3.tar.gz
+     wget -O R4.tar.gz https://cran.rstudio.com/src/base/R-4/R-4.0.4.tar.gz
      tar zxvf R4.tar.gz -C R --strip-components 1
      ```
    - compile and install:
