@@ -14,6 +14,9 @@
 <a name="setup"/>
 
 ## Set up Hardware and Operating System (OS)
+Both the [*Raspberry Pi*](http://raspberrypi.org)  and the [*Jetson Nano*](https://developer.nvidia.com/embedded-computing) are fantastic pieces of hardware, a joy for playing around and learning data science, and notably AI in the case of the Jetson Nano. Unfortunately for *R* users, there are no binary packages readily availbale for the *R* interptreter. This is due to the CPU architecture of both these boards. Let's try to overcome this problem, and don't get scared by the amount of code involved, it's just 
+
+
  - [*Raspberry Pi*](http://raspberrypi.org) 4B 4GB or 8GB [PiHut](https://thepihut.com/products/raspberry-pi-4-model-b?variant=20064052674622&src=raspberrypi) [Pimoroni](https://shop.pimoroni.com/products/raspberry-pi-4?variant=29157087412307) [OKDO](https://www.okdo.com/p/raspberry-pi-4-model-b-2gb-2/) [SB Components](https://shop.sb-components.co.uk/products/raspberry-pi-4-model-b?variant=29217503314003) [CPC](https://cpc.farnell.com/raspberry-pi/rpi4-modbp-2gb/raspberry-pi-4-model-b-2gb/dp/SC15184) or a [*Jetson Nano*](https://developer.nvidia.com/embedded-computing) [RS Components](https://uk.rs-online.com/web/p/processor-development-tools/1999831/) [Pimoroni](https://shop.pimoroni.com/products/nvidia-jetson-nano-developer-kit-b01) [CPC Farnell](https://cpc.farnell.com/seeed-studio/102110268/nvidia-jetson-nano-developer-kit/dp/SC15287)
  - An optional case for the [Raspberry pi](https://www.amazon.co.uk/gp/product/B07V4RQBX3/) or the the [Jetson Nano](https://www.amazon.co.uk/gp/product/B08MTLQCLJ/)
  - Power Supply or Power Bank 5V with at least **3A output** for the Raspberry pi or **2.1A** for the Jetson Nano. If you go for a portable battery, I'd suggest [this one](https://www.amazon.co.uk/gp/product/B07K1XTXRS/) that let me complete the entire process on a single full charge.
@@ -247,7 +250,7 @@ sudo reboot
    cd shiny-server
    ```
 
- - fix *node.js* archictecture in the *RStudio* script (the CPU in the Rpi has an ARM architecture):
+ - fix *node.js* archictecture in the *RStudio* script:
    ```
    wget "https://nodejs.org/dist/$(cat .nvmrc)/SHASUMS256.txt"
    SHA=$(grep "arm64.tar.xz" SHASUMS256.txt | awk -F '  +' '{print $1}') 
