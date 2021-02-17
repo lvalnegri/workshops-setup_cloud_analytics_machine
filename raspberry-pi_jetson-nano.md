@@ -1,4 +1,4 @@
-# How to install *R*, *RStudio Server* and *Shiny Server* on a *Raspberry Pi 4* or the *Jetson Nano*
+# How to install *R*, *RStudio Server* and *Shiny Server* on a *Raspberry Pi 4* or the *Jetson Nano 4GB*
 
   * [Set up Hardware and OS](#setup)
   * [OS Configuration](#config)
