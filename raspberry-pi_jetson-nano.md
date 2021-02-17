@@ -18,20 +18,20 @@ Both the [*Raspberry Pi*](http://raspberrypi.org)  and the [*Jetson Nano*](https
 
 
  - [*Raspberry Pi*](http://raspberrypi.org) 4B 4GB or 8GB [PiHut](https://thepihut.com/products/raspberry-pi-4-model-b?variant=20064052674622&src=raspberrypi) [Pimoroni](https://shop.pimoroni.com/products/raspberry-pi-4?variant=29157087412307) [OKDO](https://www.okdo.com/p/raspberry-pi-4-model-b-2gb-2/) [SB Components](https://shop.sb-components.co.uk/products/raspberry-pi-4-model-b?variant=29217503314003) [CPC](https://cpc.farnell.com/raspberry-pi/rpi4-modbp-2gb/raspberry-pi-4-model-b-2gb/dp/SC15184) or a [*Jetson Nano*](https://developer.nvidia.com/embedded-computing) [RS Components](https://uk.rs-online.com/web/p/processor-development-tools/1999831/) [Pimoroni](https://shop.pimoroni.com/products/nvidia-jetson-nano-developer-kit-b01) [CPC Farnell](https://cpc.farnell.com/seeed-studio/102110268/nvidia-jetson-nano-developer-kit/dp/SC15287)
- - An optional case for the [Raspberry pi](https://www.amazon.co.uk/gp/product/B07V4RQBX3/) or the the [Jetson Nano](https://www.amazon.co.uk/gp/product/B08MTLQCLJ/)
- - Power Supply or Power Bank 5V with at least **3A output** for the Raspberry pi or **2.1A** for the Jetson Nano. If you go for a portable battery, I'd suggest [this one](https://www.amazon.co.uk/gp/product/B07K1XTXRS/) that let me complete the entire process on a single full charge.
- - wired keyboard. For the Jetson Nano it could also be a wireless model.
+ - an optional case for the [Raspberry pi](https://www.amazon.co.uk/gp/product/B07V4RQBX3/) or the the [Jetson Nano](https://www.amazon.co.uk/gp/product/B08MTLQCLJ/)
+ - power Supply or Power Bank 5V with at least **3A output** for the Raspberry pi or **2.1A** for the Jetson Nano. If you go for a portable battery, I'd suggest [this one](https://www.amazon.co.uk/gp/product/B07K1XTXRS/) that let me complete the entire process on a single full charge.
+ - a wired keyboard. For the Jetson Nano it could also be a wireless model.
  - an optional wired or wireless mouse for the Jetson Nano only.
  - [micro SD card](https://www.amazon.co.uk/SanDisk-Extreme-microSDXC-Adapter-Performance/dp/B06XWMQ81P/): 32+ Gb, fast, possibly new (do not use an old spare one found somewhere in the back of a drawer)
- - cable HDMI to [microHDMI](https://www.amazon.co.uk/AmazonBasics-speed-latest-standard-meters/dp/B014I8U33I). If you already have an HDMI-HDMI cable, you can buy an [adapter](https://www.amazon.co.uk/UGREEN-Adapter-Support-Connectors-Tablets-Black/dp/B00B2HORKE/)
- - a convenient display, that could be either a standard monitor or a television with digital input. If 
+ - a standard HDMI to HDMI cable for the Jetson Nano, or a HDMI to [microHDMI](https://www.amazon.co.uk/AmazonBasics-speed-latest-standard-meters/dp/B014I8U33I) cable for the Raspberry Pi. If you already have an HDMI-HDMI cable, you can buy an [adapter](https://www.amazon.co.uk/UGREEN-Adapter-Support-Connectors-Tablets-Black/dp/B00B2HORKE/)
+ - a convenient display, that could be either a standard monitor or a television with digital input.
  - an ethernet cable to wire up internet connection during the set up process (unfortunately, the wifi connection with ubuntu 20.04 on a pi4 is still a problematic issue).
  - [balenaEtcher](https://www.balena.io/etcher) to burn the OS image onto the SD card.
- - [Ubuntu Server 20.04.1 LTS 64 bit](https://ubuntu.com/download/raspberry-pi) for Raspberry Pi 4 or [Ubuntu Desktop 18.04.5 LTS 64 bit](https://developer.nvidia.com/jetson-nano-sd-card-image) for the Jetson Nano.
+ - [Ubuntu Server 20.04.1 LTS 64 bit](https://ubuntu.com/download/raspberry-pi) for the *Raspberry Pi* or [Ubuntu Desktop 18.04.5 LTS 64 bit](https://developer.nvidia.com/jetson-nano-sd-card-image) for the *Jetson Nano*. Notice that while the *Raspberry Pi* image is a barebone headless *Ubuntu Server*, the *JetNano* image is a fully featured GUI desktop solution for building all sorts of AI applications, with lots of [CUDA-X](https://www.nvidia.com/en-gb/technologies/cuda-x/) accelerated libraries and APIs already installed, together with developer tools. See [this page](https://developer.nvidia.com/embedded/jetpack) for more information.
 
-Run the imager, choose the image file you've previously downloaded and the sd card, then write the OS.
+Run the *Etcher* imager, choose the image file you've previously downloaded and the correct sd card, then write the OS.
 
-Eject the card from the machine, and put it into the hardware, attach ethernet cable, HDMI cable, keyboard cable, and finally power cable, then put the kettle on and wait for the system to do its magic.
+Once finished, eject the card from the machine, and put it into the hardware, attach ethernet cable, HDMI cable, keyboard cable, and finally power cable, then put the kettle on and wait for the system to do its magic.
 
 <a name="config"/>
 
