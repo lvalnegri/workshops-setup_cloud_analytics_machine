@@ -1459,63 +1459,125 @@ It's possible to install the above packages one by one when needed, but you can 
   <a name="jupyterlab"/>
 
 ### Install JupyterLab
-[IPython](https://ipython.org/) is an interactive command-line interface to Python. [Jupyter](https://jupyter.org/) offers an interactive web interface to many languages, including IPython and R.
-[JupyterLab](https://jupyterlab.readthedocs.io/) is the next-generation web-based user interface for Project Jupyter. JupyterLab is served from the same server and uses the same [notebook document format](http://nbformat.readthedocs.io/en/latest/) as the classic [Jupyter Notebook](https://jupyter-notebook.readthedocs.io/en/stable/), but it will eventually replace it.
+[IPython](https://ipython.org/) is an interactive command-line interface to Python. [Jupyter](https://jupyter.org/) offers an interactive web interface to many languages, including *Python* and *R*. [JupyterLab](https://jupyterlab.readthedocs.io/) is the next-generation web-based user interface for Project Jupyter. *JupyterLab* is served from the same server and uses the same [notebook document format](http://nbformat.readthedocs.io/en/latest/) as the classic [Jupyter Notebook](https://jupyter-notebook.readthedocs.io/en/stable/), but it will eventually replace it.
 
-Once installed using the previous process, execute the following commands:
-  - setup a password:
-    ~~~
-    
-    ~~~
-  - setup SSL for encrypted communication:
-    ~~~
-    
-    ~~~
-  - run a public notebook remote server:
-    ~~~
-    
-    ~~~
-  - run Jupyter Lab:
-    ~~~
-    
-    ~~~
-  - open Jupyter Lab on a local machine:
-    ~~~
-    
-    ~~~
-  - to add the $R$ kernel, we need first to add some libraries to the system: 
-    ~~~
-    sudo apt-get install libzmq3-dev libcurl4-openssl-dev libssl-dev
-    ~~~
-    then open *R* from the terminal and run the following:
-    ~~~
-    install.packages(c('repr', 'IRdisplay', 'IRkernel'), type = 'source')
-    IRkernel::installspec()
-    ~~~
+ - create a new python environment:
+   ```
+   sudo apt install python3-venv
+   sudo python3 -m venv /opt/jupyterhub/
+   ```
+   By default, a python *environment* has its own interpreter executable and directory for installing packages, and is herefore isolated from other packages installed on the rest of the system. If you prefer instead that the new *jupyter* environment could share the libraries already installed from the global python repository, you need to add the option `--system-site-packages` to the previous command. You can always change idea later, and set to `true` the value for the boolean `include-system-site-packages` in the `pyvenv.cfg` configuration file for the environment, stored at the root directory for the environment itself, in this case `/opt/jupyterhub/`. 
 
+ - install a few necessary libraries:
+   ```
+   sudo /opt/jupyterhub/bin/python3 -m pip install wheel
+   sudo /opt/jupyterhub/bin/python3 -m pip install jupyterhub jupyterlab
+   sudo /opt/jupyterhub/bin/python3 -m pip install ipywidgets
+   ```
 
-Notice that the above process refers to a single user setup. For multi-users servers, look at [JupyterHub](https://github.com/jupyterhub/jupyterhub), which is outside of the scope of the current tutorial.
+ - generate the default configuration file:
+   ```
+   sudo mkdir -p /opt/jupyterhub/etc/jupyterhub/
+   cd /opt/jupyterhub/etc/jupyterhub/
+   sudo /opt/jupyterhub/bin/jupyterhub --generate-config
+   ```
 
+ - open the configuration file for editing:
+   ```
+   sudo nano  /opt/jupyterhub/etc/jupyterhub/jupyterhub_config.py 
+   ```
+   then set the followings:
+   ```
+   c.Spawner.default_url = '/lab'
+   c.JupyterHub.base_url = '/jupyter'
+   c.JupyterHub.bind_url = 'http://:8000/jupyter'
+   ```
+   Notice that the above options are already in the file, commented.
 
-`jupyter notebook --no-browser --port XXXX`
-By default, a notebook server runs locally at `127.0.0.1:8888`, and is accessible only from *localhost*. Hence to connect to the Jupyter Notebook we need to use **SSH tunneling**.
+ - create the configuration file for the service, then open for editing:
+   ```
+   sudo mkdir -p /opt/jupyterhub/etc/systemd
+   sudo nano /opt/jupyterhub/etc/systemd/jupyterhub.service
+   ```
+   adding the following code:
+   ```
+   [Unit]
+   Description=JupyterHub
+   After=syslog.target network.target
+   
+   [Service]
+   User=root
+   Environment="PATH=/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/opt/jupyterhub/bin"
+   ExecStart=/opt/jupyterhub/bin/jupyterhub -f /opt/jupyterhub/etc/jupyterhub/jupyterhub_config.py
+   
+   [Install]
+   WantedBy=multi-user.target
+   ```
+   
+ - initialize and start the service:
+   ```
+   sudo ln -s /opt/jupyterhub/etc/systemd/jupyterhub.service /etc/systemd/system/jupyterhub.service
+   sudo systemctl daemon-reload
+   sudo systemctl enable jupyterhub.service
+   sudo systemctl start jupyterhub.service
+   ```
 
-  <a name="tunneling-windows"/>
+ - set up a *reverse proxy*, adding the following `location` directive in the `server` block of the *nginx* configuration file:
+   ```
+   location /jupyter/ {
+		proxy_pass http://127.0.0.1:8000;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header Host $host;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection $connection_upgrade;
+		proxy_set_header X-Scheme $scheme;
+		proxy_buffering off;
+   }
+   ```
 
-#### Create an SSH Tunnel in Windows using MobaXTerm 
-  - From the `Buttons` bar click *Tunneling*, or from the  `Tools` menu choose *MobaSSHTunnel* then *New SSH tunnel*.
-  - BE sure that *local port forwarding* is the chosen radio button in the upper group 
-  - Write down the following information anti-clockwise from the upper left:
-    - **Forwarded Port** = whatever port number YYYY you want to connect from your *localhost*, but be careful not to interfere with other services already running on your system
-    - **SSH Server** = the IP address of the droplet
-    - **SshUsername** = the name of the user that started *Jupyter*
-    - **SSH port** = 22 or the alternative port if the SSH service has been configured differently
-    - **Remote port** = 8888 or a different port if *Jupyter* has been so instructed in the command line
-    - **Remote server** = *localhost*
-  - Click `Save`
-  - Give a name to the new entry
-  - Click the `play` icon
-  - Open your browser and connect to [localhost:YYYY](localhost:YYYY)
+ - check the validity of your changes and restart the server:
+   ```
+   sudo nginx -t
+   sudo systemctl reload nginx.service
+   ```
+
+You can now browse to the desired [https://ip_address/jupyter]() to see your JupyterHub is actually up and running correctly. Here you should find a barebone login page, where you need to enter your usual Linux username and password. When logged in, you will be presented with the *JupyterLab* interface, with the file browser pane on the left showing the contents of your *home* directory on the server.
+
+More information about *JupyterHub* can be found [here](https://jupyterhub.readthedocs.io/en/stable/getting-started/index.html).
+
+---
+
+The Jupyter Notebook Server depends on the [IPython](https://ipython.org/) *kernel* functionality. However, many other languages, in addition to Python, may be used in the notebook, mostly developed by the community or third parties. See [this GitHub repo](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) for a fairly exhaustive list.
+
+To install some of the additional kernels, you need to have the [Node.js](http://nodejs.org) runtime and its [npm]() package manager  pre-installed:
+```
+sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt update
+sudo apt install nodejs
+```
+
+ - install the *R* kernel:
+   ```
+   R
+   install.packages('IRkernel')
+   # choose between one of the following
+   IRkernel::installspec()             # install for the current user only
+   IRkernel::installspec(user = FALSE) # install system-wide
+   ```
+   
+   Also add the usual shortcuts for the *assignment* `<-` and the *pipe* `%>%`:
+   ```
+   jupyter labextension install @techrah/text-shortcuts
+   ```
+
+ - install the *C* kernel:
+   ```
+   sudo /opt/jupyterhub/bin/python3 -m pip install jupyter-c-kernel
+   sudo /opt/jupyterhub/bin/install_c_kernel
+   ```
+
 
 
 <br/>
