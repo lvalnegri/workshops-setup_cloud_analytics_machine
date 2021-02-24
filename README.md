@@ -1459,16 +1459,16 @@ It's possible to install the above packages one by one when needed, but you can 
   <a name="jupyterlab"/>
 
 ### Install JupyterLab
-[IPython](https://ipython.org/) is an interactive command-line interface to Python. [Jupyter](https://jupyter.org/) offers an interactive web interface to many languages, including *Python* and *R*. [JupyterLab](https://jupyterlab.readthedocs.io/) is the next-generation web-based user interface for Project Jupyter. *JupyterLab* is served from the same server and uses the same [notebook document format](http://nbformat.readthedocs.io/en/latest/) as the classic [Jupyter Notebook](https://jupyter-notebook.readthedocs.io/en/stable/), but it will eventually replace it.
+[IPython](https://ipython.org/) is an interactive command-line interface for the *python* language. [Jupyter](https://jupyter.org/) offers an interactive web interface to many languages, including *Python*, *R*, and *C*. [JupyterLab](https://jupyterlab.readthedocs.io/) is the next-generation web-based user interface for Project Jupyter. *JupyterLab* is served from the same server and uses the same [notebook document format](http://nbformat.readthedocs.io/en/latest/) as the classic [Jupyter Notebook](https://jupyter-notebook.readthedocs.io/en/stable/), but it will eventually replace it.
 
  - create a new python environment:
    ```
    sudo apt install python3-venv
    sudo python3 -m venv /opt/jupyterhub/
    ```
-   By default, a python *environment* has its own interpreter executable and directory for installing packages, and is herefore isolated from other packages installed on the rest of the system. If you prefer instead that the new *jupyter* environment could share the libraries already installed from the global python repository, you need to add the option `--system-site-packages` to the previous command. You can always change idea later, and set to `true` the value for the boolean `include-system-site-packages` in the `pyvenv.cfg` configuration file for the environment, stored at the root directory for the environment itself, in this case `/opt/jupyterhub/`. 
+   By default, a python *environment* has its own interpreter executable and directory for installing packages, and is therefore isolated from other packages installed on the rest of the system. If you prefer instead that your *jupyter* server could share the global libraries, you need to add the option `--system-site-packages` to the previous command. You can always change idea later, and set to `true` the value for the boolean `include-system-site-packages` in the `pyvenv.cfg` configuration file for the environment, stored at the root directory for the environment itself, in this case `/opt/jupyterhub/`. 
 
- - install a few necessary libraries:
+ - install the server:
    ```
    sudo /opt/jupyterhub/bin/python3 -m pip install wheel
    sudo /opt/jupyterhub/bin/python3 -m pip install jupyterhub jupyterlab
@@ -1492,14 +1492,14 @@ It's possible to install the above packages one by one when needed, but you can 
    c.JupyterHub.base_url = '/jupyter'
    c.JupyterHub.bind_url = 'http://:8000/jupyter'
    ```
-   Notice that the above options are already in the file, commented.
+   Notice that the above options are already in the file, some commented.
 
- - create the configuration file for the service, then open for editing:
+ - create the configuration file for the service, then open it for editing:
    ```
    sudo mkdir -p /opt/jupyterhub/etc/systemd
    sudo nano /opt/jupyterhub/etc/systemd/jupyterhub.service
    ```
-   adding the following code:
+   and add the following code:
    ```
    [Unit]
    Description=JupyterHub
@@ -1522,7 +1522,7 @@ It's possible to install the above packages one by one when needed, but you can 
    sudo systemctl start jupyterhub.service
    ```
 
- - set up a *reverse proxy*, adding the following `location` directive in the `server` block of the *nginx* configuration file:
+ - set up a *reverse proxy*, adding the following `location` directive in the `server` block of the *Nginx* configuration file:
    ```
    location /jupyter/ {
 		proxy_pass http://127.0.0.1:8000;
@@ -1537,7 +1537,7 @@ It's possible to install the above packages one by one when needed, but you can 
    }
    ```
 
- - check the validity of your changes and restart the server:
+ - check the validity of your changes, then restart the *Nginx* server:
    ```
    sudo nginx -t
    sudo systemctl reload nginx.service
