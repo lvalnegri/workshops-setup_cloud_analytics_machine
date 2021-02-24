@@ -1,7 +1,7 @@
-# Notable *R* Packages for Data Science
+## Notable *R* Packages for Data Science
 
 **Author**: [Luca Valnegri](https://www.linkedin.com/in/lucavalnegri/)   
-**Last Updated**: 30-Oct-2019
+**Last Updated**: 24-Feb-2021
 
 ---
   * [Data Sourcing](#sourcing)
@@ -137,6 +137,7 @@
   - [tidyr](http://github.com/hadley/tidyr) - Provides functionality for changing the layout of any dataframe, like *gather* and *spread*, to convert datasets in a *tidy* format. Upscale version of the now superseeded [reshape2](http://github.com/hadley/reshape)
   - [gdata](https://cran.r-project.org/package=gdata/) - Provides various tools for data I/O, manipulation and wrangling
   - [purrr](http://github.com/hadley/purrr) - Provides lots of functional programming tools, including important features from other languages
+  - [furrr](https://github.com/DavisVaughan/furrr) - Combines *purrr*’s family of mapping functions with *future*’s parallel processing capabilities
   - [magrittr](https://github.com/tidyverse/magrittr) - Provides a set of operators which make the code more readable
   - [wrapr](https://github.com/WinVector/wrapr) - Provedes functionalities for writing and debugging R code.
   - [sjmisc](http://www.strengejacke.de/sjmisc/) - Collection of miscellaneous utility functions, designed to work together seamlessly with packages from the tidyverse, and sjPlot.
@@ -243,6 +244,7 @@
   - [iheatmapr](https://github.com/ropensci/iheatmapr) - Allows to build complex and interactive heatmaps using modular building blocks.
   - [riverplot](https://cran.r-project.org/package=riverplot/) - Allows the creation of a basic type of Sankey diagrams
   - [pheatmap](https://github.com/raivokolde/pheatmap) - Provides fine grained control over heatmap dimensions and appearance.
+  - [heatmap3](https://cran.r-project.org/package=heatmap3) - An improved package for heatmaps visualizations
   - [animation](https://github.com/yihui/animation) - A set of utilities to create and export animations to a variety of formats
   - [tweenr](https://github.com/thomasp85/tweenr) - Provides functions to interpolate data between different states
   - [misc3d]() - Miscellaneous functions for three dimensional plots
@@ -585,7 +587,7 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [siftgeojson](https://github.com/ropenscilabs/siftgeojson) `install_github('ropenscilabs/siftgeojson')` - Provides functions to slice and dice GeoJSON just as easily as a data.frame. It is built on top of *jqr*, an R wrapper for [jq](https://stedolan.github.io/jq/), a JSON processor.
   - [geosphere](https://cran.r-project.org/package=geosphere/) - Spherical trigonometry for geographic applications: measures for angular (longitude/latitude) locations.
   - [photon](https://github.com/rCarto/photon) `install_github('rCarto/photon')` - R Interface to the OS geocoder [Photon API](https://github.com/komoot/photon), built for [OpenStreetMap](http://www.osm.org/) data, that gives you back the results in a convenient data frame structure.
-  - [mapsapi](https://github.com/michaeldorman/mapsapi/issues) - Interface to the *Directions*, *Distance Matrix* and *Geocode* *'Google Maps* APIs
+  - [mapsapi](https://github.com/michaeldorman/mapsapi/) - Interface to the *Directions*, *Distance Matrix* and *Geocode* *'Google Maps* APIs
   - [RQGIS](https://github.com/jannes-m/RQGIS) - Establishes an interface between R and QGIS, that allows access to QGIS functionalities from within R.
 
   <a name="geocomputation"/>
@@ -746,10 +748,11 @@ github.com/yonicd/regexSelect) - Enables *regular expression* searches within a 
   - [ChannelAttributionApp]() - 
   - [cocktailApp](https://github.com/shabbychef/cocktailApp)
   - [ERSA](https://github.com/cbhurley/ERSA) - A collection of functions for displaying the results of a regression calculation, packaged together as a shiny app.
-  - [Factoshiny]() - 
+  - [Factoshiny]() - Perform Factorial Analysis using [FactoMineR](https://cran.r-project.org/package=FactoMineR)
   - [MAVIS](https://github.com/kylehamilton/MAVIS) - 
   - [Radiant](https://github.com/radiant-rstats/radiant) - 
   - [RtutoR](https://github.com/skranz/RTutor) - 
+  - [shinyML](https://github.com/JeanBertinR/shinyML) - Compare models for regression and classification tasks
   - [SpatialEpiApp](https://github.com/Paula-Moraga/SpatialEpiApp) - 
   - [teachingApps](https://github.com/Auburngrads/teachingApps) - Apps for Teaching Statistics, R Programming, and Shiny App Development
 
