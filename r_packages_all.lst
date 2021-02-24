@@ -112,6 +112,7 @@ dials
 dichromat
 diffobj
 directlabels
+disk.frame
 dismo
 distill
 doBy
@@ -464,6 +465,7 @@ ParallelLogger
 parallelMap
 parcats
 parcoords
+parsermd
 parsnip
 party
 partykit
