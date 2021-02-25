@@ -147,6 +147,7 @@ factoextra
 FactoMineR
 farver
 fastcluster
+fastmap
 fasttime
 feasts
 feather
@@ -345,6 +346,7 @@ knnp
 kohonen
 koRpus
 KRIG
+landmap
 languageR
 lars
 lattice
@@ -367,6 +369,7 @@ learnr
 lemon
 lexicon
 lime
+linemap
 lineupjs
 lisa
 listviewer
@@ -545,6 +548,7 @@ recmap
 Redmonder
 redux
 registry
+remap
 remedy
 reshape2
 reticulate
