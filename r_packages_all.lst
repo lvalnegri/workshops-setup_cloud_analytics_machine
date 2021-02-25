@@ -468,6 +468,7 @@ pals
 parallelDist
 ParallelLogger
 parallelMap
+parallelplot
 parcats
 parcoords
 parsermd
