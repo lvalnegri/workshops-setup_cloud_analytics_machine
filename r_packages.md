@@ -247,6 +247,7 @@
   - [riverplot](https://cran.r-project.org/package=riverplot/) - Allows the creation of a basic type of Sankey diagrams
   - [pheatmap](https://github.com/raivokolde/pheatmap) - Provides fine grained control over heatmap dimensions and appearance.
   - [heatmap3](https://cran.r-project.org/package=heatmap3) - An improved package for heatmaps visualizations
+  - [catmaply](https://github.com/VerkehrsbetriebeZuerich/catmaply) - Interactive heatmaps for categorical variables
   - [animation](https://github.com/yihui/animation) - A set of utilities to create and export animations to a variety of formats
   - [tweenr](https://github.com/thomasp85/tweenr) - Provides functions to interpolate data between different states
   - [misc3d]() - Miscellaneous functions for three dimensional plots
@@ -279,6 +280,8 @@
   - [circlepackeR](https://github.com/jeromefroe/circlepackeR) `install_github("jeromefroe/circlepackeR")` - R clone for the Mike Bostocks’s D3 [circle packing visualization](http://bl.ocks.org/mbostock/7607535)
   - [worldcloud2](https://github.com/Lchiffon/wordcloud2) - R interface to the [wordcloud2.js](https://github.com/timelyportfolio/sunburstR) JS library 
   - [sunburstR](https://github.com/Lchiffon/wordcloud2) - A treemap with a radial layout, using a design by [John Stasko](http://www.cc.gatech.edu/gvu/ii/sunburst/)
+  - [upsetjs]() - Creates visualizations of *intersecting sets* using a novel matrix design, wrapper around the [UpSet.js]() JS library, and an alternative implementation of *UpSetR*
+  - [UpSetR]() - Creates visualizations of *intersecting sets* using a novel matrix design, based on the [UpSet technique](http://vcg.github.io/upset/about/)
   - [D3partitionR](https://github.com/AntoineGuillot2/D3partitionR) - Allows to build interactive visualisation of nested data.
   - [streamgraph](https://github.com/hrbrmstr/streamgraph) - Allows to build *streamgraphs* 
   - [taucharts](https://github.com/hrbrmstr/taucharts) - R interface to the [taucharts](https://www.taucharts.com/) JS library 
@@ -403,6 +406,7 @@
   - [osmdata](https://github.com/ropensci/osmdata) - Allows to download and import *OpenStreetMap* data as `sf` or `sp`` objects
   - [rosm](https://github.com/paleolimbot/rosm) - Download and plot Open Street Map (and other tiled map sources) using *base* plotting and `sp` spatial objects.
   - [googleway](https://github.com/SymbolixAU/googleway/) - Provides access to [Google Maps API](https://developers.google.com/maps/), and the ability to plot interactive Google Maps
+  - [autoimage](https://github.com/jfrench/autoimage) - Provides functionalities for displaying multiple heat maps, possibly with projected coordinates
   - [RgoogleMaps](http://rgooglemaps.r-forge.r-project.org/) - R interface to the [Google server](maps.google.com) for static maps
   - [choroplethr](http://) - mapping tool
   - [datamaps](https://github.com/JohnCoene/datamaps) - R htmlwidget for the [datamaps](http://datamaps.github.io/) JS libary
