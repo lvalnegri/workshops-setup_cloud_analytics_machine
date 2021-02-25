@@ -953,7 +953,7 @@ If you still haven't installed any package, besides *shiny* and *rmarkdown*, let
 sudo apt-get install -y curl libssl-dev libcurl4-gnutls-dev
 sudo add-apt-repository ppa:ubuntugis/ppa 
 sudo apt-get update 
-sudo apt-get install -y gdal-bin libgdal-dev libgeos++-dev libudunits2-dev libv8-dev libjq-dev libcairo2-dev libxt-dev
+sudo apt-get install -y gdal-bin libgdal-dev libgeos++-dev libudunits2-dev libnode-dev libjq-dev libcairo2-dev libxt-dev
 ~~~
 You can now enter *R*, then install the required packages:
 ~~~
