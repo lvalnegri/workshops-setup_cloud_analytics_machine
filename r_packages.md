@@ -275,6 +275,7 @@
   - [scatterD3](http://github.com/juba/scatterD3) - Interactive scatter plots visualization
   - [trelliscopejs](https://github.com/hafen/trelliscopejs) - R interface to the [Trelliscope](https://github.com/hafen/trelliscopejs-lib) JS library
   - [BioCircos](https://github.com/lvulliard/BioCircos.R) - R interface to the [BioCircos](http://bioinfo.ibp.ac.cn/biocircos/index.php) JS library
+  - [parallelPlot](https://gitlab.com/drti/parallelplot) - Create a parallel coordinates plot
   - [morpheus](https://github.com/cmap/morpheus.R) - R interface to the [morpheus](https://github.com/cmap/morpheus.js/) JS library for advanced interactive visualization of matrices in a heat map display
   - [widgetframe](https://github.com/bhaskarvk/widgetframe) - Provides functionalities for easier embedding of *htmlwidgets* inside responsive *iframes*
   - [circlepackeR](https://github.com/jeromefroe/circlepackeR) `install_github("jeromefroe/circlepackeR")` - R clone for the Mike Bostocks’s D3 [circle packing visualization](http://bl.ocks.org/mbostock/7607535)
