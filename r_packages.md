@@ -150,6 +150,8 @@
   - [janitor](https://github.com/sfirke/janitor) - Simple tools for data cleaning
   - [rowr](https://cran.r-project.org/package=rowr/) - Allows the manipulation of R objects as if they were organized rows in a way that is familiar to people used to working with databases.
   - [data.tree](https://github.com/gluc/data.tree) - Provides functionalities to manage hierarchical data and tree structures
+  - [fastmap](https://github.com/r-lib/fastmap) -  Implements maps (key-value store), stacks, and queues
+
 
   <a name="data-validation"/>
 
@@ -385,6 +387,7 @@
   - [leafpop](https://github.com/r-spatial/leafpop) - Provides functionalities to embed tables, images or graphs in popups of interactive maps created with *leaflet* or *mapview*
   - [leafsync](https://github.com/r-spatial/leafsync) - Allows to build synchronised *small multiples* of *leaflet* maps using the [Leaflet.Sync](https://github.com/jieter/Leaflet.Sync) JS plugin.
   - [leaftime](https://github.com/timelyportfolio/leaftime) - Integrates the [leaflet-timeline](https://github.com/skeate/Leaflet.timeline) JS plugin into the *R* *leaflet* ecosystem
+  - [linemap](https://github.com/riatelab/linemap) - A library for creating geospatial line graphs along lines of latitude
   - [micromap](https://github.com/USEPA/micromap) - Provides functionalities to create linked micromap plots
   - [mapplots]() - 
   - [mapmisc](https://cran.r-project.org/package=btb) - Provides a few utilities for making nice maps in short tidy code chunks which are suitable for knitr documents.
@@ -582,6 +585,7 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [raster](https://cran.r-project.org/package=raster) - Provides functionalities for reading, writing, manipulating, analyzing and modeling of gridded spatial data
   - [GEOmap](https://cran.r-project.org/package=GEOmap) - 
   - [PSBmapping]() - 
+  - [landmap](https://github.com/envirometrix/landmap/) - Spatial prediction using [Ensemble Machine Learning](https://peerj.com/articles/5518/) algorithms
   - [geoaxe](https://github.com/ropenscilabs/geoaxe) `install_github('ropenscilabs/geoaxe')` - Provides tools to split geospatial objects into pieces
   - [geoops](https://github.com/ropenscilabs/geoops) `install_github('ropenscilabs/geoops')` - Provides spatial operations on GeoJSON that work with the *geojson* package
   - [siftgeojson](https://github.com/ropenscilabs/siftgeojson) `install_github('ropenscilabs/siftgeojson')` - Provides functions to slice and dice GeoJSON just as easily as a data.frame. It is built on top of *jqr*, an R wrapper for [jq](https://stedolan.github.io/jq/), a JSON processor.
@@ -605,6 +609,7 @@ Plus, `tmaptools::palette_explorer()` is a great tool for picking *ColorBrewer* 
   - [fields](https://cran.r-project.org/package=fields) - Various tools for the analysis of Spatial data
   - [stars](https://github.com/r-spatial/stars) - (*Proposed package*) Provides functionality for handling dense spatiotemporal data as tidy arrays
   - [GWmodel]() - Geographically weighted models
+  - [remap](https://github.com/jadonwagstaff/remap) - Automated Regional Spatial Modeling with Continuous Borders
   - [spatgraphs]() - Graph Edge Computations for Spatial Point Patterns
   - [nngeo](https://github.com/michaeldorman/nngeo) - K-nearest neighbor search for projected and non-projected *sf* spatial layers
   - [geozoning](https://github.com/hazaeljones/geozoning) - Provides functionalities for zoning spatial data
