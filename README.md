@@ -1461,6 +1461,12 @@ It's possible to install the above packages one by one when needed, but you can 
 ### Install JupyterLab
 [IPython](https://ipython.org/) is an interactive command-line interface for the *python* language. [Jupyter](https://jupyter.org/) offers an interactive web interface to many languages, including *Python*, *R*, and *C*. [JupyterLab](https://jupyterlab.readthedocs.io/) is the next-generation web-based user interface for Project Jupyter. *JupyterLab* is served from the same server and uses the same [notebook document format](http://nbformat.readthedocs.io/en/latest/) as the classic [Jupyter Notebook](https://jupyter-notebook.readthedocs.io/en/stable/), but it will eventually replace it.
 
+ - as a prerequisite, you need to install the [Node.js](http://nodejs.org) runtime and its [npm]() package manager. Currently, if you use in any way the *V8 JavaScript engine*, or any *R* packages depending on it (like `rmapshaper`), you need to install `nodejs` using the newer `snap` package system instead of the classic `apt`:
+   ```
+   sudo apt install snapd
+   sudo snap install node --classic --channel=14
+   ```
+
  - create a new python environment:
    ```
    sudo apt install python3-venv
@@ -1551,13 +1557,6 @@ More information about *JupyterHub* can be found [here](https://jupyterhub.readt
 
 The Jupyter Notebook Server depends on the [IPython](https://ipython.org/) *kernel* functionality. However, many other languages, in addition to Python, may be used in the notebook, mostly developed by the community or third parties. See [this GitHub repo](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) for a fairly exhaustive list.
 
-To install some of the additional kernels, you need to have the [Node.js](http://nodejs.org) runtime and its [npm]() package manager  pre-installed:
-```
-sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-sudo apt update
-sudo apt install nodejs
-```
-
  - install the *R* kernel:
    ```
    R
@@ -1577,7 +1576,6 @@ sudo apt install nodejs
    sudo /opt/jupyterhub/bin/python3 -m pip install jupyter-c-kernel
    sudo /opt/jupyterhub/bin/install_c_kernel
    ```
-
 
 
 <br/>
