@@ -8,7 +8,8 @@
 # install packages from Bioconductor which are dependencies for subsequent CRAN packages
 if(!require('BiocManager')) {
 	install.packages('BiocManager')
-    BiocManager::install(version = "3.12") 
+    	BiocManager::install(version = "3.12") 
+	BiocManager::install('Biobase')
 	BiocManager::install('graph')
 	BiocManager::install('S4Vectors')
 }
