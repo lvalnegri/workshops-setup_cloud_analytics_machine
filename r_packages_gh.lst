@@ -5,9 +5,12 @@ daranzolin/compareBars
 ThomasSiegmund/D3TableFilter
 hadley/emo
 gadenbuie/epoxy
+ndphillips/FFTrees
 rstudio/fontawesome
 RinteRface/fullPage
 JohnCoene/g2r
+DataXujing/gcForest_r
+sckott/geoops
 AliciaSchep/gglabeller
 gadenbuie/ggpomological
 cttobin/ggthemr
@@ -24,6 +27,7 @@ cmap/morpheus.R
 chengvt/MovingBubbles
 ropenscilabs/ochRe
 timelyportfolio/parcoords
+rundel/parsermd
 feddelegrand7/pivta
 EmilHvitfeldt/quickpalette
 vankesteren/rijkspalette
