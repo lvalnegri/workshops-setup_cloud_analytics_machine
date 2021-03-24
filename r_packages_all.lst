@@ -617,7 +617,6 @@ shinydashboard
 shinyDND
 shinydashboardPlus
 shinyEffects
-shinyEventLogger
 shinyFeedback
 shinyFiles
 shinyfullscreen
@@ -665,7 +664,6 @@ sp
 spaMM
 sparkline
 sparklyr
-sparkTable
 SparseM
 SpatialKDE
 SpatialML
@@ -698,9 +696,7 @@ sunburstR
 SuperLearner
 supreme
 survival
-survivalAnalysis
 survminer
-survsup
 survxai
 svd
 svgPanZoom
@@ -709,7 +705,6 @@ sweep
 table1
 tablerDash
 tableHTML
-tabplot
 tabulizer
 tau
 tensorflow
@@ -744,8 +739,6 @@ tsibble
 tsmp
 tsutils
 tufte
-tuicalendr
-tuichartr
 tune
 tuneRanger
 tweenr
