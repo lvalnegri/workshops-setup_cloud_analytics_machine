@@ -1,5 +1,3 @@
-# remember to first cd into the subfolder containing the list of packages to install (~/scripts/r_packages/)
-
 # if you're in need to uninstall all (non *core*) libraries
 # y <- as.data.frame(installed.packages())
 # y <- as.character(unique(y[is.na(y$Priority), 'Package']))

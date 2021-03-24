@@ -372,6 +372,7 @@ listviewer
 lme4
 lmerTest
 lmtest
+lobstr
 logger
 logiBin
 lubridate
