@@ -1001,29 +1001,37 @@ You can now open a browser and head to [http://ip_address/uk_petitions]() to see
     ~~~
     sudo apt-get install -y libhiredis-dev
     ~~~
+  - **plumbr**:
+    ~~~
+    sudo apt-get install -y libsodium-dev
+    ~~~
+  - **ragg**, **pkgdown**:
+    ~~~
+    sudo apt-get install -y libharfbuzz-dev libfribidi-dev
+    ~~~
   - **rgdal**:
     ~~~
     sudo add-apt-repository ppa:ubuntugis/ppa
 	sudo apt-get update 
 	sudo apt-get install -y gdal-bin libgdal-dev
     ~~~
-  - **rgeos**  (must be installed after previous dependencies):
+  - **rgeos** (on top of *rgdal* dep):
     ~~~
     sudo apt-get install -y libgeos++-dev
     ~~~
-  - **sf** (must be installed after previous dependencies):
+  - **sf** (on top of *rgeos* dep):
     ~~~
     sudo apt-get install -y libudunits2-dev
     ~~~
-  - **geojsonio** / **tmap**  (must be installed *after* previous dependencies):
+  - **geojsonio**, **tmap** (on top of *sf* dep):
     ~~~
     sudo apt-get install -y libprotobuf-dev protobuf-compiler libnode-dev libjq-dev
     ~~~
-  - **gdtools** / **mapview** (must be installed *after* previous dependencies):
+  - **gdtools**, **mapview** (on top of *tmap* dep):
     ~~~
     sudo apt-get install -y libcairo2-dev
     ~~~
-  - **Cairo** (must be installed *after* previous dependencies):
+  - **Cairo** (on top of *mapview* dep):
     ~~~
     sudo apt-get install -y libxt-dev
     ~~~
@@ -1047,7 +1055,7 @@ You can now open a browser and head to [http://ip_address/uk_petitions]() to see
     ~~~
     sudo apt-get install -y libmagick++-dev
     ~~~
-  - **gganimate** (only if you need the *gifski* package to save animation, notice that altogether it's quite a lot of space):
+  - **gganimate** (only if you need the *gifski* package to save animations, notice that altogether it's quite a lot of space):
     ~~~
     sudo apt-get install -y cargo
     ~~~
