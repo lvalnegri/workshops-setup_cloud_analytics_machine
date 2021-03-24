@@ -216,7 +216,7 @@ If the IP address and the user name are correctly recognized, the system then pr
 	`keep the local version currently installed`
   - install some needed *basic* libraries that could be missed from the system (this much depends on how your chosen provider has decided to install the OS):
     ~~~
-    apt-get -y install apt-transport-https software-properties-common htop nano dos2unix man-db ufw git-core libgit2-dev libauthen-oath-perl openssh-server build-essential libsocket6-perl dirmngr
+    apt-get -y install apt-transport-https software-properties-common htop file nano dos2unix man-db ufw git-core libgit2-dev libauthen-oath-perl openssh-server build-essential libsocket6-perl dirmngr
     ~~~
   - restart the system: 
     ~~~
