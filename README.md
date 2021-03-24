@@ -1389,7 +1389,9 @@ It is possible to add as many blocks as desired as follows:
 
 ### Install Python 
 Although Python is often automatically installed on Ubuntu, take a moment to confirm that version **3.8** is already installed on the system, by issuing the following command: 
-`python3 -V`. In a similar way, the `pip` package manager is usually installed on Ubuntu, but take a moment though to confirm if version *20=* is installed, by issuing the command: `pip3 -V`
+`python3 -V`. In a similar way, the `pip` package manager is usually installed on Ubuntu, but take a moment though to confirm if version *20=* is installed, by issuing the command: `pip3 -V`. 
+
+You should also check how many versions of Python you've managed to install using the `whereis python` command. Often, you have no response when trying to run the `python` command. You can redirect one of your binaries to it using the command `alias python="/path/to/python3.x"` where `x` is the version you want to run.
 
 In any case, run the following commands to install both last versions:
 ~~~
@@ -1431,9 +1433,9 @@ Some of the above packages requires the following libraries to be installed befo
     ~~~
     sudo apt-get install -y openmpi-bin
     ~~~
-  - pytorch:
+  - pytorch (see [here](https://pytorch.org/get-started/locally/) for an updated link):
     ~~~
-    pip3 install torch==1.7.1+cpu torchvision==0.8.2+cpu torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
+    pip install torch==1.8.0+cpu torchvision==0.9.0+cpu torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html
     ~~~
     If any error shows up, you should first ensure your version of Python is 3.7.x, as indicated in the above filename. If your version of Python is different, try first to adjust the filename according to the version number. 
   - if using *Theano* or *Keras* it's better to also install the *OpenBLAS* libraries to improve performance:
