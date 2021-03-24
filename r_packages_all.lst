@@ -41,7 +41,7 @@ bslib
 bsplus
 BTM
 bubblyr
-butcher 
+butcher
 c3
 C50
 ca
@@ -90,7 +90,6 @@ cronologia
 crosstalk
 countrycode
 customLayout
-d3heatmap
 D3partitionR
 d3r
 d3Tree
@@ -153,7 +152,6 @@ fasttime
 feasts
 feather
 ff
-FFTrees
 FitARMA
 fitdistrplus
 flexclust
@@ -181,7 +179,6 @@ future.callr
 gam
 gapminder
 gbm
-gcForest
 gdata
 geodist
 geodrawr
@@ -194,7 +191,6 @@ geojsonsf
 geomnet
 geonames
 geonetwork
-geoops
 geoR
 georob
 geosphere
@@ -347,13 +343,11 @@ knitr
 knnp
 kohonen
 koRpus
-KRIG
 landmap
 languageR
 lars
 lattice
 latticeExtra
-lawn
 lctools
 leafem
 leaflegend
@@ -382,13 +376,11 @@ logger
 logiBin
 lubridate
 lwgeom
-MachineLearning
 MachineShop
 maditr
 magick
 magrittr
 mailR
-makeParallel
 manipulate
 manipulateWidget
 mapdeck
@@ -451,7 +443,6 @@ nnet
 nngeo
 nomisr
 nord
-noteMD
 odbc
 officer
 oompaBase
@@ -469,7 +460,8 @@ pals
 parallelDist
 ParallelLogger
 parallelMap
-parallelplot
+parallelPlot
+parallelly
 parcats
 parcoords
 parsermd
@@ -608,7 +600,7 @@ seqtest
 sem
 sever
 sf
-sfnetwork
+sfnetworks
 shades
 shiny.info
 shiny.semantic
