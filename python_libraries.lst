@@ -1,7 +1,6 @@
 csvkit
 pandas
 pandas_datareader
-pandasql
 qgrid
 datatable
 scrapy
@@ -48,8 +47,6 @@ torchvision
 chainer
 tpot
 eli5
-optimuspyspark
-shap
 nltk
 gensim
 spacy
