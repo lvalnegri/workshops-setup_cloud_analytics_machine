@@ -33,6 +33,8 @@ folium
 geoviews
 pysal
 statsmodels
+pystan
+fbprophet
 sklearn
 lightgbm
 xgboost
@@ -44,6 +46,10 @@ tflearn
 adanet
 fastai
 torchvision
+h2o
+mxnet-native
+cntk
+annoy
 chainer
 tpot
 eli5
