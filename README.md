@@ -1245,14 +1245,20 @@ We're going to install [PHP-FPM](https://php-fpm.org/), a FastCGI implementation
       }
       ~~~
     - find the line:
-      `server_name _;`
-      and replace the underscore `_` with the domain name	of your choice
+      ~~~
+      server_name _;
+      ~~~
+      and replace the underscore `_` at the end with the domain name of your choice (keep the semicolon though!)
   - quit the editor, saving the file
   - verify that the syntax of the above configuration editings is actually correct:
-    `sudo nginx -t`
-	If you get any errors, reopen the file and check for typos, then test it again, until you get a succesful feedback.
+    ~~~
+    sudo nginx -t
+    ~~~
+    If you get any errors, reopen the file and check for typos, then test it again, until you get a succesful feedback.
   - once the configuration's syntax is correct, reload *Nginx* to load the new configuration:
-    `sudo systemctl reload nginx`
+    ~~~
+    sudo systemctl reload nginx
+    ~~~
   - you should now see the same results from the urls [http://hostname/shiny/](http://we-r.london/shiny/) and [http://hostname/rstudio/](http://we-r.london/rstudio/) as if you were using the port `xxxx`and respectively `yyyy`
   - once you're happy with the changes, you can delete the rules from the firewall related to the Shiny Server port `xxxx` and the RStudio Server port `yyyy`.
 
@@ -1266,13 +1272,12 @@ We will use [Let's Encrypt](https://letsencrypt.org/) to obtain a free SSL certi
     ~~~
   - install the Certbot software:
     ~~~
-    sudo add-apt-repository ppa:certbot/certbot
-	sudo apt-get update
-	sudo apt-get install -y python3-certbot-nginx
+    sudo apt-get install certbot
+    sudo apt-get install -y python3-certbot-nginx
     ~~~
   - ask for the certificate:
     ~~~
-	sudo certbot --nginx -d hostname.tld -d www.hostname.tld
+    sudo certbot --nginx -d hostname.tld -d www.hostname.tld
     ~~~
     where `hostname.tld` has to be substituted with the true hostname of your choice
   - answer the few questions and wait for the *challenge* to be positively completed. I suggest you ask for redirection (answer number 2)
