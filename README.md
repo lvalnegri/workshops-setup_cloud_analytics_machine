@@ -2130,13 +2130,14 @@ Container vs Virtual Machine
 ### Install Docker
   - install the dependencies:
     ~~~
-    sudo apt install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+    sudo apt install -y apt-transport-https ca-certificates curl gnupg software-properties-common lsb_release
     ~~~
   - add the docker repository in the *apt* source list:
     ~~~
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo apt-key fingerprint 0EBFCD88
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    echo \
+      "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+      $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     ~~~
   - update the package management source:
     ~~~
@@ -2163,10 +2164,6 @@ Container vs Virtual Machine
     sudo docker run hello-world
     ~~~
   - returns a bunch of info about the Docker daemon:
-    ~~~
-    sudo system info
-    ~~~
-  - check the *registry* that Docker is currently using when pulling images (by default, it points to the [Docker Hub](https://index.docker.io/v1/)):
     ~~~
     sudo docker info
     ~~~
