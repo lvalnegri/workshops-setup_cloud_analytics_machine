@@ -1,7 +1,7 @@
 # How to Setup a Cloud Server for Data Science
 
 **Author**: [Luca Valnegri](https://www.linkedin.com/in/lucavalnegri/)   
-**Last Updated**: 24 March 2021
+**Last Updated**: 01 September 2021
 
 <a name="index"/>
 
