@@ -9,10 +9,15 @@ FROM datamaps/r-stats:base
 
 MAINTAINER Luca Valnegri "l.valnegri@datamaps.co.uk"
 
+# set building constants
+ARG RS_URL=https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1717-amd64.deb
+ARG USERNAME=datamaps
+ARG PORT=8787
+
 RUN \ 
 
     # download and install RStudio Server
-    && wget -O rstudio.deb https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1717-amd64.deb  \
+    && wget -O rstudio.deb $RS_URL  \
     && apt -y install ./rstudio.deb  \
     && rm rstudio.deb \
 
@@ -20,9 +25,9 @@ RUN \
     && apt-get -y autoremove && apt-get clean && rm -rf /var/lib/apt/lists/ /tmp/* /var/tmp/*
 
 # expose RStudio Server port
-EXPOSE 8787
+EXPOSE $PORT
 
-# pass control to user "datamaps"
+# pass control to non-root user 
 USER $USERNAME
 WORKDIR /home/$USERNAME
 
