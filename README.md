@@ -25,7 +25,6 @@
     + [Install *Webmin*](#install-webmin)
     + [Add Domain Name](#domain-name)
     + [Take Your First *Snapshot*](#first-snapshot)
-    + [Upgrade Ubuntu 18.04.x to 20.04.1](#upgrade-ubuntu)
   * [The *R* Stack](#r-stack)
     + [Install core *R*](#install-r)
     + [Install *RStudio Server*](#install-rstudio-server)
@@ -34,7 +33,6 @@
     + [Testing the *R* stack](#testing-the-r-stack)
     + [Install *Ubuntu* Dependencies for *R* packages](#install-linux-dependencies-for-r-packages)
     + [Install *R* packages](#install-r-packages)
-    + [Upgrade R 3.x to 4.0.3](#upgrade-r)
   * [Ngnix](#ngnix)
     + [Install Nginx](#nginx-install)
     + [Install php preprocessor](#nginx-php)
@@ -719,13 +717,6 @@ In case you want to create an entirely new droplet from a snapshot:
   - fill out the rest of the choices on the **Create** page as desired, then click `Create`
 
 
-   <a name="upgrade-ubuntu"/>
-
-### Upgrade Ubuntu 18.04.x to 20.04.1
-
-*In development*
-
-
 <br/>
 
 :point_up_2:[Back to Index](#index)
@@ -802,7 +793,7 @@ In the same way as above, you can add two other important constants to the *R* e
     ~~~
   - download the package:
     ~~~
-    wget -O rstudio.deb https://s3.amazonaws.com/rstudio-ide-build/server/bionic/amd64/rstudio-server-1.4.1103-amd64.deb
+    wget -O rstudio.deb https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1717-amd64.deb
     ~~~
     Please note that the above command downloads the *preview* 64bit version at the time of writing, and presumes that your OS version is at least Ubuntu *Xenial* 18.04 LTS. It's worth verifying the newest version visiting [this page](http://www.rstudio.com/products/rstudio/download/preview/) (scroll down till the *Server* section, and copy the link for the *Ubuntu 18/Debian 10 (64-bit)* installer), and in case substitute where needed.
     Moreover, if you prefer to stay on the safer side and want to install the *stable* release, check instead [this page](https://www.rstudio.com/products/rstudio/download-server/) for the correct link of the newest version. 
@@ -839,12 +830,6 @@ In the same way as above, you can add two other important constants to the *R* e
     ~~~
 
 You should now give yourself some time to play around the configurations, that you can find under the menu: `Tools > Global Options`. You can find a file `rstudio.conf` in the repository of this workshop that lists most of the changes I usually apply as soon as I install the software. You should also take some time to build your personal snippets library, clicking the button  `Edit snippets...` at the bottom of the `Code > Editing` window. You can read more about it at the dedicated [RStudio documentation](https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets) page.
-In particular, the first four options:
-   - `General`: 
-   - `Code`: 
-   - `Appearance`: 
-   - `Pane Layout`: 
-   - `Git/SVN`: here you should simply check that *RStudio* has correctly recognized the [git](https://git-scm.com/) software, with the textbox marked as *Git executable* containing the path, usually `/usr/bin/git`. If you plan to use another version control software, feel free to make amendents.
 
   <a name="rstudio-using-projects-with-version-control"/>
 
@@ -1008,8 +993,8 @@ You can now open a browser and head to [http://ip_address/uk_petitions]() to see
   - **rgdal**:
     ~~~
     sudo add-apt-repository ppa:ubuntugis/ppa
-	sudo apt-get update 
-	sudo apt-get install -y gdal-bin libgdal-dev
+    sudo apt-get update 
+    sudo apt-get install -y gdal-bin libgdal-dev
     ~~~
   - **rgeos** (on top of *rgdal* dep):
     ~~~
@@ -1115,18 +1100,6 @@ BiocManager::install('Biobase')
 
 Finally, take also note also that starting with version 3.5, and even more after version 4, some *R* internals have changed so much that all packages need to be rebuilt to work properly, and some of them have even been removed from *CRAN* because of issues that have to be fixed to pass all due checks. 
 
-
-   <a name="upgrade-r"/>
-
-### Upgrade R 3.x to 4.0.3
-
-*In development*
-
- - *R* packages installed with versions previous to 4.x *must* be all reinstalled to work:
-   ```
-   BiocManager::install(version = "3.12")           # it will ask to update all related packages once updated itself
-   update.packages(ask = FALSE, checkBuilt = TRUE)
-   ```
 
 <br/>
 
