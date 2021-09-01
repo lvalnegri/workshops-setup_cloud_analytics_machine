@@ -1,0 +1,33 @@
+# =======================================================
+# Creates docker R interpreter image
+# Add to R conf file the location of the shared storage
+# =======================================================
+
+# Updated 01-Sep-2021
+
+# download base image
+FROM datamaps/r-stats:conf
+
+MAINTAINER Luca Valnegri "l.valnegri@datamaps.co.uk"
+
+RUN \ 
+    # add CRAN repository to apt
+    echo "\n# CRAN REPOSITORY\ndeb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/\n" | tee -a /etc/apt/sources.list  \
+    # add public key of CRAN maintainer
+    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9  \
+    # Update package manager
+    && apt update  \
+    # Install R
+    && apt install -y r-base r-base-dev  \
+    # Add configurations to .Rprofile
+    && echo " \
+     	#####################################################\n \
+    	### ADDED BY DOCKERFILE\n \
+	    PUB_PATH = '/usr/local/share/public'\n \
+	    R_LIBS_USER = '/usr/local/share/public/R_library'\n \
+	    R_MAX_NUM_DLLS = 1000\n \
+	    #####################################################\n \
+    " | tee -a $(R RHOME)/etc/Renviron \
+    
+    # clean up
+    && apt-get -y autoremove && apt-get clean && rm -rf /var/lib/apt/lists/ /tmp/* /var/tmp/*
