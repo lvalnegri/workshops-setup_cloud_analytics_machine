@@ -1,0 +1,96 @@
+# ======================================================================
+# Creates base docker R image for more advanced projects
+# Not for direct deployment but as base image for further builds
+# Install necessary Debian libraries for R packages
+# Add user, group, and shared storage location to facilitate operations
+# ======================================================================
+
+# Updated 01-Sep-2021
+
+# download base image
+FROM ubuntu:20.04
+ 
+MAINTAINER Luca Valnegri "l.valnegri@datamaps.co.uk"
+
+# needed to avoid timezone issue
+ENV DEBIAN_FRONTEND noninteractive
+
+# set building constants
+ARG PUB_GRP=public
+ARG PUB_PATH=/usr/local/share/$PUB_GRP
+ARG USERNAME=datamaps
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID 
+
+# set container internal constants
+ENV PUB_PATH=$PUB_PATH
+
+# start installation process
+RUN \
+
+    # update software repository + Upgrade system
+    apt-get update && apt-get install -y apt-utils && apt-get -y full-upgrade \
+    
+    # install missing base commands
+    && apt-get install -y --no-install-recommends \
+        apt-transport-https \
+		    software-properties-common \
+		    build-essential \
+		    dos2unix \
+		    git-core \
+		    libgit2-dev \
+		    libauthen-oath-perl \
+		    libsocket6-perl \
+		    wget \
+		    man-db \
+		    nano \
+		    dirmngr \
+		    gpg-agent \
+		
+    # install R packages dependencies
+    && apt-get install -y \
+        curl \
+		    libssl-dev \ 
+		    libxml2-dev \
+        libcurl4-gnutls-dev \
+        libjpeg-dev \
+        libmysqlclient-dev \
+        libsodium-dev \
+		    pandoc  \
+        pandoc-citeproc \
+        xtail \
+        
+    # install R spatial packages dependencies
+    && add-apt-repository ppa:ubuntugis/ppa \
+    && apt-get install -y \
+        gdal-bin \
+        libgdal-dev \
+        libgeos++-dev \ 
+        libudunits2-dev \
+        libprotobuf-dev \
+        protobuf-compiler \
+        libnode-dev \
+        libv8-dev \
+        libjq-dev \
+        libcairo2-dev \
+        libxt-dev \
+        libgsl0-dev \
+        libgmp3-dev \
+        libcgal-dev  \
+        libglu1-mesa-dev \
+        libglpk-dev \
+        libmagick++-dev \
+         
+    # clean up
+    && apt-get -y autoremove && apt-get clean && rm -rf /var/lib/apt/lists/ /tmp/* /var/tmp/* \
+    
+    # create a new "public" group
+    && groupadd $PUB_GRP \
+	
+    # create a new directory to be used by the "public" group and connected with the similar host public dir
+    && mkdir -p $PUB_PATH \
+    && chgrp -R $PUB_GRP $PUB_PATH \
+    && chmod -R 2775 $PUB_PATH \
+
+    # create a new user <datamaps>, add it to the "public" group
+    && useradd --create-home --home-dir /home/$USERNAME --no-log-init --shell /bin/bash --groups $PUB_GRP $USERNAME
