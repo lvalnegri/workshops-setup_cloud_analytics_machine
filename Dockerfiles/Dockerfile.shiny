@@ -1,0 +1,43 @@
+# ================================================
+# Creates Shiny Server image
+# Use docker-compose to link it to an Nginx image
+# ================================================
+
+# download base image
+FROM datamaps/r-stats:base
+
+MAINTAINER Luca Valnegri "l.valnegri@datamaps.co.uk"
+
+# set building constants
+ARG PUB_GRP=public
+ARG USERNAME=datamaps
+
+# start installation process
+RUN \ 
+
+    # download and install Shiny Server
+    wget -O shiny.deb https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.16.958-amd64.deb  \
+    && apt -y install ./shiny.deb  \
+    && rm shiny.deb \
+	
+    # add "shiny" to the "public" group
+    && usermod -aG $PUB_GRP shiny \
+	
+    # add non-root user to the shiny server directory
+    && cd /srv/shiny-server \
+    && chown -R $USERNAME:$PUB_GRP . \
+    && chmod g+w . \
+    && chmod g+s . \
+
+    # clean up
+    && apt-get -y autoremove && apt-get clean && rm -rf /var/lib/apt/lists/ /tmp/* /var/tmp/*
+
+# expose Shiny Server port
+EXPOSE 3838
+
+# pass control to user "datamaps"
+USER $USERNAME
+WORKDIR /home/$USERNAME
+
+# run Shiny Server when container launched
+# TODO...
