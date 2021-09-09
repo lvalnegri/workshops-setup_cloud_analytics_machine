@@ -1125,10 +1125,11 @@ Finally, take also note also that starting with version 3.5, and even more after
 
 To test that the service is actually working, enter the [server_ip]() or [hostname]() directly into the browser's address bar, and you should see the default Nginx landing page.
     
-To facilitate the management of the content of the website --- i.e. copying, editing and deleting files, plus making and removing directories, in `/var/www/html/` without elevating privileges with `sudo` --- you need to change some permissions:
- - `sudo chown -R USER /var/www/html/` set your user to be the owner of all the files and directories in `/var/www/html`;
- - `sudo find /var/www/html -type d -exec chmod u+rwx {} +` set read and write permissions on each folder, and permit your user to access the folders to go into them (you need a folder to be flagged as *executable* for this to happen)
+To facilitate the management of the content of the website --- i.e. copying, editing and deleting files, plus accessing, making and removing directories, in `/var/www/html/`, the default root directory of the nginx default website, without elevating privileges with `sudo` --- you need to change some permissions:
+ - `sudo chown -R $USER /var/www/html/` set your user to be the owner of all the files and directories in `/var/www/html`;
+ - `sudo find /var/www/html -type d -exec chmod u+rwx {} +` set read and write permissions on each folder, and permit your user to access the folders and go into them (you need a folder to be flagged as *executable* for this to happen)
  - `sudo find /var/www/html -type f -exec chmod u+rw {} +`  set all the files inany directory to have read and write permissions for your owner (but not execution)
+
 
   <a name="nginx-php"/>
 
