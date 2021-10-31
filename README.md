@@ -61,6 +61,8 @@
     + [Dockerfile](#dockerfile)
     + [Example: *Selenium* for Web Driving](#docker-selenium)
     + [Resources](#docker-resources)
+  * [OSRM Routing Server](#osrm)
+    +  
   * [Nominatim Geoserver](#nominatim)
     + [Dependencies](#dep-nominatim)
     + [Postgres](#psql-nominatim)
@@ -2448,6 +2450,77 @@ WORKDIR /home/$USERNAME
   - join the [community](dockercommunity.slack.com)
   - [*official* documentation](https://docs.docker.com)
   - exercise with an [online interactive environment](http://labs.play-with-docker.com/)
+
+
+<br/>
+
+:point_up_2:[Back to Index](#index)
+<a name="osrm"/>
+## OSRM Routing Server
+
+- pull the image
+  ```
+  docker pull osrm/osrm-backend
+  ```
+- create a directory somewhere to use as a base for the server(s), I will use as starting point the *public* shared repository:
+  ```
+  mkdir $PUB_PATH/osrm
+  cd $PUB_PATH/osrm
+  ```  
+- download the geographic file(s) you need, for example from [Geofabrik](http://download.geofabrik.de/). I usually work with British and Italian clients, so I download both of them:
+  ```
+  wget http://download.geofabrik.de/europe/britain-and-ireland-latest.osm.pbf
+  wget http://download.geofabrik.de/europe/italy-latest.osm.pbf
+  ```
+  With multiple files, it's better first merging them in a unique file:
+  ```
+  sudo apt install -y osmium-tool
+  osmium cat italy-latest.osm.pbf britain-and-ireland-latest.osm.pbf -o italy_uk.osm.pbf
+  ```
+
+- before starting the server, we need to pre-process the above extract applying one specific *profile*, depending on the routing you want to use. Each profile characteristics are stored in a *lua* fie, describing which street are permitted and the correspondent speed. There are three generic profile already built from the devs (i.e., three lua files already written out) for the three main profiles of general interest: *car*, *foot*, *bike*. But you can modify them or add your own before proceeding using the following set of commands:
+  ```
+  ```
+  Unfortunately, the OSRM Server does not currently support multiprofiles, so you have to build one specific server for each profile you need, then run it on its own separate port. Let's start with the *car* profile: 
+  ```
+  mkdir car
+  cd car
+  cp ../italy_uk.osm.pbf .
+  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/car.lua /data/italy_uk.osm.pbf
+  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-partition /data/italy_uk.osrm
+  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/italy_uk.osrm
+  ```
+  If you have other profiles to process, the commands are exactly the same but in different dicrectories:
+  ```
+  cd ..
+  mkdir foot
+  cd foot
+  cp ../italy_uk.osm.pbf .
+  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/car.lua /data/italy_uk.osm.pbf
+  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-partition /data/italy_uk.osrm
+  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/italy_uk.osrm
+  cd ..
+  mkdir bike
+  cd bike
+  cp ../italy_uk.osm.pbf .
+  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/car.lua /data/italy_uk.osm.pbf
+  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-partition /data/italy_uk.osrm
+  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/italy_uk.osrm
+  ```
+  
+
+- start the Routing Engine
+  ``` 
+  docker run --name osrm -t -i -p 5000:5000 -v c:/docker:/data osrm/osrm-backend osrm-routed --algorithm mld /data/berlin-latest.osrm
+  ```
+
+Then the docker container should be running on http://127.0.0.1:5000/
+
+
+### Resources
+
+  - [main website](https://www.docker.com/) 
+  - [Docker Hub](https://hub.docker.com/r/osrm/osrm-backend/)
 
 
 <br/>
