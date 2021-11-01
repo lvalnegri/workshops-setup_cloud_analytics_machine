@@ -2555,12 +2555,13 @@ At this point you should have three docker containers running at three different
 You can now easily use some *R* code to calculate for example [*isochrones*](https://en.wikipedia.org/wiki/Isochrone_map):
 ```
 function(x, brk, rsl, prf = 1) #1-car, 2-foot, 3-bike
-    osrm::osrmIsochrone(sc = x, breaks = brk, res = rsl, returnclass = 'sf', osrm.server = paste0('http://127.0.0.1:500', prf, '/')),
+    osrm::osrmIsochrone(sc = x, breaks = brk, res = rsl, returnclass = 'sf', osrm.server = paste0('http://127.0.0.1:500', prf, '/'))
 ```
 or the [shortest path](https://github.com/Telenav/open-source-spec/blob/master/osrm/doc/bidirectional_dijkstra_in_osrm.md) between two locations:
 ```
 function(xs, xd, prf = 1) #1-car, 2-foot, 3-bike
-    osrmRoute(src = xs, dst = xd, overview = 'full', returnclass = 'sf', osrm.server = paste0('http://127.0.0.1:500', prf, '/')) |> st_transform(4326)
+    osrm::osrmRoute(src = xs, dst = xd, overview = 'full', returnclass = 'sf', osrm.server = paste0('http://127.0.0.1:500', prf, '/')) |> 
+    sf::st_transform(4326)
 ```
 
 ### Resources
