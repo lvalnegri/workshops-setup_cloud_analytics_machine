@@ -2458,16 +2458,16 @@ WORKDIR /home/$USERNAME
 <a name="osrm"/>
 ## OSRM Routing Server
 
-- pull the image
+- pull the image:
   ```
   docker pull osrm/osrm-backend
   ```
-- create a directory somewhere to use as a base for the server(s), I will use as starting point the *public* shared repository:
+- create a directory somewhere to use as a base for the server(s), I will use as starting point the *public* shared repository, but you can choose any:
   ```
   mkdir $PUB_PATH/osrm
   cd $PUB_PATH/osrm
   ```  
-- download the geographic file(s) you need, for example from [Geofabrik](http://download.geofabrik.de/). I usually work with British and Italian clients, so I download both of them:
+- download the geographic file(s) you need, for example from [Geofabrik](http://download.geofabrik.de/). I usually work with British and Italian clients, so I download both the British and Italian files:
   ```
   wget http://download.geofabrik.de/europe/britain-and-ireland-latest.osm.pbf
   wget http://download.geofabrik.de/europe/italy-latest.osm.pbf
@@ -2478,10 +2478,42 @@ WORKDIR /home/$USERNAME
   osmium cat italy-latest.osm.pbf britain-and-ireland-latest.osm.pbf -o italy_uk.osm.pbf
   ```
 
-- before starting the server, we need to pre-process the extract(s), applied to one specific *profile*, depending on the routing you want to use. Each profile characteristics are stored in a *lua* fie, that describes which street are permitted and the correspondent speed. There are three generic profiles already built from the devs (i.e., three lua files already written out) inside the image (in the '/opt/' directory) related to the three main profiles of general interest: *car*, *foot*, *bike*. But you can modify them, or add your own, before proceeding using the following set of commands:
-  ```
-  ```
-  Unfortunately, the OSRM Server does not currently support multiprofiles, so you have to build one specific server for each profile you need, then run it on its own separate port. Let's start with the *car* profile. Considering it will take quite a lot of time to process all of it, it's advisable to use the `screen` function: 
+- before starting the server, we need to pre-process the previous extract(s), using a specific *profile*, depending on the means of transport you want to use. Each profile characteristics are stored in [*Lua*](https://www.lua.org/docs.html) files, and describe which streets and manoeuvres are permitted, and the correspondent speeds. There are three generic profiles already built from the devs inside the image (i.e., three *Lua* files already written out in the `/opt/` directory) related to the three main profiles of general interest: *car*, *foot*, *bike*. But you can modify them, or add your own, before proceeding using the following set of commands:
+  - run a *plain* container from the original `osrm/osrm-backend` image:
+    ```
+    sudo docker run -it osrm/osrm-backend bin/bash
+    ```
+  - Now that you are in the container, you can modify the image, editing the profiles:
+    ```
+    nano /opt/car.lua
+    ```
+    or adding a new file:
+    ```
+    copy /path/to/profile.lua /opt/profile.lua
+    ```
+  - exit the container
+    ```
+    exit
+    ```
+  - check the container id
+    ```
+    docker ps -a
+    ```
+  - commit to build a new image fron the container:
+    ```
+    docker commit cont_id img_name
+    ```
+  - verify by checking the image list:
+    ```
+    docker images
+    ```
+  - to avoid losing the image you can push to your *docker hub* account:
+    ```
+    docker login
+    docker push repo/imgname:tag
+    ```
+  
+ - unfortunately, the *OSRM Server* does not currently support multiprofiles, so you have to build one specific server for each profile you need, then run each on its own separate host port (the default port inside the container is 5000; I usually use 5001, 5002 and 5003 as host ports for the three standard profiles). Let's start with the *car* profile. Considering it will take some time to process all of it, it's advisable to use the `screen` function, so that you can run all of them simultaneously without worries about connection drop-outs.
   ```
   mkdir car
   cd car
@@ -2491,7 +2523,9 @@ WORKDIR /home/$USERNAME
   docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/italy_uk.osrm
   docker run -t -i -p 5001:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/italy_uk.osm.pbf
   ```
-  If you have other profiles to process, the commands are exactly the same but in different dicrectories:
+  If you had modified the image to change the profile(s), you need to change in the above (and below) set of commands the name of the image (`osrm/osrm-backend`) accordingly. 
+  
+  - you can then process the other profiles, the commands are exactly the same but must be fired in their own (different) directories, changing the host port when running the final container:
   ```
   cd ..
   mkdir foot
@@ -2501,6 +2535,8 @@ WORKDIR /home/$USERNAME
   docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-partition /data/italy_uk.osrm
   docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/italy_uk.osrm
   docker run -t -i -p 5002:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/italy_uk.osm.pbf
+  ```
+  ```
   cd ..
   mkdir bike
   cd bike
@@ -2511,9 +2547,12 @@ WORKDIR /home/$USERNAME
   docker run -t -i -p 5003:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/italy_uk.osm.pbf
   ```
 
-Then the docker containers should be running at http://127.0.0.1:5001/ for the *car* profile, http://127.0.0.1:5002/ for the *foot* profile, and http://127.0.0.1:5003/ for the *bike* profile.
+At this point you should have three docker containers running at three different port for three different profiles:
+- http://127.0.0.1:5001/ for the *car* profile
+- http://127.0.0.1:5002/ for the *foot* profile
+- http://127.0.0.1:5003/ for the *bike* profile
 
-You can now use the server(s) inside some *R* code to calculate [*isochrones*](https://en.wikipedia.org/wiki/Isochrone_map):
+You can now easily use some *R* code to calculate for example [*isochrones*](https://en.wikipedia.org/wiki/Isochrone_map):
 ```
 function(x, brk, rsl, prf = 1) #1-car, 2-foot, 3-bike
     osrm::osrmIsochrone(sc = x, breaks = brk, res = rsl, returnclass = 'sf', osrm.server = paste0('http://master-i.ml:500', prf, '/')),
