@@ -1,7 +1,7 @@
 # How to Setup a Cloud Server for Data Science
 
-**Author**: [Luca Valnegri](https://www.linkedin.com/in/lucavalnegri/)
-**Last Updated**: 01 November 2021
+**Author**: [Luca Valnegri](https://www.linkedin.com/in/lucavalnegri/) <br/>
+**Last Updated**: 01 November 2021 <br/>
 **Last Addition**: [OSRM Routing Server](#osrm)
 
 <a name="index"/>
