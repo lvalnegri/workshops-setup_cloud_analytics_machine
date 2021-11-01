@@ -2513,7 +2513,7 @@ WORKDIR /home/$USERNAME
     docker push repo/imgname:tag
     ```
   
- - unfortunately, the *OSRM Server* does not currently support multiprofiles, so you have to build one specific server for each profile you need, then run each on its own separate host port (the default port inside the container is 5000; I usually use 5001, 5002 and 5003 as host ports for the three standard profiles). Let's start with the *car* profile. Considering it will take some time to process all of it, it's advisable to use the `screen` function, so that you can run all of them simultaneously without worries about connection drop-outs.
+- unfortunately, the *OSRM Server* does not currently support multiprofiles, so you have to build one specific server for each profile you need, then run each on its own separate host port (the default port inside the container is 5000; I usually use 5001, 5002 and 5003 as host ports for the three standard profiles). Let's start with the *car* profile. Considering it will take some time to process all of it, it's advisable to use the `screen` function, so that you can run all of them simultaneously without worries about connection drop-outs.
   ```
   mkdir car
   cd car
@@ -2525,7 +2525,7 @@ WORKDIR /home/$USERNAME
   ```
   If you had modified the image to change the profile(s), you need to change in the above (and below) set of commands the name of the image (`osrm/osrm-backend`) accordingly. 
   
-  - you can then process the other profiles, the commands are exactly the same but must be fired in their own (different) directories, changing the host port when running the final container:
+- you can then process the other profiles, the commands are exactly the same but must be fired in their own (different) directories, changing the host port when running the final container:
   ```
   cd ..
   mkdir foot
@@ -2555,12 +2555,12 @@ At this point you should have three docker containers running at three different
 You can now easily use some *R* code to calculate for example [*isochrones*](https://en.wikipedia.org/wiki/Isochrone_map):
 ```
 function(x, brk, rsl, prf = 1) #1-car, 2-foot, 3-bike
-    osrm::osrmIsochrone(sc = x, breaks = brk, res = rsl, returnclass = 'sf', osrm.server = paste0('http://master-i.ml:500', prf, '/')),
+    osrm::osrmIsochrone(sc = x, breaks = brk, res = rsl, returnclass = 'sf', osrm.server = paste0('http://127.0.0.1:500', prf, '/')),
 ```
 or the [shortest path](https://github.com/Telenav/open-source-spec/blob/master/osrm/doc/bidirectional_dijkstra_in_osrm.md) between two locations:
 ```
 function(xs, xd, prf = 1) #1-car, 2-foot, 3-bike
-    osrmRoute(src = xs, dst = xd, overview = 'full', returnclass = 'sf', osrm.server = paste0('http://master-i.ml:500', prf, '/')) |> st_transform(4326)
+    osrmRoute(src = xs, dst = xd, overview = 'full', returnclass = 'sf', osrm.server = paste0('http://127.0.0.1:500', prf, '/')) |> st_transform(4326)
 ```
 
 ### Resources
