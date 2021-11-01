@@ -2478,10 +2478,10 @@ WORKDIR /home/$USERNAME
   osmium cat italy-latest.osm.pbf britain-and-ireland-latest.osm.pbf -o italy_uk.osm.pbf
   ```
 
-- before starting the server, we need to pre-process the above extract applying one specific *profile*, depending on the routing you want to use. Each profile characteristics are stored in a *lua* fie, describing which street are permitted and the correspondent speed. There are three generic profile already built from the devs (i.e., three lua files already written out) for the three main profiles of general interest: *car*, *foot*, *bike*. But you can modify them or add your own before proceeding using the following set of commands:
+- before starting the server, we need to pre-process the extract(s), applied to one specific *profile*, depending on the routing you want to use. Each profile characteristics are stored in a *lua* fie, that describes which street are permitted and the correspondent speed. There are three generic profiles already built from the devs (i.e., three lua files already written out) inside the image (in the '/opt/' directory) related to the three main profiles of general interest: *car*, *foot*, *bike*. But you can modify them, or add your own, before proceeding using the following set of commands:
   ```
   ```
-  Unfortunately, the OSRM Server does not currently support multiprofiles, so you have to build one specific server for each profile you need, then run it on its own separate port. Let's start with the *car* profile: 
+  Unfortunately, the OSRM Server does not currently support multiprofiles, so you have to build one specific server for each profile you need, then run it on its own separate port. Let's start with the *car* profile. Considering it will take quite a lot of time to process all of it, it's advisable to use the `screen` function: 
   ```
   mkdir car
   cd car
@@ -2489,6 +2489,7 @@ WORKDIR /home/$USERNAME
   docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/car.lua /data/italy_uk.osm.pbf
   docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-partition /data/italy_uk.osrm
   docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/italy_uk.osrm
+  docker run -t -i -p 5001:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/italy_uk.osm.pbf
   ```
   If you have other profiles to process, the commands are exactly the same but in different dicrectories:
   ```
@@ -2496,31 +2497,38 @@ WORKDIR /home/$USERNAME
   mkdir foot
   cd foot
   cp ../italy_uk.osm.pbf .
-  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/car.lua /data/italy_uk.osm.pbf
+  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/foot.lua /data/italy_uk.osm.pbf
   docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-partition /data/italy_uk.osrm
   docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/italy_uk.osrm
+  docker run -t -i -p 5002:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/italy_uk.osm.pbf
   cd ..
   mkdir bike
   cd bike
   cp ../italy_uk.osm.pbf .
-  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/car.lua /data/italy_uk.osm.pbf
+  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/bicycle.lua /data/italy_uk.osm.pbf
   docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-partition /data/italy_uk.osrm
   docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/italy_uk.osrm
-  ```
-  
-
-- start the Routing Engine
-  ``` 
-  docker run --name osrm -t -i -p 5000:5000 -v c:/docker:/data osrm/osrm-backend osrm-routed --algorithm mld /data/berlin-latest.osrm
+  docker run -t -i -p 5003:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/italy_uk.osm.pbf
   ```
 
-Then the docker container should be running on http://127.0.0.1:5000/
+Then the docker containers should be running at http://127.0.0.1:5001/ for the *car* profile, http://127.0.0.1:5002/ for the *foot* profile, and http://127.0.0.1:5003/ for the *bike* profile.
 
+You can now use the server(s) inside some *R* code to calculate [*isochrones*](https://en.wikipedia.org/wiki/Isochrone_map):
+```
+function(x, brk, rsl, prf = 1) #1-car, 2-foot, 3-bike
+    osrm::osrmIsochrone(sc = x, breaks = brk, res = rsl, returnclass = 'sf', osrm.server = paste0('http://master-i.ml:500', prf, '/')),
+```
+or the [shortest path](https://github.com/Telenav/open-source-spec/blob/master/osrm/doc/bidirectional_dijkstra_in_osrm.md) between two locations:
+```
+function(xs, xd, prf = 1) #1-car, 2-foot, 3-bike
+    osrmRoute(src = xs, dst = xd, overview = 'full', returnclass = 'sf', osrm.server = paste0('http://master-i.ml:500', prf, '/')) |> st_transform(4326)
+```
 
 ### Resources
 
-  - [main website](https://www.docker.com/) 
-  - [Docker Hub](https://hub.docker.com/r/osrm/osrm-backend/)
+  - [Main website](https://github.com/Project-OSRM/osrm-backend) 
+  - [*Docker Hub*](https://hub.docker.com/r/osrm/osrm-backend/)
+  - [*R* `osrm` package](https://github.com/riatelab/osrm)
 
 
 <br/>
