@@ -2580,50 +2580,48 @@ When doing geo-analytics, you often need, for example, to *geocode* thousands of
 
 Here comes [*Nominatim*](https://www.nominatim.org/), a private geoserver based on open source efforts. The official instructions for installing *Nominatim* are fairly complete, but brief in places and a bit scattered around different pages, and some steps must be changed or reordered in order to get ASAP to the end of the installation, and ready to geocode!
 
-In the following:
- - the server directory is: `/srv/nominatim`
- - the server username is: `nominatim`
- - the data will be donwloaded in: `/srv/nominatim/Nominatim-3.5.1/data/` (but check version in folder name!)
- - the software will be installed from: `/srv/nominatim/build/`
- - the machine specs when populating the database need an uplift to at least 6vCPUs, 16GBRAM.
+Luckily for us, a group of good guys has teamed together to build a *Docker* image and take us out of that nightmare. Now it's only a matter of three (yes THREE!!!) instructions (and a few hours, or days depending on the machine and the extension ofyour geography) to have a geoserver up and running.
 
-Data have been limited to a single country, namely Great Britain, and the process lasted 200 minutes. Notice that after the first step of setting up the db server and loading the data, the process is divided in 30 so called *rank*, where the two ranks numbered as 26 and 30 take most of the time (one third each more or less), with an ETA showing. That's where you should focus to understand if your machine is correctly specced for the job (it should take 7 days for the entire planet, I had ~3K seconds for each of the above two big ranks for GB only). If the machine is very under-specced, you don't even get to calculate the first rank!
+- first of all, if you haven't set up a SSH key on GiThub, it's now the right time to do it. Let's start with creating a key-pair files on the machine: 
+  ```
+  ssh-keygen -t ed25519 -C "githubmst@master-i.com"
+  ```
+- print it on screen and copy:
+  ```
+  cat ~/.ssh/id_ed25519.pub
+  ```
+- open [this Github webpage](https://github.com/settings/keys) and add the key to your account, meaning write down a title and paste your key text into the big text area.
+- enter into the path for your software (you can use whatever you prefer):
+  ```
+  cd ~/software/
+  ```
+- clone the github repository, then `cd` into the *last* version:
+  ```
+  git clone git@github.com:mediagis/nominatim-docker.git
+  cd nominatim-docker/<version>
+  ```
+- find the url of the geographic file(s) you need, for example from [Geofabrik](http://download.geofabrik.de/). I'm using here the British geography below, but you can use anyone simply changing the country bit according to the site.
+- fire an istance (notice the password bit to fill out and the `XXXX` that should be changed with the port number (of the host) you want to use:
+  ```
+  docker run -it --rm \
+      -e PBF_URL=https://download.geofabrik.de/europe/britain-and-ireland-latest.osm.pbf \
+      -e REPLICATION_URL=https://download.geofabrik.de/europe/britain-and-ireland-updates/ \
+      -e IMPORT_WIKIPEDIA=true \
+      -e NOMINATIM_PASSWORD=<INSERT-A-PASSWORD-HERE> \
+      -p XXXX:8080 \
+      --name nominatim \
+      mediagis/nominatim:3.7
+  ```
+- there are now a few *R* packages you can use for *geocoding*, and other stuff. With `tmap` and friends, a simple line of code would be:
+  ```
+  tmaptools::geocode_OSM(address, server = 'http://127.0.0.1:XXXX')
+  ```
 
+### Resources
 
-  <a name="dep-nominatim"/>
-
-### Dependencies
-
-
-
-  <a name="psql-nominatim"/>
-
-### Postgres
-
-
-
-  <a name="apache-nominatim"/>
-
-### Apache
-
-
-
-  <a name="data-nominatim"/>
-
-### Download Data
-
-
-
-  <a name="build-nominatim"/>
-
-### Build Software
-
-
-
-  <a name="pop-nominatim"/>
-
-### Populate Database
-
+  - [Main website](https://github.com/Project-OSRM/osrm-backend) 
+  - [*Docker Hub*](https://hub.docker.com/r/osrm/osrm-backend/)
+  - [*R* `osrm` package](https://github.com/riatelab/osrm)
 
 
 <br/>
