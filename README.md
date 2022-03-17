@@ -71,6 +71,7 @@
     + [Build Software](#build-nominatim)
     + [Populate Database](#pop-nominatim)
   * [Additional Tools](#additional-tools)
+    + [Personal Cloud Storage](#next-cloud)
     + [Fonts](#fonts)
     + [Spark](#spark)
     + [Add SSH Key Pair for Enhanced Security](#droplet-with-ssh-key)
@@ -2627,11 +2628,31 @@ Luckily for us, a group of good guys has teamed together to build a *Docker* ima
 <br/>
 
 :point_up_2:[Back to Index](#index)
-<a name="fonts"/>
- 
-## Additional Fonts
+<a name="additional-tools"/>
+## Additional Tools
 
-### Preliminaries
+  <a name="next-cloud"/>
+
+### Personal Cloud Storage
+
+[Nextcloud](https://github.com/nextcloud/server) is a free Open Source alternative to commercial cloud storage services, like DropBox or OneDrive, that allows its users ready access to personal or professional files, documents, images, music, and videos wherever they are, without having to concede information to any 3rd party company. 
+
+*Nextcloud* is a fork of the much older [ownCloud]() project, is written in PHP and JavaScript, and supports many database systems as back-end. In order to keep files synchronized between the server and other devices, Nextcloud also provides desktop applications for Windows, Linux, and Mac, plus mobile apps for Android and iOS. Nextcloud is not just a Dropbox clone, it provides additional features like Calendar, Contacts, Schedule tasks, and streaming media.
+
+#### Installation
+You first need to install the web server Nginx, the database system MySQL, the PHP preprocessor, already described in the preceeding paragraphs.
+
+
+#### Configuration
+
+
+
+
+<a name="fonts"/>
+
+### Additional Fonts
+
+#### Preliminaries
 
   - Change permissions to the font repository in `/usr/share/fonts/`
     ```
@@ -2652,7 +2673,7 @@ Luckily for us, a group of good guys has teamed together to build a *Docker* ima
     exit
     ```
 
-### Register fonts
+#### Register fonts
 
   - (re)build the font information cache file (avoid printing output)
     `sudo fc-cache -fv > /dev/null`
@@ -2668,7 +2689,7 @@ Luckily for us, a group of good guys has teamed together to build a *Docker* ima
     exit
     ```
 
-### Google Fonts
+#### Google Fonts
 
   - Create a dedicated folder in the above font directory:
     ```
@@ -2685,7 +2706,7 @@ Luckily for us, a group of good guys has teamed together to build a *Docker* ima
   - Rebuild the system font cache, and import the new fonts in *R* as described above
 
   
-### Microsoft Core Fonts
+#### Microsoft Core Fonts
 
   - download the fonts
     `sudo apt-get install ttf-mscorefonts-installer`
@@ -2694,7 +2715,7 @@ Luckily for us, a group of good guys has teamed together to build a *Docker* ima
   - Rebuild the system font cache, and import the new fonts in *R* as described above
 
   
-### Windows Fonts
+#### Windows Fonts
 
   - create a dedicated folder in the usual font directory:
     ```
