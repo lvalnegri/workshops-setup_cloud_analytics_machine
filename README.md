@@ -1700,6 +1700,7 @@ We're now in a position to add credentials in a way that avoid people to see pas
     collation-server=utf8_unicode_ci
     skip-character-set-client-handshake
     default-storage-engine=MYISAM
+    local_infile=1
     ~~~
 
 
