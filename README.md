@@ -768,7 +768,7 @@ We now add a constant to the *R* environment associated with the path of our *pu
     Sys.getenv('PUB_PATH')
     ~~~
 
-In the same way as above, you can add two other important constants to the *R* environment file:
+In the same way as above, you can add other important constants to the *R* environment file:
   - as we've already noticed earlier, you should be cautious on how packages are installed, if you don't want to end up with lots of duplications, different versions and incompatibility. To overcome this situation, we define a common shared location for the packages to be stored, as a subfolder of our *public* repository. The line to add in the configuration file is the following:
     ~~~
     R_LIBS_USER = '/usr/local/share/public/R_library'
@@ -783,6 +783,22 @@ In the same way as above, you can add two other important constants to the *R* e
     R_MAX_NUM_DLLS = 1000
     ~~~
     Notice that you can write down a smaller number, but 1,000 is the biggest number that you can set the variable to without *R* complaining.
+  - if you often install packages from private repo on *GitHub*, or build packages with `remotes` in the `DESCRIPTION` file associated with private repo on *GitHub*, it is convenient to set here your key:
+    ~~~
+    GITHUB_PAT = WRITE_YOUR_KEY_HERE
+    ~~~
+    In a similar way, if you use cloud services or APIs and you need keys to access them, do NOT put them in your scripts, but save them them here using a recognizable name, and then recall them in the script using `Sys.getenv`
+    
+While useful, `Renviron` can only save `key:value` pairs to set variables at launch. But you can also use another file called `Rprofile.site`, in the same location,
+that accepts any kind of valid $R$ commands. For example, you can set `options` that you know you would always set in a specific way, or if you use the same library(ies) every time you work with $R$, you can set it here. A particular set of options useful when installing or updating packages are the following:
+```
+options(
+    repos = c(CRAN = 'https://cran.rstudio.com/'),
+    download.file.method = 'libcurl',
+    Ncpus = 6
+)
+```
+where `Ncpus` should be modified according to your machine.
 
 
   <a name="install-rstudio-server"/>
