@@ -1,4 +1,5 @@
 # ADD THE FOLLOWING TO /usr/lib/R/etc/Renviron
+# this file can only contain `key = value` pairs
 
 ##############################################################
 ### ADDED BY name date, UPDATED date
