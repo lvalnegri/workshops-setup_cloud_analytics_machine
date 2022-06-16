@@ -1644,6 +1644,7 @@ You can now run the server by visiting the address , but a better way is to proc
   - change the authentication method for the *root* user:
     ~~~
     ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'ENTER-ROOT-PASSWORD-HERE';
+    FLUSH PRIVILEGES;
     ~~~
     You should check that the *plugin* value for the *root* user in the following query is actually `caching_sha2_password`, and that there is no more entry for root with the unsecure `auth_socket` plugin. If that's the case, rerun the previous query for all the values of *host* associated with *root*:
     ~~~
