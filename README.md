@@ -1282,12 +1282,28 @@ We will use [Let's Encrypt](https://letsencrypt.org/) to obtain a free SSL certi
   - when the *cert* process comes to an end, check that https://hostname/shiny and https://hostname/rstudio are working correctly as their unsecure `http` siblings
   - if you asked for *http* redicrection, check finally that http://hostname/shiny and http://hostname/rstudio redirect correctly to https://hostname/shiny and respectively https://hostname/rstudio
 
-Note that every certificate has an expiry date:
+Note that every certificate has an expiry date, so that:
   - to obtain a new or tweaked version of any certificate in the future, simply run the above command again adding the `--certonly` option
   - to non-interactively renew *all* of your certificates, run:
     ~~~
     sudo certbot renew
     ~~~
+  - but you're probably better off adding an automatic renewal option:
+    ~~~
+    sudo certbot renew --dry-run
+    ~~~
+
+On the other hand, if you no longer need a certificate or if the certificate has been compromises, you should revoke it and issue a new request. To delete all certificates for a specified website *hostname.tld* run:
+```
+sudo certbot delete --cert-name hostname.tld
+```
+Alternatively, you can run instead:
+```
+sudo certbot delete
+```
+then select the one(s) you want to get rid of from the proposed list.
+
+As a reference, when a new certificate is issued, it is store in the `/etc/letsencrypt/live` directory. The `/etc/letsencrypt/archive` folder stores instead copies of the *live* certificates.
 
 
   <a name="nginx-auth"/>
