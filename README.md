@@ -1637,9 +1637,17 @@ You can now run the server by visiting the address , but a better way is to proc
     sudo mysql_secure_installation
     ~~~
     skip the first question, then insert a strong new password for *root*, and finally answer **Yes** to all the remaining questions.
-  - login as root, (when asked, enter the password you choose in the previous step)step before:
+  - login as root (when asked, enter the password you choose in the previous step):
     ~~~
     sudo mysql -u root -p
+    ~~~
+  - change the authentication method for the *root* user:
+    ~~~
+    ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'ENTER-ROOT-PASSWORD-HERE';
+    ~~~
+    You should check that the *plugin* value for the *root* user in the following query is actually `caching_sha2_password`, and that there is no more entry for root with the unsecure `auth_socket` plugin. If that's the case, rerun the previous query for all the values of *host* associated with *root*:
+    ~~~
+    SELECT user,authentication_string, plugin, host FROM mysql.user;
     ~~~
   - create at least two new *agnostic* users to be used in:
     - scripts, with all privileges and working only on localhost:
@@ -1656,7 +1664,7 @@ You can now run the server by visiting the address , but a better way is to proc
       GRANT SELECT ON *.* TO 'shiny'@'%';
       FLUSH PRIVILEGES;
       ~~~
-      Notice that it is really necessary for the *shiny* user to have both the *localhost* and the *%* statements to be able to connect from *anywhere* as *shiny*. Moreover, if it is known beforehand the exact IP address of the machineip where the shiny user is going to query from, then that IPip should be included in the above statements, instead of the percent sign.
+      Notice that it is really necessary for the *shiny* user to have both the *localhost* and the *%* statements to be able to connect from *anywhere* as *shiny*. Moreover, if it is known beforehand the exact IP address of the machine where the shiny user is going to query from, then that IP should be included in the above statements, instead of the percent sign.
       
     In a similar way, it is possible to create additional *personal* users. See [here](https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html) for a list of all possible specifications for the privileges.
     
@@ -1687,7 +1695,7 @@ We're now in a position to add credentials in a way that avoid people to see pas
     `sudo nano /etc/mysql/my.cnf
     ~~~
   - scroll at the end and add the desired credential(s):
-    ~~~```
+    ~~~
     [groupname]
     host = ip_address
     user = usrname
@@ -1724,15 +1732,18 @@ We're now in a position to add credentials in a way that avoid people to see pas
 
 #### RMySQL
 
-  - `library(RMySQL)` 
-  - `conn <- dbConnect(MySQL(), host = 'hostname', username = 'usrname', password = 'pwd', dbname = 'dbname')` 
-  - `conn <- dbConnect(MySQL(), group = 'grpname')` 
-  - `dbGetQuery(conn, 'strSQL')` 
-  - `dbReadTable(conn, 'tblname')`  
-  - `dbSendQuery(conn, 'strSQL')` 
-  - `dbWriteTable(conn, 'tblname', dfname, row.names = FALSE, append = TRUE)` 
-  - `dbRemoveTable(con, 'tblname)` 
-  - `dbDisconnect(conn) ` 
+  - `library(RMySQL)` load the library
+  - `dbc <- dbConnect(MySQL(), host = 'hostname', username = 'usrname', password = 'pwd', dbname = 'dbname')` Connect to the server using credentials in clear (not safe to put in scripts!)
+  - `dbc <- dbConnect(MySQL(), group = 'grpname')` Connect to the server using credentials taken from the configuration file
+  - `dbGetQuery(conn, 'strSQL')` Run an arbitarry query to return a result (usually a `SELECT` query)
+  - `dbReadTable(dbc, 'tblname')` Read a complete table
+  - `dbSendQuery(dbc, 'strSQL')` Run an arbitrary query
+  - `dbWriteTable(dbc, 'tblname', dfname, row.names = FALSE, append = TRUE)` Write a dataframe to a database as the specified table. It is possible either to append or overwrite the values.
+  - `dbRemoveTable(dbc, 'tblname)` Drop a table
+  - `dbDisconnect(dbc)` Close the connection. This is a very important step to avoid filling up the *pool* of connections, and being rejected a connection the next time. If this should happen, run (carefully!) the following command:
+    ```
+    for(x in dbListConnections(RMySQL())) dbDisconnect(x)
+    ```
 
 
   <a name="dbninja"/>
