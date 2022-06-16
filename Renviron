@@ -1,0 +1,13 @@
+# ADD THE FOLLOWING TO /usr/lib/R/etc/Renviron
+
+##############################################################
+### ADDED BY name date, UPDATED date
+
+PUB_PATH = '/usr/local/share/public'
+R_LIBS_USER = '/usr/local/share/public/R_library'
+R_MAX_NUM_DLLS = 1000
+_SF_USE_S2 = false
+GOOGLE_API_KEY=">>>>ADD GOOGLE API KEY HERE<<<<"
+US_CENSUS_API_KEY = '>>>>ADD US CENSUS API KEY HERE<<<<'
+
+##############################################################
