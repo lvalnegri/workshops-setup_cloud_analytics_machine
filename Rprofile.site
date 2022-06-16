@@ -1,0 +1,16 @@
+# ADD THE FOLLOWING TO /usr/lib/R/etc/RProfile.site
+# this file can run usual R commands 
+
+##############################################################
+### ADDED BY name date, UPDATED date
+
+options(
+    repos = c(CRAN = 'https://cran.rstudio.com/'),
+    download.file.method = 'libcurl',
+    Ncpus = 6
+)
+library(devtools)
+# library(data.table)
+# library(sf)
+
+#########################################
