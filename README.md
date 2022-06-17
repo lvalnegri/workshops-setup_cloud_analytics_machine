@@ -1836,6 +1836,8 @@ This step requires to have a Web server and a *php* processor already installed 
   If you now open the page at `https://hostname.tld/yoururl` you should be greeted with a preliminary access modal window, asking for the user and password just saved in the password file, before entering the desired database user and password 
  
 
+  :point_up_2:[Back to Index](#index)
+
   <a name="mssql"/>
 
 ### MS SQL Server (relational database)
