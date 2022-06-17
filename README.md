@@ -49,7 +49,7 @@
   * [Storage engines](#storage-engines)
     + [MySQL Server](#mysql)
       - [MySQL Web Cient: *DbNinja*](#dbninja)
-      - [MySQL Web Cient: *PhpMyAdmin*](#phpma)
+      - [MySQL Web Cient: *PhpMyAdmin*](#phpmyadmin)
     + [MS SQL Server](#mssql)
     + [PostgreSQL](#postgres)
     + [Neo4j](#neo4j)
