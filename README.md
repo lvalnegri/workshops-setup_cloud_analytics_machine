@@ -1312,15 +1312,25 @@ As a reference, when a new certificate is issued, it is store in the `/etc/letse
 As we've seen before, from the server's point of view a *Shiny* app is nothing more than a subfolder in the *Shiny Server* base folder, which by default is `/srv/shiny-server`. Using *Nginx* capabilities, it's easy to add a *basic* form of authentication to any shiny app, where *basic* means that the system simply asks for a user and password, checking that the user exists and that the password is associated with it (for more capabilities, like grouping users, associate functionalities with users, or tracing behaviour, it is possible to use some convenient *R* packages or you can actually build your self-designed layer on top of the app itself).
   - first, we need a user/password map file, where users that should be able to log in are listed along with their passwords in encrypted form. To accomplish that, we'll use the *Apache*'s [htpasswd](https://httpd.apache.org/docs/2.4/programs/htpasswd.html) command from the `utils` library, that you possibly need to install:
     ~~~
-    sudo apt-get update && sudo apt-get upgrade
-    sudo apt-get install -y apache2-utils
+    sudo apt update && sudo apt upgrade
+    sudo apt install -y apache2-utils
     ~~~
   - we are now in a position to create users and passwords, we are going to save a file for each app in a dedicated subfolder of our public repo `PUB_PATH`:
     ~~~
     htpasswd -c $PUB_PATH/shiny_server/pwds/appname.pwds username
     ~~~
-    Once the command has been issued, you'll be ask to provide the associated password twice (as always, the above is just a suggestion, and you are free to change any folder and file names). 
-    Notice that the `-c` option . 
+    Once the command has been issued, you'll be ask to provide the associated password twice (as always, the above is just a suggestion, and you are free to change any folder and file names).
+    
+    Notice the `-c` option that instructs the system to *create* the `appname.pwds` file; if the file already exists, it is rewritten and truncated. In case you want to add another entry, you need to leave out the `c` option. 
+    
+    Other useful options are:
+    - `v` verify a password for a user
+    - `n` display the result without updating the file
+    - `b` let include the password in clear in the command after the username, but it is not a recommendend action as in that case it can be seen from anyone behind you looking at the screen.
+    - `B` force [*bcrypt*](https://en.wikipedia.org/wiki/Bcrypt) encryption of the password instead of the less secure default [*MD5*](https://en.wikipedia.org/wiki/MD5) (try not to use the other much insecure options: `d` [*CRYPT*](https://en.wikipedia.org/wiki/Crypt_(C)), `s` [*SHA*](https://en.wikipedia.org/wiki/Secure_Hash_Algorithms), `p` plain text (!!!).
+    - `D` delete the specified user from the `appname.pwds` file
+    
+    
   - next, open for editing the Nginx default configuration file:
     ~~~
     sudo nano /etc/nginx/sites-available/default
