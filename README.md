@@ -1153,7 +1153,7 @@ To facilitate the management of the content of the website --- i.e. copying, edi
   <a name="nginx-php"/>
 
 ### Install php preprocessor
-We're going to install [PHP-FPM](https://php-fpm.org/), a FastCGI implementation alternative to the more common [PHP](http://php.net/) usually installed besides the Apache Web Server
+We're going to install [PHP-FPM](https://php-fpm.org/), a FastCGI implementation alternative to the more common [PHP](http://php.net/) usually installed besides the Apache Web Server.
 
   - install php, *plus* its mysql extensions (we're going to need the latter later):
     ~~~
@@ -1338,8 +1338,8 @@ As we've seen before, from the server's point of view a *Shiny* app is nothing m
     and add the following code anywhere inside the `server` directive:
     ~~~
     location /shiny/appname/ {
-      auth_basic "Username and Password are required"; 
-      auth_basic_user_file /usr/local/share/public/shiny_server/pwds/appname.pwds;
+      	auth_basic "Username and Password are required"; 
+      	auth_basic_user_file /usr/local/share/public/shiny_server/pwds/appname.pwds;
     }
     ~~~
     Notice that you should have one and only of the above for each `appname` directive, although the reference file `appname.pwds` could be the same for more than one app
@@ -1776,7 +1776,7 @@ We're now in a position to add credentials in a way that avoid people to see pas
   <a name="dbninja"/>
 
 #### Install DbNinja, a web client to MySQL Server
-This step requires to have a Web server, like *Apache* or *Nginx*, and a *php* processor already installed on the system. We already have installed *nginx*, so we only need, so we have to install *php*.
+This step requires to have a Web server and a *php* processor already installed on the system.
   - download the client software:
     ~~~
     cd ~/software
@@ -1800,6 +1800,38 @@ This step requires to have a Web server, like *Apache* or *Nginx*, and a *php* p
   - open the top left menu *DbNinja*, then *Settings*, then the *Settings* tab, and check `Hide the ...`. Click *Save*.
   - to add any *MySQL* Server, open the top left menu *DbNinja*, and under *MySQL Hosts* tab click *Add Host* , complete with the desired *MySQL* username (don't save the password for better security), and finally click *Save*
 
+
+#### Install PhpMyAdmin, an alternative web client to MySQL Server
+This step requires to have a Web server and a *php* processor already installed on the system.
+  - install the software:
+    ~~~
+    sudo apt install -y phpmyadmin
+    ~~~
+  - link *phpmyadmin* to the website, then change the default entry your desired url:
+    ~~~
+    ln -s /usr/share/phpmyadmin /var/www/html/
+    cd  /var/www/html/
+    mv phpmyadmin yoururl 
+    ~~~
+  - it's recommended adding a security layer; we first create a password file:
+    ~~~
+    sudo htpasswd -c /etc/nginx/phpmyadmin.pwd username
+    ~~~
+    answering twice with your desired password, and then add a directive in the server block in the nginx config file `/etc/nginx/sites-available/default`:
+    ~~~
+    location /yoururl/ {
+	auth_basic "Please provide username and password";
+	auth_basic_user_file /etc/nginx/phpmyadmin.pwd;
+    }
+    ~~~
+    Remember to check the file and reload the server:
+    ~~~
+    sudo nginx -t
+    sudo systemctl reload nginx
+    ~~~
+  
+  If you now open the page at `https://hostname.tld/yoururl` you should be greeted with a preliminary access modal window, asking for the user and password just saved in the password file, before entering the desired database user and password 
+ 
 
   <a name="mssql"/>
 
