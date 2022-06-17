@@ -49,6 +49,7 @@
   * [Storage engines](#storage-engines)
     + [MySQL Server](#mysql)
       - [MySQL Web Cient: *DbNinja*](#dbninja)
+      - [MySQL Web Cient: *PhpMyAdmin*](#phpma)
     + [MS SQL Server](#mssql)
     + [PostgreSQL](#postgres)
     + [Neo4j](#neo4j)
@@ -1771,7 +1772,7 @@ We're now in a position to add credentials in a way that avoid people to see pas
     ```
     for(x in dbListConnections(RMySQL())) dbDisconnect(x)
     ```
-
+ 
 
   <a name="dbninja"/>
 
@@ -1800,6 +1801,8 @@ This step requires to have a Web server and a *php* processor already installed 
   - open the top left menu *DbNinja*, then *Settings*, then the *Settings* tab, and check `Hide the ...`. Click *Save*.
   - to add any *MySQL* Server, open the top left menu *DbNinja*, and under *MySQL Hosts* tab click *Add Host* , complete with the desired *MySQL* username (don't save the password for better security), and finally click *Save*
 
+
+  <a name="phpmyadmin"/>
 
 #### Install PhpMyAdmin, an alternative web client to MySQL Server
 This step requires to have a Web server and a *php* processor already installed on the system.
