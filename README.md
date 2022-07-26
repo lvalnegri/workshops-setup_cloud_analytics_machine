@@ -72,6 +72,7 @@
     + [Build Software](#build-nominatim)
     + [Populate Database](#pop-nominatim)
   * [Additional Tools](#additional-tools)
+    + [Samba Server](#samba)
     + [Personal Cloud Storage](#next-cloud)
     + [Fonts](#fonts)
     + [Spark](#spark)
@@ -2722,6 +2723,60 @@ Luckily for us, a group of good guys has teamed together to build a *Docker* ima
 :point_up_2:[Back to Index](#index)
 <a name="additional-tools"/>
 ## Additional Tools
+
+  <a name="samba"/>
+
+### Samba Server
+
+[Samba](https://www.samba.org/), a re-implementation of the popular SMB/CIFS protocol (Server Message Block/Common Internet File System), is a stable and free server application that allows sharing of files and print services across a network. Once installed on a central Linux server, shared files can be accessed seamlessy from both Linux and Windows systems.
+
+- installation: 
+  ```
+  sudo apt update & sudo apt install samba
+  ```
+- check the process: 
+  ```
+  whereis samba
+  ```
+- create a folder somewhere to be considered as the *root* for Samba:
+  ```
+  mkdir $PUB_PATH/samba
+  ```
+- open the *Samba* configuration file for the necessary changes:
+  ```
+  sudo nano /etc/samba/smb.conf
+  ```
+- add settings:
+  ```
+  [sambashare]
+    comment = Samba on Ubuntu
+    path = /usr/local/share/public/samba
+    read only = no
+	write list username
+	valid users username
+    browsable = yes
+
+  ```
+  Notice that:
+  - `username` must be an already exixting system user, even though the password will be different
+  - `sambashare` can be subsituted with any other name, and it's not directly related to the folder
+  You can find more options [here](https://www.samba.org/samba/docs/current/man-html/smb.conf.5.html).
+- add a *Samba* password for any system users:
+  ```
+  sudo smbpasswd -a username
+  ```
+- restart the *Samba* server to acknowledge the changes:
+  ```
+  sudo service smbd restart
+  ```
+- add the adhoc rule to the firewall to allow Samba traffic:
+  ```
+  sudo ufw allow samba
+  ```
+- connect locally from any file explorer: 
+  - Linux. Mac: `smb://ip-address/sambashare`
+  - Windows: `\\ip-address\sambashare`
+
 
   <a name="next-cloud"/>
 
