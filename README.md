@@ -2749,18 +2749,23 @@ Luckily for us, a group of good guys has teamed together to build a *Docker* ima
 - add settings:
   ```
   [sambashare]
-    comment = Samba on Ubuntu
+    comment = Samba on Ubuntu (or whatever else you prefer to appear in the connection details)
     path = /usr/local/share/public/samba
-    read only = no
-	write list username
-	valid users username
     browsable = yes
-
+    read only = no
+    write list username ...
+    valid users username ...
+    guest ok = no
   ```
   Notice that:
-  - `username` must be an already exixting system user, even though the password will be different
+  - `username` must be an already exixting system user, even though the password will be different. You can set up a system user with no presence and other access as:
+    ```
+    sudo adduser --no-create-home --disabled-password --disabled-login username
+    ```
   - `sambashare` can be subsituted with any other name, and it's not directly related to the folder
+  
   You can find more options [here](https://www.samba.org/samba/docs/current/man-html/smb.conf.5.html).
+  
 - add a *Samba* password for any system users:
   ```
   sudo smbpasswd -a username
