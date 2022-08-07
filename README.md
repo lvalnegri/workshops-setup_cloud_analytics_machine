@@ -516,7 +516,7 @@ Lastly, let's add to the system an antivirus and a firewall. Starting with the a
       nice -n 15 clamscan && clamscan -ir /
       ~~~
 
-Let's now proceed with the firewall. We're using the *ufw* package that's included by default in the Ubuntu installation:
+Let's now proceed with the firewall. We're using the *ufw* package that's included by default in the Ubuntu installation. Notice that as soos as it is installed, by default everything is blocked, so proceed carefully always keeping an active session open.  
   - enable the software:
     ~~~
     sudo ufw enable
@@ -526,11 +526,16 @@ Let's now proceed with the firewall. We're using the *ufw* package that's includ
     ~~~
     sudo ufw allow xxxx
     ~~~
+  - refuse any connections from IP addresses that attempt to log in or connect more than 6 times in 30 seconds (very useful against brute force attacks):
+    ~~~
+    sudo ufw limit SSH
+    ~~~
+    You can also limit other services in the same way, like *FTP*
   - check if the rule has been correctly applied, check again the number is correct!
     ~~~
     sudo ufw status
     ~~~
-	Now, using a different session as earlier, test that the new user is still capable to ssh into the machine.
+    Now, using a different session *without closing the current you're working on*, test that the new user is still capable to ssh into the machine. 
 
 The following table lists the default ports for the main services used in this document. For a more comprehensive list of default ports used by various well-known services see [this Wikipedia article](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers) .
 
