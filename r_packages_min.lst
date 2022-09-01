@@ -4,6 +4,7 @@ animation
 AppliedPredictiveModeling
 argonDash
 argonR
+arrow
 arules
 basictabler
 billboarder
@@ -35,6 +36,7 @@ d3heatmap
 DALEX
 data.table
 DBI
+dbplyr
 deldir
 dendextend
 dggridR
@@ -46,6 +48,7 @@ doParallel
 doSNOW
 dplyr
 DT
+dtplyr
 dygraphs
 e1071
 edgebundleR
@@ -248,6 +251,7 @@ scales
 scatterD3
 scico
 sf
+sfarrow
 sfheaders
 shiny
 shinyalert
@@ -319,6 +323,8 @@ wesanderson
 wordcloud2
 wrapr
 xaringan
+xaringanExtra
+xaringanthemer
 xgboost
 XML
 xml2
