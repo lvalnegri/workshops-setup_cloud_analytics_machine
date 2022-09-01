@@ -58,6 +58,7 @@ esquisse
 extrafont
 fasttime
 feather
+FFTrees
 flexdashboard
 flextable
 fontawesome
@@ -66,15 +67,18 @@ foreach
 forecast
 formattable
 fst
+fullPage
 furrr
 future
 future.apply
 gam
 gamlss
 gbm
+gcForest
 geofacet
 geogrid
 geojson
+geoops
 geoR
 geoRglm
 georob
@@ -157,6 +161,7 @@ leaflet.extras
 leaflet.extras2
 leaflet.minicharts
 lemon
+lineupjs
 listviewer
 lme4
 lubridate
@@ -195,6 +200,7 @@ pairsD3
 paletteer
 palettetown
 pals
+parsermd
 party
 partykit
 patchwork
@@ -247,6 +253,7 @@ RJSONIO
 rmapshaper
 rmarkdown
 RMySQL
+rnoaa
 ROCR
 RODBC
 roxygen2
@@ -318,6 +325,7 @@ timevis
 tinter
 tmap
 tmaptools
+toastui
 tree
 treemapify
 trelliscopejs
@@ -335,6 +343,7 @@ vroom
 waffle
 waiter
 wesanderson
+whiteboxR
 wordcloud2
 wrapr
 xaringan
