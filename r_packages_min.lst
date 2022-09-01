@@ -1,5 +1,6 @@
 devtools
 adabag
+anglr
 animation
 AppliedPredictiveModeling
 argonDash
@@ -25,6 +26,7 @@ cicerone
 circlize
 class
 classInt
+collapse
 colorspace
 colourpicker
 concaveman
@@ -41,6 +43,7 @@ deldir
 dendextend
 dggridR
 DiagrammeR
+dials
 dichromat
 diffobj
 doMC
@@ -56,6 +59,7 @@ echarts4r
 emojifont
 esquisse
 extrafont
+fasterize
 fasttime
 feather
 FFTrees
@@ -75,6 +79,7 @@ gam
 gamlss
 gbm
 gcForest
+geodrawr
 geofacet
 geogrid
 geojson
@@ -83,6 +88,7 @@ geoR
 geoRglm
 georob
 geosphere
+geospark
 ggalluvial
 GGally
 ggalt
@@ -165,6 +171,7 @@ lineupjs
 listviewer
 lme4
 lubridate
+lutz
 lwgeom
 magick
 magrittr
@@ -184,6 +191,8 @@ micromap
 microplot
 mlmRev
 mlr3
+mlr3spatial
+mlr3spatiotempcv
 modelr
 mongolite
 multcomp
@@ -201,6 +210,7 @@ paletteer
 palettetown
 pals
 parsermd
+parsnip
 party
 partykit
 patchwork
@@ -228,6 +238,7 @@ RagGrid
 randomForest
 ranger
 raster
+rasterpic
 rayshader
 rbokeh
 rcartocolor
@@ -240,6 +251,7 @@ reactlog
 reactable
 readr
 readxl
+recipes
 Redmonder
 redux
 remedy
@@ -260,6 +272,7 @@ roxygen2
 rpart
 rpivotTable
 RPostgresSQL
+rsample
 RSQLite
 rvest
 scales
@@ -267,6 +280,7 @@ scatterD3
 scico
 sf
 sfarrow
+sfdep
 sfheaders
 shiny
 shinyalert
@@ -292,6 +306,7 @@ shinytest
 shinythemes
 shinyTree
 shinyWidgets
+smile
 sna
 sp
 sparklyr
@@ -299,6 +314,8 @@ SpatialTools
 spatialwidget
 spatstat
 spdep
+spfilteR
+spqdep
 sqldf
 stars
 stringr
@@ -335,6 +352,7 @@ tweenr
 units
 utf8
 validate
+vapour
 vcd
 viridis
 visNetwork
@@ -355,6 +373,7 @@ xml2
 xtable
 xts
 yarrr
+yardstick
 zeallot
 zoo
 gapminder
