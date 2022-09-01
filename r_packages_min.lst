@@ -66,10 +66,11 @@ foreach
 forecast
 formattable
 fst
+furrr
 future
+future.apply
 gam
 gamlss
-gapminder
 gbm
 geofacet
 geogrid
@@ -147,6 +148,7 @@ kknn
 KRIG
 janitor
 jsonlite
+kernlab
 klaR
 knitr
 lawn
@@ -169,7 +171,9 @@ mapsapi
 maptools
 mapview
 MASS
+mboost
 MCMCglmm
+memoise
 metricsgraphics
 micromap
 microplot
@@ -188,10 +192,12 @@ openxlsx
 osrm
 packrat
 pairsD3
+paletteer
 palettetown
 pals
 party
 partykit
+patchwork
 PBSmapping
 pivottabler
 pixiedust
@@ -204,6 +210,7 @@ Polychrome
 pROC
 profvis
 promises
+prophet
 purrr
 pushbar
 qqplotr
@@ -221,6 +228,7 @@ rcartocolor
 rclipboard
 RColorBrewer
 Rcpp
+RCrawler
 RCurl
 reactlog
 reactable
@@ -288,6 +296,7 @@ sqldf
 stars
 stringr
 sunburstR
+superml
 survival
 survminer
 table1
@@ -297,9 +306,13 @@ terra
 testthat
 thematic
 threejs
+tidycensus
+tidygeocoder
+tidymodels
 tidyquant
 tidyr
 tidytext
+tidyxl
 tilegramsR
 timevis
 tinter
@@ -308,6 +321,8 @@ tmaptools
 tree
 treemapify
 trelliscopejs
+tsbox
+tseries
 tweenr
 units
 utf8
@@ -333,3 +348,6 @@ xts
 yarrr
 zeallot
 zoo
+gapminder
+nycflights13
+palmerpenguins
