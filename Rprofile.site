@@ -1,4 +1,4 @@
-# ADD THE FOLLOWING TO /usr/lib/R/etc/RProfile.site
+# ADD THE FOLLOWING TO /usr/lib/R/etc/Rprofile.site
 # this file can run usual R commands 
 
 ##############################################################
