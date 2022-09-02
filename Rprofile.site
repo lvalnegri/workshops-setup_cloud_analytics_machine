@@ -7,7 +7,7 @@
 options(
     repos = c(CRAN = 'https://cran.rstudio.com/'),
     download.file.method = 'libcurl',
-    Ncpus = 6
+    Ncpus = 20
 )
 library(devtools)
 # library(data.table)
