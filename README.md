@@ -2617,10 +2617,10 @@ WORKDIR /home/$USERNAME
   mkdir car
   cd car
   cp ../italy_uk.osm.pbf .
-  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/car.lua /data/italy_uk.osm.pbf
-  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-partition /data/italy_uk.osrm
-  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/italy_uk.osrm
-  docker run -t -i -p 5001:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/italy_uk.osm.pbf
+  docker run -t -v "${PWD}:/data" ghcr.io/project-osrm/osrm-backend osrm-extract -p /opt/car.lua /data/italy_uk.osm.pbf
+  docker run -t -v "${PWD}:/data" ghcr.io/project-osrm/osrm-backend osrm-partition /data/italy_uk.osrm
+  docker run -t -v "${PWD}:/data" ghcr.io/project-osrm/osrm-backend osrm-customize /data/italy_uk.osrm
+  docker run -t -i -p 5001:5000 -v "${PWD}:/data" ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/italy_uk.osm.pbf
   ```
   If you had modified the image to change the profile(s), you need to change in the above (and below) set of commands the name of the image (`osrm/osrm-backend`) accordingly. 
   
@@ -2630,20 +2630,20 @@ WORKDIR /home/$USERNAME
   mkdir foot
   cd foot
   cp ../italy_uk.osm.pbf .
-  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/foot.lua /data/italy_uk.osm.pbf
-  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-partition /data/italy_uk.osrm
-  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/italy_uk.osrm
-  docker run -t -i -p 5002:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/italy_uk.osm.pbf
+  docker run -t -v "${PWD}:/data" ghcr.io/project-osrm/osrm-backend osrm-extract -p /opt/foot.lua /data/italy_uk.osm.pbf
+  docker run -t -v "${PWD}:/data" ghcr.io/project-osrm/osrm-backend osrm-partition /data/italy_uk.osrm
+  docker run -t -v "${PWD}:/data" ghcr.io/project-osrm/osrm-backend osrm-customize /data/italy_uk.osrm
+  docker run -t -i -p 5002:5000 -v "${PWD}:/data" ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/italy_uk.osm.pbf
   ```
   ```
   cd ..
   mkdir bike
   cd bike
   cp ../italy_uk.osm.pbf .
-  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/bicycle.lua /data/italy_uk.osm.pbf
-  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-partition /data/italy_uk.osrm
-  docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/italy_uk.osrm
-  docker run -t -i -p 5003:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --algorithm mld /data/italy_uk.osm.pbf
+  docker run -t -v "${PWD}:/data" ghcr.io/project-osrm/osrm-backend osrm-extract -p /opt/bicycle.lua /data/italy_uk.osm.pbf
+  docker run -t -v "${PWD}:/data" ghcr.io/project-osrm/osrm-backend osrm-partition /data/italy_uk.osrm
+  docker run -t -v "${PWD}:/data" ghcr.io/project-osrm/osrm-backend osrm-customize /data/italy_uk.osrm
+  docker run -t -i -p 5003:5000 -v "${PWD}:/data" ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/italy_uk.osm.pbf
   ```
 
 At this point you should have three docker containers running at three different port for three different profiles:
@@ -2653,14 +2653,13 @@ At this point you should have three docker containers running at three different
 
 You can now easily use some *R* code to calculate for example [*isochrones*](https://en.wikipedia.org/wiki/Isochrone_map):
 ```
-function(x, brk, rsl, prf = 1) #1-car, 2-foot, 3-bike
+function(x, brk, rsl, prf = 1) # 1-car, 2-foot, 3-bike
     osrm::osrmIsochrone(sc = x, breaks = brk, res = rsl, returnclass = 'sf', osrm.server = paste0('http://127.0.0.1:500', prf, '/'))
 ```
 or the [shortest path](https://github.com/Telenav/open-source-spec/blob/master/osrm/doc/bidirectional_dijkstra_in_osrm.md) between two locations:
 ```
-function(xs, xd, prf = 1) #1-car, 2-foot, 3-bike
-    osrm::osrmRoute(src = xs, dst = xd, overview = 'full', returnclass = 'sf', osrm.server = paste0('http://127.0.0.1:500', prf, '/')) |> 
-    sf::st_transform(4326)
+function(xs, xd, prf = 1) # 1-car, 2-foot, 3-bike
+    osrm::osrmRoute(src = xs, dst = xd, overview = 'full', returnclass = 'sf', osrm.server = paste0('http://127.0.0.1:500', prf, '/')) |> sf::st_transform(4326)
 ```
 
 ### Resources
