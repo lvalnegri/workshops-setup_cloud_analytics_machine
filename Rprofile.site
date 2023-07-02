@@ -7,6 +7,8 @@
 options(
     repos = c(CRAN = 'https://cran.rstudio.com/'),
     download.file.method = 'libcurl',
+    bitmapType = 'cairo',
+    shiny.usecairo = TRUE,
     Ncpus = 20
 )
 library(devtools)
