@@ -115,7 +115,7 @@ This tutorial is quite lengthy, as it's been thought full of details useful for 
   <a name="sign-up-do"/>
 
 ### Sign up to Digital Ocean
-  - go to https://m.do.co/c/ef1c7bc80083 (you'll be credited $100 lasting 60 days, offer valid at the time of writing)
+  - go to https://m.do.co/c/ef1c7bc80083 (you'll be credited $200 lasting 60 days, offer valid at the time of writing)
   - insert your email and a sufficiently strong password (you can generate one suitable [here](https://www.random.org/passwords/?num=1&len=15&format=html&rnd=new)). I advise you to use a password manager to securely collect, store and organize all your credentials. My suggestion is the free open source [KeePass Password Safe](https://keepass.info/).
   - you'll be asked for a credit card, but no money will be taken from your account. Just remember to check in at the end of the grace period!
   - check your email and validate your new account
